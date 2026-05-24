@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Form bootstrap</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <!--
+    Netlify Forms detection bootstrap. Netlify's post-processing bot scans
+    every .html file in the deploy for <form data-netlify="true">. This file
+    exists so detection has a plain, vanilla form to find even if Astro's
+    output of /contact/index.html does anything unusual. Keep field names
+    identical between this file and src/pages/contact.astro.
+  -->
+  <form name="contact" data-netlify="true" netlify netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="radio" name="channel" value="email" />
+    <input type="radio" name="channel" value="phone" />
+    <input type="radio" name="channel" value="sms" />
+    <input type="radio" name="channel" value="instagram" />
+    <textarea name="message"></textarea>
+    <input name="bot-field" />
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
