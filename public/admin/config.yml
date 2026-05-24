@@ -48,6 +48,7 @@ collections:
       - { name: secondaryCtaHref, label: "Secondary CTA link", widget: string, required: false }
       - { name: seoTitle, label: "SEO title (browser tab)", widget: string, required: false }
       - { name: seoDescription, label: "SEO description", widget: text, required: false }
+      - { name: acuityEmbedUrl, label: "Acuity booking URL (Timetable + Get Started only)", hint: "Paste the iframe URL from Acuity → Embed code. Looks like https://app.acuityscheduling.com/schedule.php?owner=XXXXXXX", widget: string, required: false }
       - { name: body, label: "Body (optional, markdown)", widget: markdown, required: false }
 
   # ---------------------------------------------------------------

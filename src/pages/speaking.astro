@@ -1,0 +1,186 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'speaking');
+const hero = page?.data ?? {
+  eyebrow: '★ Fuel Woman of the Year 2025',
+  heroHeadline: 'Speaking up for the ageing fitness community.',
+  heroSubcopy:
+    'I was named Fuel Woman of the Year 2025 for my advocacy work. Later that year I returned to the Fuel Summit to speak on how the industry should be coaching the 55-plus crew.',
+  primaryCtaLabel: 'Watch the speech',
+  primaryCtaHref: '#speech',
+  secondaryCtaLabel: 'Read my piece',
+  secondaryCtaHref: '#piece',
+};
+---
+
+<BaseLayout
+  title="Speaking — Coach Nikki, Fuel Woman of the Year 2025"
+  description="Coach Nikki on stage at the Fuel Summit, talking about how the fitness industry should be coaching the over-55 crew. Plus press, podcasts and workshops."
+  activeNav="speaking"
+>
+  <!-- HERO -->
+  <section class="speaking-hero">
+    <div class="grid">
+      <div>
+        <span class="award-tag">{hero.eyebrow}</span>
+        <h1>{hero.heroHeadline}</h1>
+        <p>{hero.heroSubcopy}</p>
+        <div style="margin-top: 28px;">
+          <a class="btn-primary" style="background: var(--orange); color: #fff !important;" href={hero.primaryCtaHref}>
+            {hero.primaryCtaLabel}
+          </a>
+          <a class="btn-secondary" style="color: var(--ink) !important; border-color: var(--ink);" href={hero.secondaryCtaHref}>
+            {hero.secondaryCtaLabel}
+          </a>
+        </div>
+      </div>
+      <div class="ph"><span class="ph-label">Photo: Nikki on stage at Fuel Summit, mid-speech</span></div>
+    </div>
+  </section>
+
+  <!-- THE RECOGNITION -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">The recognition</span>
+      <h2 class="section">What "Fuel Woman of the Year" means</h2>
+      <p class="lead">
+        Fuel is Australia's largest fitness business community for female coaches and studio owners.
+        The annual Woman of the Year award recognises a coach whose work meaningfully shifts how
+        their corner of the industry serves its clients.
+      </p>
+      <p class="lead" style="margin-top: 18px;">
+        I won it for the work I've been doing to build strength training pathways for the 55-plus
+        audience. The same audience the broader fitness industry largely overlooks.
+      </p>
+      <div class="speaking-grid">
+        <div class="ph"><span class="ph-label">Award moment</span></div>
+        <div class="ph"><span class="ph-label">Group shot at summit</span></div>
+        <div class="ph"><span class="ph-label">Nikki with award</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SPEECH -->
+  <section id="speech" style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">The speech</span>
+      <h2 class="section">"How we should be coaching the 55-plus crew"</h2>
+      <p class="lead muted">Recorded at the Fuel Summit 2025. About 22 minutes.</p>
+      <div class="video-block" style="margin-top: 32px;">
+        <div class="play">▶</div>
+        <span class="ph-label">Video player: Nikki's Fuel Summit speech</span>
+      </div>
+      <p class="muted" style="margin-top: 16px; font-size: 14px; text-align: center;">
+        Prefer to read? <a class="btn-secondary" href="#piece">Read the transcript →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- SPEECH PULL QUOTE -->
+  <section class="speech-pull">
+    <blockquote>
+      "We've spent decades telling people in their 60s and 70s to take it easy. The data, the
+      bodies, and the lived experience all say the opposite. They need to be lifting, balancing,
+      learning, and being challenged."
+      <cite>From my Fuel Summit speech, 2025</cite>
+    </blockquote>
+  </section>
+
+  <!-- THE PIECE -->
+  <section id="piece">
+    <div class="container">
+      <span class="eyebrow">Why this matters to me</span>
+      <h2 class="section">A piece from me</h2>
+      <div class="passion-block" style="margin-top: 36px;">
+        <div class="ph"><span class="ph-label">Portrait of Nikki</span></div>
+        <div>
+          <p>
+            My why started with my own ageing parents. Real talk: do they listen to much of what I
+            have to say? Hmm, sometimes. But others surely have done, and they are thriving.
+          </p>
+          <p>
+            Every body that walks into the studio tells a story through how it moves. I love
+            watching that story unfold, finding the gaps, and building strength back into the joints
+            and tissues that everyday life depends on.
+          </p>
+          <p>
+            When I started this work, I noticed the industry had a blind spot. The 20-somethings get
+            coached. The recovery-from-injury crowd get coached. The hardcore competition crowd get
+            coached. But the 60-year-old who wants to keep lifting their grandkids, walking up
+            hills, and travelling without their body letting them down? That person has been told to
+            "take it easy", or simply hasn't been shown movement in a way that's been understood for
+            them. Our bodies are adaptation machines. They'll adapt to the good and the not-so-good
+            movement mechanics we throw at them. Everyone deserves the right to learn how to move
+            well.
+          </p>
+          <p>
+            That's the audience the Fuel Summit speech was about. And it's the audience the
+            "Strong and Sassy: The Classics" sessions at the studio are built for.
+          </p>
+          <p>
+            Ageing is a privilege, and not everyone gets the luxury of experiencing it. Strength
+            isn't reserved for the youthful with loads of time. It's a foundation that protects
+            independence, joy, and the ability to do the things that make your little heart dance,
+            for as long as YOU want.
+          </p>
+          <p>
+            If that resonates with you, or with someone you love, come and find me in Matraville.
+          </p>
+          <div style="margin-top: 32px;">
+            <a class="btn-primary" href="/get-started">Book an intro session</a>
+            <a class="btn-secondary" href="/sassy-seniors">See the Sassy Seniors programme</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS / FURTHER READING -->
+  <section style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">Press · further reading</span>
+      <h2 class="section">Elsewhere on the topic</h2>
+      <div class="blog-list">
+        <a class="post">
+          <div class="ph"><span class="ph-label">Article thumbnail</span></div>
+          <div class="date">Fuel Magazine · 2025</div>
+          <h3>The case for strength training after 55</h3>
+          <p>My contributed feature on why the industry needs to change how it speaks to ageing clients.</p>
+        </a>
+        <a class="post">
+          <div class="ph"><span class="ph-label">Podcast thumbnail</span></div>
+          <div class="date">Industry podcast · 2025</div>
+          <h3>Building a studio that the 55-plus crew want to walk into</h3>
+          <p>A conversation on programme design, intake, and the language I use with senior clients.</p>
+        </a>
+        <a class="post">
+          <div class="ph"><span class="ph-label">Workshop thumbnail</span></div>
+          <div class="date">Coach training · 2026</div>
+          <h3>Workshop: coaching the senior client</h3>
+          <p>One-day workshop for coaches and studio owners on running effective strength programmes for the 55+ audience.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Want to train with me?</h2>
+      <p>
+        The "Strong and Sassy: The Classics" sessions run four mornings a week at my Matraville
+        studio. Start with a three-session intro and I'll take it from there.
+      </p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a
+        class="btn-secondary"
+        style="color: #fff !important; border-color: #fff; margin-left: 8px;"
+        href="/timetable"
+      >
+        See the timetable
+      </a>
+    </div>
+  </section>
+</BaseLayout>

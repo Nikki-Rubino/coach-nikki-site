@@ -1,0 +1,115 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => !e.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title={`${post.data.title} — Coach Nikki`}
+  description={post.data.excerpt ?? `Coach Nikki: ${post.data.title}`}
+  activeNav="blog"
+>
+  <article>
+    <section style="background: #fff; padding: 56px 32px 32px;">
+      <div class="container narrow">
+        <p class="muted" style="font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;">
+          <a href="/blog" style="color: var(--muted); text-decoration: none;">← Blog</a>
+          &nbsp;·&nbsp;
+          <time datetime={post.data.date.toISOString()}>{dateFmt.format(post.data.date)}</time>
+        </p>
+        <h1 class="display" style="font-size: 48px; margin-bottom: 14px;">{post.data.title}</h1>
+        <p class="muted" style="font-size: 15px;">By {post.data.author}</p>
+        {post.data.tags.length > 0 && (
+          <p style="margin-top: 12px;">
+            {post.data.tags.map((tag) => (
+              <span
+                class="tag"
+                style="display: inline-block; background: var(--teal-light); color: var(--teal-dark); padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-right: 6px; font-family: var(--font-head);"
+              >
+                {tag}
+              </span>
+            ))}
+          </p>
+        )}
+      </div>
+    </section>
+
+    <section style="background: #fff; padding: 32px 32px 80px;">
+      <div class="container narrow post-body">
+        <Content />
+      </div>
+    </section>
+
+    <section class="cta-strip">
+      <div class="container narrow">
+        <h2>Want to train with me?</h2>
+        <p>Three-session intro is where every new client starts.</p>
+        <a class="btn-primary" href="/get-started">Book your intro</a>
+        <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/timetable">
+          See the timetable
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Lightweight markdown post styling — long-form readability */
+  .post-body {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .post-body h2 {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 40px 0 14px;
+    color: var(--black);
+  }
+  .post-body h3 {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    color: var(--black);
+  }
+  .post-body p { margin-bottom: 20px; }
+  .post-body ul,
+  .post-body ol { margin: 0 0 20px 24px; }
+  .post-body li { margin-bottom: 8px; }
+  .post-body blockquote {
+    border-left: 4px solid var(--teal);
+    padding: 4px 0 4px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .post-body a { color: var(--teal-dark); }
+  .post-body img {
+    border-radius: var(--radius);
+    margin: 24px 0;
+  }
+  .post-body code {
+    background: var(--placeholder);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+  }
+</style>

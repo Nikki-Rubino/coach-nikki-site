@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', (e) => !e.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const dateFmt = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title="Blog — Coach Nikki"
+  description="Coach Nikki's writing on strength training, movement, recovery, and coaching the over-30s through 90s."
+  activeNav="blog"
+>
+  <section style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">From the blog</span>
+      <h1 class="display" style="font-size: 56px;">Words on movement</h1>
+      <p class="lead">Strength, mobility, recovery, and what it takes to keep moving well for life.</p>
+
+      {posts.length === 0 && (
+        <p class="muted" style="margin-top: 40px;">
+          No posts published yet. Check back soon.
+        </p>
+      )}
+
+      <div class="blog-list" style="margin-top: 48px;">
+        {posts.map((post) => (
+          <a class="post" href={`/blog/${post.id}`}>
+            <div class="ph"><span class="ph-label">Post thumbnail</span></div>
+            <div class="date">{dateFmt.format(post.data.date)}</div>
+            <h3>{post.data.title}</h3>
+            {post.data.excerpt && <p>{post.data.excerpt}</p>}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

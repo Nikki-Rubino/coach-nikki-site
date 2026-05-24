@@ -21,6 +21,8 @@ const pages = defineCollection({
     secondaryCtaHref: z.string().optional(),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
+    /** Acuity Scheduling iframe URL — used on the Timetable + Get Started pages */
+    acuityEmbedUrl: z.string().url().optional(),
   }),
 });
 
