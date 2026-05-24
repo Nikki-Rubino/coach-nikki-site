@@ -40,10 +40,31 @@ const siteTitle = /coach nikki/i.test(title) ? title : `${title} | Coach Nikki`;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Netlify Identity widget. Loaded on every page so password-reset / invite /
+      confirmation links from Identity emails get caught no matter where they land.
+      On successful login, redirect to /admin/ where the CMS lives.
+    -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   </head>
   <body>
     <Nav active={activeNav} />
     <main><slot /></main>
     <Footer />
+
+    <script is:inline>
+      // After the widget loads, set up redirect-to-/admin after login.
+      window.addEventListener('load', () => {
+        if (!window.netlifyIdentity) return;
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
