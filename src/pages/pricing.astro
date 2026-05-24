@@ -1,0 +1,185 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'pricing');
+const hero = page?.data ?? {
+  eyebrow: 'Simple, honest pricing',
+  heroHeadline: "One rate per session. One rate for the week. That's it.",
+  heroSubcopy:
+    'Whichever class you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination.',
+  primaryCtaLabel: 'Book your intro',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'Have a question',
+  secondaryCtaHref: '/contact',
+};
+
+const pricingFaqs = (await getCollection('faqs', (e) => e.data.category === 'Pricing'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Cancellations'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Pricing — Coach Nikki Matraville'}
+  description={page?.data.seoDescription}
+  activeNav="pricing"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: studio detail or client smiling mid-session</span>
+    </div>
+  </section>
+
+  <!-- PRICING TIERS -->
+  <section style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">Three ways in</span>
+      <h2 class="section">What you'll pay</h2>
+      <div class="pricing-grid">
+        <!-- INTRO -->
+        <div class="price featured">
+          <h3>Three session intro</h3>
+          <div class="amount">$399 <small>upfront</small></div>
+          <p class="desc">or $450 split across three weeks</p>
+          <ul>
+            <li>Three private sessions with me</li>
+            <li>Joint assessment, strength + movement foundations</li>
+            <li>Required before any group session</li>
+            <li>Choose your next step at session three</li>
+          </ul>
+          <a class="btn-primary" href="/get-started" style="margin-top: 12px;">Book your intro</a>
+        </div>
+
+        <!-- 1:1 -->
+        <div class="price">
+          <h3>1:1 coaching</h3>
+          <div class="amount">$150 <small>per session</small></div>
+          <p class="desc">My full attention. 60 minutes.</p>
+          <ul>
+            <li>Best for injury rehab, complex needs, faster progress</li>
+            <li>Programmed week to week around your goals</li>
+            <li>Book individually or in blocks</li>
+            <li>Limited slots — weekday middles preferred</li>
+          </ul>
+          <a class="btn-secondary" href="/sessions">See all 1:1 details →</a>
+        </div>
+
+        <!-- SEMI-PRIVATE -->
+        <div class="price">
+          <h3>Semi-private weekly</h3>
+          <div class="amount">$150 <small>per week unlimited</small></div>
+          <p class="desc">or $55 per single session</p>
+          <ul>
+            <li>3 to 4 sessions per week, any combination</li>
+            <li>Sassy Classics, Strength, Animal Flow, Breath &amp; Mobility</li>
+            <li>Direct debit through Square</li>
+            <li>Pause with 7 days notice</li>
+          </ul>
+          <a class="btn-secondary" href="/timetable">See the timetable →</a>
+        </div>
+      </div>
+      <p class="price-note">
+        All prices in AUD. GST included. Payments via Square — Apple Pay, Google Pay, card.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT WEEKLY INCLUDES -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">Weekly unlimited, unpacked</span>
+      <h2 class="section">One price. Every group session.</h2>
+      <p class="lead muted">$150 a week gets you across the whole timetable. Pick what fits your body and your diary.</p>
+      <div class="format-grid">
+        <div class="format-card"><div class="num">4×</div><div class="lbl">Sassy Classics</div></div>
+        <div class="format-card"><div class="num">·</div><div class="lbl">Strength small groups</div></div>
+        <div class="format-card"><div class="num">·</div><div class="lbl">Animal Flow Skills + Build</div></div>
+        <div class="format-card"><div class="num">·</div><div class="lbl">Breath &amp; Mobility</div></div>
+      </div>
+      <p class="muted" style="margin-top: 24px; text-align: center; font-size: 14px;">
+        Capacity stays small. Sassy at 6, Strength at 6, Animal Flow at 8, Breath &amp; Mobility at 10.
+      </p>
+    </div>
+  </section>
+
+  <!-- CANCELLATION POLICY -->
+  <section style="background: var(--teal-light);">
+    <div class="container narrow">
+      <span class="eyebrow">The policy</span>
+      <h2 class="section">Cancellations, paused weeks, no surprises</h2>
+      <p class="lead">Life happens. Here's the deal so we both know where we stand.</p>
+      <div class="policy-rows">
+        <div class="policy-row">
+          <div class="policy-h">1:1 cancellations</div>
+          <ul>
+            <li>48+ hours notice: full credit</li>
+            <li>24 to 48 hours: half session lost</li>
+            <li>Less than 24 hours: full session lost</li>
+          </ul>
+        </div>
+        <div class="policy-row">
+          <div class="policy-h">Weekly memberships</div>
+          <ul>
+            <li>7 days notice to pause: week credited</li>
+            <li>Less than 7 days: week is lost</li>
+            <li>Pause as often as you need — travel, illness, life</li>
+          </ul>
+        </div>
+        <div class="policy-row">
+          <div class="policy-h">Group sessions</div>
+          <ul>
+            <li>Covered by weekly — no fee, just message me</li>
+            <li>Casual one-off: 1:1 notice rules apply</li>
+            <li>Waitlists run for full classes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  {(pricingFaqs.length > 0 || cancelFaqs.length > 0) && (
+    <section style="background: #fff;">
+      <div class="container narrow">
+        <span class="eyebrow">The detail</span>
+        <h2 class="section">Pricing questions</h2>
+        <div class="faq">
+          {pricingFaqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+          {cancelFaqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Pick your starting point</h2>
+      <p>The three session intro opens the door to everything else.</p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/contact">Ask a question first →</a>
+    </div>
+  </section>
+</BaseLayout>

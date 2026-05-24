@@ -1,0 +1,137 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'contact');
+const hero = page?.data ?? {
+  eyebrow: 'Say hello',
+  heroHeadline: 'Got a question? Send it through.',
+  heroSubcopy:
+    "If you're ready to book, the Get Started page is faster. If you want a chat first, fill in the form and I'll get back to you in your preferred channel.",
+  primaryCtaLabel: 'Book your intro instead',
+  primaryCtaHref: '/get-started',
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Contact Coach Nikki — Matraville studio'}
+  description={page?.data.seoDescription}
+  activeNav="contact"
+>
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom: 40px;">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      {hero.primaryCtaLabel && (
+        <div style="margin-top: 20px;">
+          <a class="btn-secondary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel} →</a>
+        </div>
+      )}
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: studio exterior or doorway</span>
+    </div>
+  </section>
+
+  <!-- FORM + INFO -->
+  <section style="background: #fff; padding-top: 40px;">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- FORM -->
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/contact-thanks"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden-field">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <h2 class="section" style="font-size: 28px; margin-bottom: 8px;">Send a message</h2>
+          <p class="muted" style="font-size: 14px; margin-bottom: 24px;">I reply within one business day.</p>
+
+          <label class="field">
+            <span>Your name</span>
+            <input type="text" name="name" required />
+          </label>
+
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+
+          <label class="field">
+            <span>Phone (optional)</span>
+            <input type="tel" name="phone" />
+          </label>
+
+          <fieldset class="field">
+            <legend>How would you like me to reply?</legend>
+            <div class="radio-row">
+              <label class="radio">
+                <input type="radio" name="channel" value="email" checked /> Email
+              </label>
+              <label class="radio">
+                <input type="radio" name="channel" value="phone" /> Phone call
+              </label>
+              <label class="radio">
+                <input type="radio" name="channel" value="sms" /> SMS
+              </label>
+              <label class="radio">
+                <input type="radio" name="channel" value="instagram" /> Instagram DM
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span>What's on your mind?</span>
+            <textarea name="message" rows="6" required placeholder="Tell me a bit about what you're after — pain to work around, goals, schedule, or just curious about a class."></textarea>
+          </label>
+
+          <button type="submit" class="btn-primary" style="margin-top: 8px;">Send the message</button>
+        </form>
+
+        <!-- INFO -->
+        <aside class="contact-info">
+          <div class="info-block">
+            <h3>The studio</h3>
+            <p>Unit 3 / 60 Perry Street<br />Matraville NSW 2036</p>
+          </div>
+          <div class="info-block">
+            <h3>Direct lines</h3>
+            <p>
+              <a href="tel:0403122669">0403 122 669</a><br />
+              <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a>
+            </p>
+          </div>
+          <div class="info-block">
+            <h3>On socials</h3>
+            <p>
+              <a href="https://www.instagram.com/coach_nikkir" target="_blank" rel="noopener">@coach_nikkir on Instagram</a>
+            </p>
+          </div>
+          <div class="info-block">
+            <h3>Studio hours</h3>
+            <p class="muted" style="font-size: 14px;">
+              Tue / Wed / Thu / Fri: 6am to evening<br />
+              Tue + Thu: evenings only<br />
+              Sat: mornings only<br />
+              Mon + Sun: closed
+            </p>
+          </div>
+          <div class="info-block" style="background: var(--teal-light); padding: 18px; border-radius: var(--radius-sm);">
+            <h3 style="color: var(--teal-dark);">Ready to book?</h3>
+            <p style="font-size: 14px; margin: 6px 0 12px;">Skip the form. Head straight to the intro booking.</p>
+            <a class="btn-primary" href="/get-started" style="padding: 10px 18px; font-size: 14px;">Get started →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

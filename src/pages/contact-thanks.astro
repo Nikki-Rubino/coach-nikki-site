@@ -1,0 +1,76 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'contact-thanks');
+const hero = page?.data ?? {
+  eyebrow: 'Got it',
+  heroHeadline: 'Message received.',
+  heroSubcopy:
+    "Thanks for reaching out. I'll get back to you within one business day in your preferred channel.",
+  primaryCtaLabel: 'Back to home',
+  primaryCtaHref: '/',
+  secondaryCtaLabel: 'See the timetable',
+  secondaryCtaHref: '/timetable',
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Thanks — Coach Nikki'}
+  description={page?.data.seoDescription}
+  activeNav="contact"
+>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        {hero.secondaryCtaLabel && (
+          <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+        )}
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: studio dazzle moment</span>
+    </div>
+  </section>
+
+  <section style="background: #fff;">
+    <div class="container narrow" style="text-align: center;">
+      <span class="eyebrow">While you wait</span>
+      <h2 class="section">Have a poke around</h2>
+      <p class="lead muted" style="margin: 0 auto;">A few places people usually want to look next.</p>
+      <div class="doors" style="margin-top: 36px;">
+        <a class="door" href="/sessions">
+          <div class="ph"><span class="ph-label">Sessions</span></div>
+          <div class="body">
+            <span class="tag">Sessions</span>
+            <h3>What's on offer</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">Every class type, side by side.</p>
+            <span class="arrow">See sessions →</span>
+          </div>
+        </a>
+        <a class="door" href="/pricing">
+          <div class="ph"><span class="ph-label">Pricing</span></div>
+          <div class="body">
+            <span class="tag pink">Pricing</span>
+            <h3>What it costs</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">Intro, 1:1, weekly unlimited.</p>
+            <span class="arrow">See pricing →</span>
+          </div>
+        </a>
+        <a class="door" href="/blog">
+          <div class="ph"><span class="ph-label">Blog</span></div>
+          <div class="body">
+            <span class="tag orange">Blog</span>
+            <h3>Words on movement</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">My take on strength, ageing, training.</p>
+            <span class="arrow">Read the blog →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

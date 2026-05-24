@@ -1,0 +1,160 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'sessions');
+const hero = page?.data ?? {
+  eyebrow: "What's on offer",
+  heroHeadline: 'Sessions for every body.',
+  heroSubcopy:
+    '1:1, semi-private, classics, Animal Flow, breath and mobility. Pick what fits this week. Mix what fits next.',
+  primaryCtaLabel: 'Book your intro',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'See the timetable',
+  secondaryCtaHref: '/timetable',
+};
+
+const allSessions = (await getCollection('sessions')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Sessions — Coach Nikki Matraville'}
+  description={page?.data.seoDescription}
+  activeNav="sessions"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      {hero.eyebrow && <span class="eyebrow">{hero.eyebrow}</span>}
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        {hero.primaryCtaLabel && (
+          <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        )}
+        {hero.secondaryCtaLabel && (
+          <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+        )}
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: studio collage — classics, AF, semi-private strength</span>
+    </div>
+  </section>
+
+  <!-- INTRO REQUIREMENT BAND -->
+  <section style="background: var(--yellow-light); padding: 28px 32px;">
+    <div class="container" style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap; justify-content: center; text-align: center;">
+      <span class="award-tag" style="background: var(--warm-dark);">Start here</span>
+      <p style="font-size: 16px; max-width: 720px;">
+        Every new client begins with the <a href="/get-started" style="font-weight: 700;">three session intro</a> before joining any group session. That's how I keep classes safe, well-coached and personal.
+      </p>
+    </div>
+  </section>
+
+  <!-- FULL SESSIONS CATALOGUE -->
+  <section style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">The full list</span>
+      <h2 class="section">Every session, side by side</h2>
+      <p class="lead muted">All semi-private sessions sit on the same price. Pick what fits your body, your week, your mood.</p>
+      <div class="session-detail-grid">
+        {allSessions.map((s) => (
+          <article class="session-detail">
+            <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+            <div class="body">
+              {s.data.tag && (
+                <span class={`session-chip ${s.data.tagStyle}`}>{s.data.tag}</span>
+              )}
+              <h3>{s.data.title}</h3>
+              <p class="summary">{s.data.summary}</p>
+              <dl class="meta-rows">
+                {s.data.capacity && (
+                  <div><dt>Capacity</dt><dd>{s.data.capacity}</dd></div>
+                )}
+                {s.data.duration && (
+                  <div><dt>Length</dt><dd>{s.data.duration}</dd></div>
+                )}
+                {s.data.bestFor && (
+                  <div><dt>Best for</dt><dd>{s.data.bestFor}</dd></div>
+                )}
+                {s.data.price && (
+                  <div><dt>Price</dt><dd class="price-cell">{s.data.price}</dd></div>
+                )}
+              </dl>
+              <div class="session-actions">
+                <a class="btn-secondary" href="/timetable">When it's on →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="muted" style="margin-top: 28px; text-align: center; font-size: 14px;">
+        Weekly unlimited covers 3 to 4 sessions per week across any combination of the semi-private offerings above.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">How we start</span>
+      <h2 class="section">Three sessions, then you choose</h2>
+      <p class="lead muted">Same intro arc whether you end up in 1:1, classics, or Animal Flow.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Joint assessment</h3>
+          <p>We map how your body actually moves. Joint range, history, baseline. Gentle, methodical.</p>
+        </div>
+        <div class="step">
+          <h3>Strength foundations</h3>
+          <p>Squat, deadlift, push, pull. The four lifts behind everyday strength.</p>
+        </div>
+        <div class="step">
+          <h3>Movement foundations</h3>
+          <p>A gentle introduction to ground-based work. Builds joint resilience and confidence.</p>
+        </div>
+      </div>
+      <div class="intro-cta">
+        <div>
+          <h3>Intro is $399 upfront or $450 split over three weeks</h3>
+          <p>After your three sessions: continue 1:1, or join the small groups.</p>
+        </div>
+        <a class="btn-primary" href="/get-started">Book your intro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  {sessionFaqs.length > 0 && (
+    <section style="background: #fff;">
+      <div class="container narrow">
+        <span class="eyebrow">Common questions</span>
+        <h2 class="section">Before you book</h2>
+        <div class="faq">
+          {sessionFaqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Ready to start?</h2>
+      <p>Book your three session intro. After that, the door's wide open.</p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/pricing">See pricing →</a>
+    </div>
+  </section>
+</BaseLayout>

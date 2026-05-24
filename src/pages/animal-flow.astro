@@ -1,0 +1,180 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'animal-flow');
+const hero = page?.data ?? {
+  eyebrow: 'Animal Flow Sydney · Regional Leader',
+  heroHeadline: 'Ground based movement. Brain and body.',
+  heroSubcopy:
+    "Quadrupedal Movement Training that builds strength, range and confidence on the floor. Beginner friendly. Run by Sydney's Animal Flow Regional Leader with ten years on the mats.",
+  primaryCtaLabel: 'Book your intro',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'See the timetable',
+  secondaryCtaHref: '/timetable',
+};
+
+// Pull just the two Animal Flow class types
+const afSessions = (await getCollection('sessions', (e) => e.data.tag === 'Animal Flow'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const afFaq = (await getCollection('faqs', (e) => e.id === 'will-i-do-animal-flow'));
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Animal Flow Sydney — Coach Nikki, Regional Leader'}
+  description={page?.data.seoDescription}
+  activeNav="animal-flow"
+>
+  <!-- HERO -->
+  <section class="af-hero">
+    <div class="grid">
+      <div>
+        <span class="af-badge">★ Sydney Regional Leader · 10 years</span>
+        <h1>{hero.heroHeadline}</h1>
+        <p>{hero.heroSubcopy}</p>
+        <div style="margin-top: 28px;">
+          <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+          <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+        </div>
+      </div>
+      <div class="ph"><span class="ph-label">Photo: client in Beast hold, glow lights</span></div>
+    </div>
+  </section>
+
+  <!-- WHAT IS AF -->
+  <section style="background: #fff;">
+    <div class="container">
+      <div class="what-youll-do">
+        <div>
+          <span class="eyebrow">What it is</span>
+          <h2 class="section">Strength, range, brain — all on the floor</h2>
+          <p class="lead">Animal Flow is a ground based bodyweight system. You learn a handful of foundational shapes — Beast, Crab, Limb Lifts, Underswitch — and then sequence them into flows that look like dance and feel like training.</p>
+          <ul style="margin-top: 24px;">
+            <li>Builds joint resilience for hips, shoulders, wrists, spine</li>
+            <li>Develops coordination, balance, and proprioception</li>
+            <li>No equipment. No mirrors. Just you, the floor, and the music</li>
+            <li>Scales from total beginner to certified instructor</li>
+          </ul>
+        </div>
+        <div class="ph"><span class="ph-label">Photo: Beast or Crab hold, mid-flow</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO BLOCK -->
+  <section>
+    <div class="container narrow">
+      <span class="eyebrow">See it in motion</span>
+      <h2 class="section">A short flow, from the studio</h2>
+      <div class="video-block" style="margin-top: 28px;">
+        <div class="play">▶</div>
+        <span class="ph-label">Video: 30-second studio flow demo</span>
+      </div>
+      <p class="muted" style="text-align: center; margin-top: 18px; font-size: 14px;">
+        Or check <a href="https://www.instagram.com/coach_nikkir" target="_blank" rel="noopener">@coach_nikkir</a> for weekly clips from the studio.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE TWO SESSIONS -->
+  <section style="background: var(--teal-light);">
+    <div class="container">
+      <span class="eyebrow">Two ways to train</span>
+      <h2 class="section">Skills or Build a Flow</h2>
+      <p class="lead muted">Skills is where you learn each shape clean. Build a Flow is where you string them together.</p>
+      <div class="sessions" style="grid-template-columns: repeat(2, 1fr);">
+        {afSessions.map((s) => (
+          <article class="session-detail">
+            <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+            <div class="body">
+              <span class={`session-chip ${s.data.tagStyle}`}>{s.data.tag}</span>
+              <h3>{s.data.title}</h3>
+              <p class="summary">{s.data.summary}</p>
+              <dl class="meta-rows">
+                <div><dt>Capacity</dt><dd>{s.data.capacity}</dd></div>
+                <div><dt>Length</dt><dd>{s.data.duration}</dd></div>
+                <div><dt>Best for</dt><dd>{s.data.bestFor}</dd></div>
+                <div><dt>Price</dt><dd class="price-cell">{s.data.price}</dd></div>
+              </dl>
+              <div class="session-actions">
+                <a class="btn-secondary" href="/timetable">When it's on →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE START -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">How we start</span>
+      <h2 class="section">The intro covers your AF foundations</h2>
+      <p class="lead muted">Even if Animal Flow is the only thing you want to do, the three-session intro gets you ready for the floor. Session three is where I introduce you to the foundational shapes properly.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Joint assessment</h3>
+          <p>We map your hips, wrists, shoulders, spine. Find what's loose, what's locked, what to protect.</p>
+        </div>
+        <div class="step">
+          <h3>Strength foundations</h3>
+          <p>The lifts that complement AF. Surprising how much grunt the floor demands.</p>
+        </div>
+        <div class="step">
+          <h3>Animal Flow foundations</h3>
+          <p>Beast, Crab, Limb Lifts, Underswitch, Side Kick Through. The big five before you join class.</p>
+        </div>
+      </div>
+      <div class="intro-cta">
+        <div>
+          <h3>Intro is $399 upfront or $450 over three weeks</h3>
+          <p>After that, you join Skills, Build a Flow, or both — all under weekly unlimited.</p>
+        </div>
+        <a class="btn-primary" href="/get-started">Book your intro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- L1 / CERT PATH -->
+  <section style="background: #fff;">
+    <div class="container narrow">
+      <span class="eyebrow">For the keen</span>
+      <h2 class="section">Going further — L1 certification</h2>
+      <p class="lead">If you want to teach Animal Flow, or just go deep into the system, I run prep sessions for the L1 certification. As Sydney's Regional Leader I've helped dozens of people walk into their cert ready.</p>
+      <p style="margin-top: 18px;">Get in touch and we'll map a path. Usually three to six months of prep depending on where you're starting.</p>
+      <div style="margin-top: 24px;">
+        <a class="btn-primary" href="/contact">Ask about L1 prep</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  {afFaq.length > 0 && (
+    <section>
+      <div class="container narrow">
+        <span class="eyebrow">The honest answer</span>
+        <h2 class="section">Will I have to do Animal Flow?</h2>
+        <div class="faq">
+          {afFaq.map((f) => (
+            <details class="faq-item" open>
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Come and play on the floor</h2>
+      <p>Beginner or seasoned, the door's open. Book the intro and I'll meet you there.</p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/contact">Ask a question →</a>
+    </div>
+  </section>
+</BaseLayout>
