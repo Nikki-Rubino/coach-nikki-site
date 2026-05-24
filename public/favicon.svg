@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <pattern id="z" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <rect width="8" height="8" fill="#111"/>
+      <rect width="4" height="8" fill="#fff"/>
+    </pattern>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#z)" stroke="#111" stroke-width="3"/>
+  <rect x="20" y="26" width="24" height="10" rx="5" fill="#069494"/>
+</svg>

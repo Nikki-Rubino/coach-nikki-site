@@ -1,0 +1,234 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'sassy-seniors');
+const hero = page?.data ?? {
+  eyebrow: 'Sassy Seniors · Strong & Sassy Classics',
+  heroHeadline: 'Strength training that meets you where you are.',
+  heroSubcopy:
+    'For the 55+ crew who want to keep doing the things they love. Up to 6 in a session. Real strength work. Music from the good years.',
+  primaryCtaLabel: 'Book your intro',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'See the timetable',
+  secondaryCtaHref: '/timetable',
+};
+
+const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Sassy Seniors — strength training for over 55s in Matraville"
+  description="Strong, social strength training for the 55+ crew in Matraville. Small groups, classic music, real lifts. Coach Nikki — Fuel Woman of the Year 2025."
+  activeNav="sassy-seniors"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: senior client mid-strength move, glow lights, real smile</span>
+    </div>
+  </section>
+
+  <!-- FUEL BAND -->
+  <section class="fuel-band">
+    <div class="container">
+      <div class="grid">
+        <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+        <div>
+          <span class="award-tag">★ Fuel Woman of the Year 2025</span>
+          <h2>Recognised by my industry. Specifically for this work.</h2>
+          <p>
+            In 2024, although excitedly terrified, I was invited to present on stage and
+            speak about extending an invitation to the older demographics into gyms and
+            studios. In 2025 I was named Fuel Woman of the Year for my work with the
+            ageing fitness community.
+          </p>
+          <blockquote>
+            "We've spent decades telling people in their 60s and 70s to take it easy. The
+            data, the bodies, and the lived experience all say the opposite. They need to
+            be lifting, balancing, learning, and being challenged."
+            <cite>From my Fuel Summit speech, 2024</cite>
+          </blockquote>
+          <a class="btn-primary" href="/speaking">Watch the speech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IF THIS SOUNDS FAMILIAR -->
+  <section class="if-this-sounds">
+    <div class="container">
+      <span class="eyebrow">Sound familiar?</span>
+      <h2 class="section">If you've thought "this isn't my scene"…</h2>
+      <div class="ifsounds">
+        <ul class="ifsounds-list">
+          <li>I looked at the Animal Flow stuff and thought I couldn't possibly.</li>
+          <li>Gyms feel too loud, too young, too judgey.</li>
+          <li>I've never really lifted weights properly and don't know where to start.</li>
+          <li>
+            I just want to keep gardening, lifting grandkids, and travelling without my body
+            letting me down.
+          </li>
+        </ul>
+        <p class="closing-line">You're exactly who I built this for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL ACTUALLY DO -->
+  <section style="background:#fff;">
+    <div class="container">
+      <div class="what-youll-do">
+        <div class="ph"><span class="ph-label">Photo: senior client mid-deadlift, smiling</span></div>
+        <div>
+          <span class="eyebrow">No gentle stretching</span>
+          <h2 class="section">Real strength training. Properly coached.</h2>
+          <p class="lead">Don't get fooled by the age bracket.</p>
+          <ul>
+            <li>We deadlift. Yes, with bars.</li>
+            <li>We squat, split squat, and row.</li>
+            <li>We balance, and we learn new tricks.</li>
+            <li>We do it with classic music and big personalities.</li>
+            <li>We do it safely, scaled to where your body is today.</li>
+          </ul>
+          <p style="margin-top: 20px; font-size: 17px;">
+            The music may be on the classics side. The strength gains are still elite.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FORMAT -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">The format</span>
+      <h2 class="section">Small classes. Real coaching. Off-peak times.</h2>
+      <div class="format-grid">
+        <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per class</div></div>
+        <div class="format-card"><div class="num">4</div><div class="lbl">Classes per week</div></div>
+        <div class="format-card"><div class="num">60</div><div class="lbl">Minutes per session</div></div>
+        <div class="format-card"><div class="num">11am</div><div class="lbl">Mid-morning timing</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE START -->
+  <section style="background: var(--teal-light);">
+    <div class="container">
+      <span class="eyebrow">How we start</span>
+      <h2 class="section">Three sessions, then you're in</h2>
+      <p class="lead muted">
+        Every new client begins with three private sessions. I'll assess where you are,
+        build your foundations, and then welcome you into the Classics Squad.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <h3>Joint assessment</h3>
+          <p>Gentle, methodical. We find what your body needs and what to avoid.</p>
+        </div>
+        <div class="step">
+          <h3>Strength foundations</h3>
+          <p>I'll teach you how to lift safely. Squat, hinge, push, pull.</p>
+        </div>
+        <div class="step">
+          <h3>Movement foundations</h3>
+          <p>Some ground-based work too. I'll show you, you'll surprise yourself.</p>
+        </div>
+      </div>
+      <div class="intro-cta">
+        <div>
+          <h3>The intro is $399 upfront, or $450 over three weeks.</h3>
+          <p>Three private sessions with me, then you join the Sassy Seniors crew.</p>
+        </div>
+        <a class="btn-primary" href="/get-started">Book your intro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPICAL WEEK -->
+  <section style="background:#fff;">
+    <div class="container">
+      <span class="eyebrow">A typical week</span>
+      <h2 class="section">When the Sassy crew meets</h2>
+      <div class="typical-week">
+        <div></div>
+        <div class="day-h">Tuesday</div>
+        <div class="day-h">Wednesday</div>
+        <div class="day-h">Thursday</div>
+        <div class="day-h">Friday</div>
+        <div class="day-h">Saturday</div>
+        <div class="cell time-h">11:00 AM</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell empty">·</div>
+      </div>
+      <p class="muted" style="margin-top: 20px; font-size: 14px;">
+        Weekly unlimited gives you all four sessions. Times confirmed at intro.
+      </p>
+    </div>
+  </section>
+
+  <!-- INNA TESTIMONIAL -->
+  <section style="background: var(--teal); color: #fff;">
+    <div class="container narrow" style="text-align: center;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+        <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
+        <blockquote style="font-size: 26px; font-style: italic; line-height: 1.4; font-weight: 500; font-family: var(--font-head);">
+          "Nikki is a very dedicated and talented coach. I came to her with persistent low
+          back pain. Eight months in, I'm almost pain-free, sleeping better, and moving so
+          much more freely. I can't recommend her highly enough."
+        </blockquote>
+        <cite style="font-size: 16px; opacity: 0.85; font-style: normal;">
+          Inna · Strong and Sassy Squad: The Classics member
+        </cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  {sassyFaqs.length > 0 && (
+    <section>
+      <div class="container narrow">
+        <span class="eyebrow">The questions I get asked</span>
+        <h2 class="section">Honest answers</h2>
+        <div class="faq">
+          {sassyFaqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FINAL CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Ready to feel strong again?</h2>
+      <p>Book your intro session. Or send me a message first if you'd rather chat.</p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a
+        class="btn-secondary"
+        style="color: #fff !important; border-color: #fff; margin-left: 8px;"
+        href="/contact"
+      >
+        Send a message instead
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,153 @@
+# Decap CMS config — mirrors src/content.config.ts
+# If you change a field here, change the matching Zod schema too.
+backend:
+  name: git-gateway
+  branch: main
+  # When deploying, enable Netlify Identity on the site and turn on Git Gateway.
+  # If we move off Identity later (it's in maintenance), swap to:
+  #   name: github
+  #   repo: <nikki-account>/coach-nikki-site
+  #   branch: main
+
+# Editorial workflow gives Nikki a draft → in-review → publish flow.
+publish_mode: editorial_workflow
+
+# Uploaded images land in /public/uploads and are served from the site root.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Friendly site name shown in the CMS header
+site_url: https://www.coachnikki.com.au
+display_url: https://www.coachnikki.com.au
+logo_url: https://www.coachnikki.com.au/favicon.svg
+
+collections:
+
+  # ---------------------------------------------------------------
+  # PAGES — editable hero copy for top-level pages (one entry per page)
+  # ---------------------------------------------------------------
+  - name: "pages"
+    label: "Page copy"
+    label_singular: "Page"
+    folder: "src/content/pages"
+    create: false           # pages are fixed; only edit existing
+    delete: false
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: "Page title (internal)", widget: string }
+      - { name: eyebrow, label: "Eyebrow line", widget: string, required: false }
+      - { name: heroHeadline, label: "Hero headline", widget: string, required: false }
+      - { name: heroSubcopy, label: "Hero subcopy", widget: text, required: false }
+      - { name: heroImage, label: "Hero image", widget: image, required: false }
+      - { name: primaryCtaLabel, label: "Primary CTA label", widget: string, required: false }
+      - { name: primaryCtaHref, label: "Primary CTA link", widget: string, required: false }
+      - { name: secondaryCtaLabel, label: "Secondary CTA label", widget: string, required: false }
+      - { name: secondaryCtaHref, label: "Secondary CTA link", widget: string, required: false }
+      - { name: seoTitle, label: "SEO title (browser tab)", widget: string, required: false }
+      - { name: seoDescription, label: "SEO description", widget: text, required: false }
+      - { name: body, label: "Body (optional, markdown)", widget: markdown, required: false }
+
+  # ---------------------------------------------------------------
+  # BLOG
+  # ---------------------------------------------------------------
+  - name: "blog"
+    label: "Blog posts"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} · {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: date, label: "Date", widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: author, label: "Author", widget: string, default: "Nikki Rubino" }
+      - { name: excerpt, label: "Excerpt (1-2 sentences)", widget: text, required: false }
+      - { name: image, label: "Cover image", widget: image, required: false }
+      - { name: tags, label: "Tags", widget: list, required: false }
+      - { name: draft, label: "Draft (don't publish yet)", widget: boolean, default: false }
+      - { name: body, label: "Body", widget: markdown }
+
+  # ---------------------------------------------------------------
+  # TESTIMONIALS
+  # ---------------------------------------------------------------
+  - name: "testimonials"
+    label: "Testimonials"
+    label_singular: "Testimonial"
+    folder: "src/content/testimonials"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "name"
+    summary: "{{name}} — {{quote | truncate(60)}}"
+    fields:
+      - { name: name, label: "Name", widget: string }
+      - { name: role, label: "Role / context", widget: string, required: false }
+      - name: program
+        label: "Program"
+        widget: select
+        required: false
+        options: ["1:1", "Semi-private", "Animal Flow", "Sassy Seniors", "Small group PT", "Workshop", "Other"]
+      - { name: quote, label: "Quote", widget: text }
+      - { name: avatar, label: "Avatar image", widget: image, required: false }
+      - { name: featured, label: "Show on home page?", widget: boolean, default: false }
+      - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
+
+  # ---------------------------------------------------------------
+  # SESSIONS — class types / products
+  # ---------------------------------------------------------------
+  - name: "sessions"
+    label: "Sessions (class types)"
+    label_singular: "Session type"
+    folder: "src/content/sessions"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: tag, label: "Chip label", widget: string, required: false }
+      - name: tagStyle
+        label: "Chip colour"
+        widget: select
+        options: ["teal", "pink", "orange"]
+        default: "teal"
+      - { name: summary, label: "Short summary", widget: text }
+      - { name: capacity, label: "Capacity (e.g. 'Up to 8')", widget: string, required: false }
+      - { name: duration, label: "Duration (e.g. '60 min')", widget: string, required: false }
+      - { name: bestFor, label: "Best for", widget: string, required: false }
+      - { name: image, label: "Image", widget: image, required: false }
+      - { name: price, label: "Price line (e.g. '$55 · $150/wk')", widget: string, required: false }
+      - { name: bookingUrl, label: "Booking link", widget: string, required: false }
+      - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
+      - { name: showOnHome, label: "Show on home page?", widget: boolean, default: false }
+      - { name: body, label: "Long description (markdown)", widget: markdown, required: false }
+
+  # ---------------------------------------------------------------
+  # FAQS
+  # ---------------------------------------------------------------
+  - name: "faqs"
+    label: "FAQs"
+    label_singular: "FAQ"
+    folder: "src/content/faqs"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "question"
+    summary: "{{category}} — {{question}}"
+    fields:
+      - { name: question, label: "Question", widget: string }
+      - name: category
+        label: "Category"
+        widget: select
+        options: ["Getting started", "Pricing", "Cancellations", "Sessions", "General"]
+        default: "General"
+      - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
+      - { name: body, label: "Answer", widget: markdown }

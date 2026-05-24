@@ -1,0 +1,247 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Editable hero copy comes from src/content/pages/home.md (via Decap CMS).
+const home = await getEntry('pages', 'home');
+const hero = home?.data ?? {
+  eyebrow: 'Coach Nikki · Matraville, Sydney',
+  heroHeadline: 'Strength is ageless.',
+  heroSubcopy:
+    "I help over-30s through 90s eliminate pain, build confidence, and get strong for life. No mirrors. No grunting. No judgement.",
+  primaryCtaLabel: 'Book your intro session',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'See the timetable',
+  secondaryCtaHref: '/timetable',
+};
+
+// Sessions shown on the home page, ordered.
+const homeSessions = (await getCollection('sessions', (e) => e.data.showOnHome))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Featured testimonials, ordered.
+const featuredTestimonials = (await getCollection('testimonials', (e) => e.data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+// Three most recent blog posts.
+const posts = (await getCollection('blog', (e) => !e.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric' });
+---
+
+<BaseLayout
+  title="Coach Nikki — strength is ageless"
+  description="Strength & movement coaching for over 30s in Matraville, Sydney. 1:1 coaching, Sassy Seniors, Animal Flow, semi-private strength."
+  activeNav="home"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      {hero.eyebrow && <span class="eyebrow">{hero.eyebrow}</span>}
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        {hero.primaryCtaLabel && (
+          <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        )}
+        {hero.secondaryCtaLabel && (
+          <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+        )}
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Hero photo: studio glow-light vibe with Nikki coaching</span>
+    </div>
+  </section>
+
+  <!-- FUEL TRUST STRIP -->
+  <div class="trust-strip">
+    <span class="badge">Fuel Woman of the Year 2025</span>
+    <span class="label">Recognised for my work with the ageing fitness community.</span>
+    <a class="link" href="/speaking">Read the speech →</a>
+  </div>
+
+  <!-- THREE DOORS -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">Find your crew</span>
+      <h2 class="section">Who you might be</h2>
+      <p class="lead muted">Pick the one that sounds like you. I'll meet you there.</p>
+      <div class="doors">
+        <a class="door" href="/sassy-seniors">
+          <div class="ph"><span class="ph-label">Senior client mid-deadlift</span></div>
+          <div class="body">
+            <span class="tag pink">Strong and Sassy Squad: The Classics</span>
+            <h3>I'm 55+ and want to feel strong again.</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">
+              You've fallen out of love with training. Or you simply never had the chance to
+              do it consistently. Small group strength training for the 55+ crew. Real lifts,
+              classic music, no intimidation.
+            </p>
+            <span class="arrow">Learn more →</span>
+          </div>
+        </a>
+        <a class="door" href="/sessions">
+          <div class="ph"><span class="ph-label">Small group strength shot</span></div>
+          <div class="body">
+            <span class="tag">Strength small group</span>
+            <h3>I'm an over-30 fixing my niggles, or wanting to move better.</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">
+              You want accountability, consistency and some banter. Semi-private coaching for
+              office workers and anyone who isn't after a bro-feel gym, but wants to move well
+              and lift confidently.
+            </p>
+            <span class="arrow">Learn more →</span>
+          </div>
+        </a>
+        <a class="door" href="/animal-flow">
+          <div class="ph"><span class="ph-label">Animal Flow movement</span></div>
+          <div class="body">
+            <span class="tag orange">Animal Flow Sydney</span>
+            <h3>I'm curious about Animal Flow.</h3>
+            <p class="muted" style="font-size:14px; margin-top:8px;">
+              Learn from the Sydney Regional Leader with 10 years' experience. Skills classes,
+              build-a-flow sessions, or help passing your L1 certification.
+            </p>
+            <span class="arrow">Learn more →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="promise">
+    <div class="container">
+      <span class="eyebrow">The promise</span>
+      <h2 class="section">Safe. Seen. Heard.</h2>
+      <div class="tri">
+        <div>
+          <div class="word">Safe</div>
+          <p>Big lights off, glow lights on. No mirrors. A coach who watches your
+            movement mechanics, knows your history, and respects your pace.</p>
+        </div>
+        <div>
+          <div class="word">Seen</div>
+          <p>You're not lost in a crowd. Class capacities are 4 to 10. Your story, your
+            goals, your wins are tracked.</p>
+        </div>
+        <div>
+          <div class="word">Heard</div>
+          <p>Communication on your terms. I'll banter if you want to banter. I'll work
+            quietly if that's the day. Your call.</p>
+        </div>
+      </div>
+      <div class="pullquote">
+        "Nikki has changed my relationship with exercise into a positive one,
+        using my new strength and increased energy for doing life."
+        <cite>Sarah, nurse</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">How we start</span>
+      <h2 class="section">Three sessions, one foundation</h2>
+      <p class="lead muted">Every new client begins with three private sessions. I'll assess
+        where your body is at, build your foundations, and together we'll figure out where to
+        go next.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Joint assessment</h3>
+          <p>We map how your body actually moves. Joint range, baseline movements, history.
+            Gentle, methodical.</p>
+        </div>
+        <div class="step">
+          <h3>Strength foundations</h3>
+          <p>Squat. Deadlift. Push. Pull. The four lifts that build the strength to do
+            everyday life well.</p>
+        </div>
+        <div class="step">
+          <h3>Animal Flow foundations</h3>
+          <p>Beast, crab, limb lifts, underswitch. Ground-based training that unlocks
+            strength, range, resilience and confidence.</p>
+        </div>
+      </div>
+      <div class="intro-cta">
+        <div>
+          <h3>Ready to start? Intro is $399 upfront, or $450 over three weeks.</h3>
+          <p>After your three sessions you choose: continue 1:1, or join small group.</p>
+        </div>
+        <a class="btn-primary" href="/get-started">Book your intro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SESSIONS -->
+  {homeSessions.length > 0 && (
+    <section style="background:#fff;">
+      <div class="container">
+        <span class="eyebrow">What's on offer</span>
+        <h2 class="section">Sessions for every body</h2>
+        <div class="sessions">
+          {homeSessions.map((s) => (
+            <div class="session-card">
+              <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+              <h3>{s.data.title}</h3>
+              <p>{s.data.summary}</p>
+              {s.data.price && <span class="meta">{s.data.price}</span>}
+            </div>
+          ))}
+        </div>
+        <p class="muted" style="margin-top: 24px; text-align:center; font-size: 14px;">
+          Weekly unlimited covers 3 to 4 sessions per week across any combination of group types.
+        </p>
+      </div>
+    </section>
+  )}
+
+  <!-- TESTIMONIALS -->
+  {featuredTestimonials.length > 0 && (
+    <section class="testimonials">
+      <div class="container">
+        <span class="eyebrow">Words from the dazzle</span>
+        <h2 class="section">What clients say</h2>
+        <div class="tlist">
+          {featuredTestimonials.map((t) => (
+            <div class="testimonial">
+              <blockquote>"{t.data.quote}"</blockquote>
+              <div class="tperson">
+                <div class="avatar"></div>
+                <div>
+                  <div class="name">{t.data.name}</div>
+                  <div class="role">{t.data.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- BLOG -->
+  {posts.length > 0 && (
+    <section>
+      <div class="container">
+        <span class="eyebrow">From the blog</span>
+        <h2 class="section">Words on movement</h2>
+        <div class="blog-list">
+          {posts.map((p) => (
+            <a class="post" href={`/blog/${p.id}`}>
+              <div class="ph"><span class="ph-label">Post thumbnail</span></div>
+              <div class="date">{dateFmt.format(p.data.date)}</div>
+              <h3>{p.data.title}</h3>
+              {p.data.excerpt && <p>{p.data.excerpt}</p>}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

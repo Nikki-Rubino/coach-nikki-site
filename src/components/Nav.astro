@@ -1,0 +1,36 @@
+---
+interface Props {
+  active?: string;
+}
+const { active } = Astro.props;
+
+const links = [
+  { href: '/sessions', label: 'Sessions', key: 'sessions' },
+  { href: '/sassy-seniors', label: 'Sassy Seniors', key: 'sassy-seniors' },
+  { href: '/animal-flow', label: 'Animal Flow', key: 'animal-flow' },
+  { href: '/timetable', label: 'Timetable', key: 'timetable' },
+  { href: '/pricing', label: 'Pricing', key: 'pricing' },
+  { href: '/about', label: 'About', key: 'about' },
+  { href: '/blog', label: 'Blog', key: 'blog' },
+];
+---
+
+<nav class="wf-nav" aria-label="Primary">
+  <a href="/" class="logo">
+    <span class="mark" aria-hidden="true"></span>
+    <span>
+      Coach Nikki
+      <span class="sub">Strength is ageless</span>
+    </span>
+  </a>
+  <div class="links">
+    {
+      links.map((l) => (
+        <a href={l.href} class={active === l.key ? 'active' : ''}>
+          {l.label}
+        </a>
+      ))
+    }
+  </div>
+  <a href="/get-started" class="cta">Get started</a>
+</nav>
