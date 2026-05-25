@@ -228,4 +228,40 @@ const acuityUrl = page?.data?.acuityEmbedUrl;
       <a class="btn-primary" href="/contact">Send a message</a>
     </div>
   </section>
+
+  <!--
+    JS-based form submission so we can redirect to our own thanks page.
+    Netlify's built-in form-handler caches a per-form success-page mapping at
+    first registration and doesn't refresh it when `action` changes, which
+    means changing the action attribute alone won't change the response page.
+    By fetch-submitting and then redirecting ourselves, we bypass that entirely.
+    The form still works without JS — it just lands on Netlify's default page.
+  -->
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('intro-form-el');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        }
+        const data = new FormData(form);
+        const params = new URLSearchParams();
+        for (const [k, v] of data.entries()) params.append(k, v);
+        try {
+          await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString(),
+          });
+        } catch (_) {
+          // Even if the request errors, redirect to thanks — the user's done.
+        }
+        window.location.href = '/contact-thanks/';
+      });
+    })();
+  </script>
 </BaseLayout>
