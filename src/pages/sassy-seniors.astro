@@ -16,11 +16,14 @@ const hero = page?.data ?? {
 
 const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
   .sort((a, b) => a.data.order - b.data.order);
+
+// FUEL band content — singleton, shared with /about. Edit in CMS under Site → FUEL Woman of the Year band.
+const fuel = await getEntry('site', 'fuel-band');
 ---
 
 <BaseLayout
   title="Sassy Seniors — strength training for over 55s in Matraville"
-  description="Strong, social strength training for the 55+ crew in Matraville. Small groups, classic music, real lifts. Coach Nikki — Fuel Woman of the Year 2025."
+  description="Strong, social strength training for the 55+ crew in Matraville. Semi-private sessions, classic music, real lifts. Coach Nikki — Fuel Woman of the Year 2025."
   activeNav="sassy-seniors"
 >
   <!-- HERO -->
@@ -39,31 +42,30 @@ const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessi
     </div>
   </section>
 
-  <!-- FUEL BAND -->
-  <section class="fuel-band">
-    <div class="container">
-      <div class="grid">
-        <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
-        <div>
-          <span class="award-tag">★ Fuel Woman of the Year 2025</span>
-          <h2>Recognised by my industry. Specifically for this work.</h2>
-          <p>
-            In 2024, although excitedly terrified, I was invited to present on stage and
-            speak about extending an invitation to the older demographics into gyms and
-            studios. In 2025 I was named Fuel Woman of the Year for my work with the
-            ageing fitness community.
-          </p>
-          <blockquote>
-            "We've spent decades telling people in their 60s and 70s to take it easy. The
-            data, the bodies, and the lived experience all say the opposite. They need to
-            be lifting, balancing, learning, and being challenged."
-            <cite>From my Fuel Summit speech, 2024</cite>
-          </blockquote>
-          <a class="btn-primary" href="/speaking">Watch the speech</a>
+  <!-- FUEL BAND — content from src/content/site/fuel-band.md -->
+  {fuel && (
+    <section class="fuel-band">
+      <div class="container">
+        <div class="grid">
+          <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+          <div>
+            {fuel.data.awardTagText && <span class="award-tag">{fuel.data.awardTagText}</span>}
+            {fuel.data.heading && <h2>{fuel.data.heading}</h2>}
+            <div class="fuel-body" set:html={fuel.rendered?.html ?? ''} />
+            {fuel.data.pullQuote && (
+              <blockquote>
+                "{fuel.data.pullQuote}"
+                {fuel.data.pullQuoteCite && <cite>{fuel.data.pullQuoteCite}</cite>}
+              </blockquote>
+            )}
+            {fuel.data.ctaLabel && (
+              <a class="btn-primary" href={fuel.data.ctaHref ?? '/speaking'}>{fuel.data.ctaLabel}</a>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- IF THIS SOUNDS FAMILIAR -->
   <section class="if-this-sounds">
@@ -113,10 +115,10 @@ const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessi
   <section>
     <div class="container">
       <span class="eyebrow">The format</span>
-      <h2 class="section">Small classes. Real coaching. Off-peak times.</h2>
+      <h2 class="section">Small sessions. Real coaching. Off-peak times.</h2>
       <div class="format-grid">
-        <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per class</div></div>
-        <div class="format-card"><div class="num">4</div><div class="lbl">Classes per week</div></div>
+        <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per session</div></div>
+        <div class="format-card"><div class="num">4</div><div class="lbl">Sessions per week</div></div>
         <div class="format-card"><div class="num">60</div><div class="lbl">Minutes per session</div></div>
         <div class="format-card"><div class="num">11am</div><div class="lbl">Mid-morning timing</div></div>
       </div>

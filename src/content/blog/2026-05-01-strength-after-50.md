@@ -4,7 +4,7 @@ date: 2026-05-01
 author: "Nikki Rubino"
 excerpt: "The science of bone density, fall prevention, and why it's never too late to start lifting."
 tags: ["strength", "over 50", "sassy seniors"]
-draft: false
+draft: true
 ---
 
 This is a starter post so the blog listing has something to render. Nikki will replace it from the CMS with her real first post.

@@ -1,5 +1,5 @@
 ---
-title: "Sessions"
+title: "02 Sessions"
 eyebrow: "What's on offer"
 heroHeadline: "Sessions for every body."
 heroSubcopy: "1:1, semi-private, classics, Animal Flow, breath and mobility. Pick what fits this week. Mix what fits next. Your weekly unlimited covers them all."

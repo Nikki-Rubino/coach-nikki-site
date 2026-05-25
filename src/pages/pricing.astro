@@ -7,7 +7,7 @@ const hero = page?.data ?? {
   eyebrow: 'Simple, honest pricing',
   heroHeadline: "One rate per session. One rate for the week. That's it.",
   heroSubcopy:
-    'Whichever class you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination.',
+    'Whichever session you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination.',
   primaryCtaLabel: 'Book your intro',
   primaryCtaHref: '/get-started',
   secondaryCtaLabel: 'Have a question',
@@ -101,12 +101,12 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
     <div class="container">
       <span class="eyebrow">Weekly unlimited, unpacked</span>
       <h2 class="section">One price. Every group session.</h2>
-      <p class="lead muted">$150 a week gets you across the whole timetable. Pick what fits your body and your diary.</p>
+      <p class="lead muted">$150 a week gets you across the whole timetable. Numbers in each card are the per-session capacity caps.</p>
       <div class="format-grid">
-        <div class="format-card"><div class="num">4×</div><div class="lbl">Sassy Classics</div></div>
-        <div class="format-card"><div class="num">·</div><div class="lbl">Strength small groups</div></div>
-        <div class="format-card"><div class="num">·</div><div class="lbl">Animal Flow Skills + Build</div></div>
-        <div class="format-card"><div class="num">·</div><div class="lbl">Breath &amp; Mobility</div></div>
+        <div class="format-card"><div class="num">6</div><div class="lbl">Sassy Classics</div></div>
+        <div class="format-card"><div class="num">6</div><div class="lbl">Strength semi-private</div></div>
+        <div class="format-card"><div class="num">8</div><div class="lbl">Animal Flow Skills + Build</div></div>
+        <div class="format-card"><div class="num">10</div><div class="lbl">Breath &amp; Mobility</div></div>
       </div>
       <p class="muted" style="margin-top: 24px; text-align: center; font-size: 14px;">
         Capacity stays small. Sassy at 6, Strength at 6, Animal Flow at 8, Breath &amp; Mobility at 10.
@@ -142,7 +142,7 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
           <ul>
             <li>Covered by weekly — no fee, just message me</li>
             <li>Casual one-off: 1:1 notice rules apply</li>
-            <li>Waitlists run for full classes</li>
+            <li>Waitlists run for full sessions</li>
           </ul>
         </div>
       </div>

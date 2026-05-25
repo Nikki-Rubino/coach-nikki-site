@@ -1,5 +1,5 @@
 ---
-title: "Thanks"
+title: "13 Thanks (contact form)"
 eyebrow: "Got it"
 heroHeadline: "Message received."
 heroSubcopy: "Thanks for reaching out. I read every message myself and will get back to you within one business day in your preferred channel."

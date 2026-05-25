@@ -1,5 +1,5 @@
 ---
-title: "Speaking"
+title: "10 Speaking"
 eyebrow: "★ Fuel Woman of the Year 2025"
 heroHeadline: "Speaking up for the ageing fitness community."
 heroSubcopy: "I was named Fuel Woman of the Year 2025 for my advocacy work. Later that year I returned to the Fuel Summit to speak on how the industry should be coaching the 55-plus crew."

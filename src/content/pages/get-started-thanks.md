@@ -1,5 +1,5 @@
 ---
-title: "Thanks — intro screening received"
+title: "14 Thanks (intro screening)"
 eyebrow: "Thanks"
 heroHeadline: "I've got your details."
 heroSubcopy: "I'll review what you've shared and reach out in your preferred channel within one business day. If you want to lock in a session time now, the booking widget below is open."

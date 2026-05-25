@@ -1,8 +1,8 @@
 ---
-title: "Pricing"
+title: "06 Pricing"
 eyebrow: "Simple, honest pricing"
 heroHeadline: "One rate per session. One rate for the week. That's it."
-heroSubcopy: "Whichever class you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination."
+heroSubcopy: "Whichever session you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination."
 primaryCtaLabel: "Book your intro"
 primaryCtaHref: "/get-started"
 secondaryCtaLabel: "Have a question"

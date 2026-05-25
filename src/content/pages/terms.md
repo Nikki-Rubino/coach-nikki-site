@@ -1,5 +1,5 @@
 ---
-title: "Terms"
+title: "12 Terms"
 eyebrow: "Terms of service"
 heroHeadline: "The rules of the room."
 heroSubcopy: "Plain language version. Last updated 25 May 2026. These terms cover how we work together."

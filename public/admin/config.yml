@@ -9,8 +9,10 @@ backend:
   #   repo: <nikki-account>/coach-nikki-site
   #   branch: main
 
-# Editorial workflow gives Nikki a draft → in-review → publish flow.
-publish_mode: editorial_workflow
+# Editorial workflow is OFF — Nikki prefers save-and-publish without review queue
+# and the email noise that comes with it. Leaving the line commented as a flag in
+# case we want to switch it back on later.
+#publish_mode: editorial_workflow
 
 # Uploaded images land in /public/uploads and are served from the site root.
 media_folder: "public/uploads"
@@ -36,6 +38,17 @@ collections:
     format: "frontmatter"
     identifier_field: "title"
     summary: "{{title}}"
+    # Pages are ordered by the numeric prefix in the title field (01, 02, …) so
+    # they appear in website-navigation order in the CMS sidebar. Sort by title
+    # ascending is the default with these prefixes.
+    sortable_fields: ["title"]
+    view_filters:
+      - label: "Live pages"
+        field: "title"
+        pattern: "^0[1-9] |^1[0-2] "
+      - label: "Thanks pages (hidden)"
+        field: "title"
+        pattern: "^1[34] "
     fields:
       - { name: title, label: "Page title (internal)", widget: string }
       - { name: eyebrow, label: "Eyebrow line", widget: string, required: false }
@@ -152,3 +165,27 @@ collections:
         default: "General"
       - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
       - { name: body, label: "Answer", widget: markdown }
+
+  # ---------------------------------------------------------------
+  # SITE — reusable singletons used across multiple pages
+  # (FUEL band, etc.)
+  # ---------------------------------------------------------------
+  - name: "site"
+    label: "Site blocks"
+    label_singular: "Block"
+    folder: "src/content/site"
+    create: false
+    delete: false
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: "Block title (internal)", widget: string }
+      - { name: awardTagText, label: "Award tag text (e.g. '★ Fuel Woman of the Year 2025')", widget: string, required: false }
+      - { name: heading, label: "Heading", widget: string, required: false }
+      - { name: pullQuote, label: "Pull quote", widget: text, required: false }
+      - { name: pullQuoteCite, label: "Pull quote citation", widget: string, required: false }
+      - { name: ctaLabel, label: "Button label", widget: string, required: false }
+      - { name: ctaHref, label: "Button link", widget: string, required: false }
+      - { name: body, label: "Body (markdown)", widget: markdown, required: false }

@@ -50,7 +50,7 @@ const testimonials = defineCollection({
         'Semi-private',
         'Animal Flow',
         'Sassy Seniors',
-        'Small group PT',
+        'Semi-Private PT',
         'Workshop',
         'Other',
       ])
@@ -92,4 +92,19 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { pages, blog, testimonials, sessions, faqs };
+// Site-wide reusable content blocks (FUEL band, etc) — singletons rendered on
+// multiple pages from one source so Nikki edits once and every page updates.
+const site = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/site' }),
+  schema: z.object({
+    title: z.string(),
+    awardTagText: z.string().optional(),
+    heading: z.string().optional(),
+    pullQuote: z.string().optional(),
+    pullQuoteCite: z.string().optional(),
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
+  }),
+});
+
+export const collections = { pages, blog, testimonials, sessions, faqs, site };

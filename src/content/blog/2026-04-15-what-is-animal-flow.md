@@ -4,7 +4,7 @@ date: 2026-04-15
 author: "Nikki Rubino"
 excerpt: "Ground-based training, joint mobility, and why crawling around is the secret to staying capable."
 tags: ["animal flow", "mobility"]
-draft: false
+draft: true
 ---
 
 Starter post. Nikki to replace.

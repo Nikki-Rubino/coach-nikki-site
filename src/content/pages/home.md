@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "01 Home"
 eyebrow: "Coach Nikki · Matraville, Sydney"
 heroHeadline: "Strength is ageless."
 heroSubcopy: "I help over 30s through 90s eliminate pain, build confidence, and get strong for life. No mirrors. No grunting. No judgement."

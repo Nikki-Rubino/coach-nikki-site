@@ -1,5 +1,5 @@
 ---
-title: "Get started"
+title: "08 Get Started"
 eyebrow: "Your first three sessions"
 heroHeadline: "Three sessions to set you up for life."
 heroSubcopy: "Every new client starts here. We figure out where your body is today, build the foundations you need, and pick the right path forward together. By session three, you'll know exactly where you fit."

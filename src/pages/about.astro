@@ -13,6 +13,11 @@ const hero = page?.data ?? {
   secondaryCtaLabel: 'Read the Fuel speech',
   secondaryCtaHref: '/speaking',
 };
+
+// FUEL band content — singleton, shared with /sassy-seniors. Edit in CMS under Site → FUEL Woman of the Year band.
+const fuel = await getEntry('site', 'fuel-band');
+// About-page story body — edit in CMS under Page copy → About → Body.
+const aboutBody = page?.rendered?.html ?? '';
 ---
 
 <BaseLayout
@@ -36,7 +41,7 @@ const hero = page?.data ?? {
     </div>
   </section>
 
-  <!-- MY STORY -->
+  <!-- MY STORY — body content from src/content/pages/about.md (edit in CMS Body field) -->
   <section style="background: #fff;">
     <div class="container">
       <div class="passion-block">
@@ -44,9 +49,7 @@ const hero = page?.data ?? {
         <div>
           <span class="eyebrow">My story</span>
           <h2 class="section">How I got here</h2>
-          <p><em>[PLACEHOLDER — Nikki's origin story. The path into coaching. Why this audience.]</em> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. I came to coaching the long way round. Studied, lifted, taught, learned, taught again. The thread through all of it has been the same: bodies are smart, they remember, and the right kind of attention changes what they can do.</p>
-          <p><em>[PLACEHOLDER — turning point or insight.]</em> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. The turning point was watching a 68-year-old client deadlift her own bodyweight for the first time. The look on her face said everything I needed to know about who I wanted to coach.</p>
-          <p><em>[PLACEHOLDER — landing in Matraville.]</em> Phasellus volutpat, metus eget egestas mollis. So I built the studio I wished existed. Lights off, glow on, classics on the speakers, no mirrors on the walls. A place for people who'd been told the gym wasn't for them.</p>
+          <div class="about-story" set:html={aboutBody} />
         </div>
       </div>
     </div>
@@ -117,26 +120,30 @@ const hero = page?.data ?? {
     </div>
   </section>
 
-  <!-- FUEL RECOGNITION -->
-  <section class="fuel-band">
-    <div class="container">
-      <div class="grid">
-        <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
-        <div>
-          <span class="award-tag">★ Fuel Woman of the Year 2025</span>
-          <h2>Recognised, on stage, for this work.</h2>
-          <p>
-            In 2024 I was invited to the Fuel summit to speak about extending an invitation to the older demographics — into gyms, into studios, into strength. In 2025 the industry came back and named me Fuel Woman of the Year for that work.
-          </p>
-          <blockquote>
-            "We've spent decades telling people in their 60s and 70s to take it easy. The data, the bodies, and the lived experience all say the opposite."
-            <cite>From my Fuel Summit speech</cite>
-          </blockquote>
-          <a class="btn-primary" href="/speaking">Read the speech</a>
+  <!-- FUEL RECOGNITION — content from src/content/site/fuel-band.md -->
+  {fuel && (
+    <section class="fuel-band">
+      <div class="container">
+        <div class="grid">
+          <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+          <div>
+            {fuel.data.awardTagText && <span class="award-tag">{fuel.data.awardTagText}</span>}
+            {fuel.data.heading && <h2>{fuel.data.heading}</h2>}
+            <div class="fuel-body" set:html={fuel.rendered?.html ?? ''} />
+            {fuel.data.pullQuote && (
+              <blockquote>
+                "{fuel.data.pullQuote}"
+                {fuel.data.pullQuoteCite && <cite>{fuel.data.pullQuoteCite}</cite>}
+              </blockquote>
+            )}
+            {fuel.data.ctaLabel && (
+              <a class="btn-primary" href={fuel.data.ctaHref ?? '/speaking'}>{fuel.data.ctaLabel}</a>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- THE STUDIO -->
   <section>
@@ -149,7 +156,7 @@ const hero = page?.data ?? {
           <ul style="margin-top: 24px;">
             <li>Off-street parking right out the front</li>
             <li>Equipment built for every body — bars, dumbbells, kettlebells, bands, mats</li>
-            <li>Small classes by design. The biggest group caps at 10</li>
+            <li>Small sessions by design. The biggest group caps at 10</li>
             <li>Bathroom and change space on site</li>
             <li>Dazzle of zebras energy. Yes that's a real collective noun</li>
           </ul>

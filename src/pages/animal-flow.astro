@@ -14,11 +14,14 @@ const hero = page?.data ?? {
   secondaryCtaHref: '/timetable',
 };
 
-// Pull just the two Animal Flow class types
+// Pull just the two Animal Flow session types
 const afSessions = (await getCollection('sessions', (e) => e.data.tag === 'Animal Flow'))
   .sort((a, b) => a.data.order - b.data.order);
 
 const afFaq = (await getCollection('faqs', (e) => e.id === 'will-i-do-animal-flow'));
+
+// "What it is" body — edit in CMS under Page copy → Animal Flow → Body.
+const afBody = page?.rendered?.html ?? '';
 ---
 
 <BaseLayout
@@ -42,20 +45,14 @@ const afFaq = (await getCollection('faqs', (e) => e.id === 'will-i-do-animal-flo
     </div>
   </section>
 
-  <!-- WHAT IS AF -->
+  <!-- WHAT IS AF — body content from src/content/pages/animal-flow.md (edit in CMS Body field) -->
   <section style="background: #fff;">
     <div class="container">
       <div class="what-youll-do">
         <div>
           <span class="eyebrow">What it is</span>
           <h2 class="section">Strength, range, brain — all on the floor</h2>
-          <p class="lead">Animal Flow is a ground based bodyweight system. You learn a handful of foundational shapes — Beast, Crab, Limb Lifts, Underswitch — and then sequence them into flows that look like dance and feel like training.</p>
-          <ul style="margin-top: 24px;">
-            <li>Builds joint resilience for hips, shoulders, wrists, spine</li>
-            <li>Develops coordination, balance, and proprioception</li>
-            <li>No equipment. No mirrors. Just you, the floor, and the music</li>
-            <li>Scales from total beginner to certified instructor</li>
-          </ul>
+          <div class="af-body" set:html={afBody} />
         </div>
         <div class="ph"><span class="ph-label">Photo: Beast or Crab hold, mid-flow</span></div>
       </div>
@@ -124,7 +121,7 @@ const afFaq = (await getCollection('faqs', (e) => e.id === 'will-i-do-animal-flo
         </div>
         <div class="step">
           <h3>Animal Flow foundations</h3>
-          <p>Beast, Crab, Limb Lifts, Underswitch, Side Kick Through. The big five before you join class.</p>
+          <p>Beast, Crab, Limb Lifts, Underswitch, Side Kick Through. The big five before you join a session.</p>
         </div>
       </div>
       <div class="intro-cta">
