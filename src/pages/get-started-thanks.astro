@@ -1,0 +1,58 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'get-started-thanks');
+const hero = page?.data ?? {
+  eyebrow: 'Thanks',
+  heroHeadline: "I've got your details.",
+  heroSubcopy:
+    "I'll review what you've shared and reach out in your preferred channel within one business day.",
+  primaryCtaLabel: 'Book a time now',
+  primaryCtaHref: '/timetable',
+  secondaryCtaLabel: 'Back to home',
+  secondaryCtaHref: '/',
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Thanks — your intro screening is in'}
+  description={page?.data.seoDescription}
+  activeNav="get-started"
+>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: warm studio detail, ready and waiting</span>
+    </div>
+  </section>
+
+  <section style="background: #fff;">
+    <div class="container narrow" style="text-align: center;">
+      <span class="eyebrow">What happens next</span>
+      <h2 class="section">Three quick things</h2>
+      <div class="steps" style="margin-top: 40px;">
+        <div class="step">
+          <h3>I read your screening</h3>
+          <p>Usually within a few hours. I'll plan our first session around what you've shared.</p>
+        </div>
+        <div class="step">
+          <h3>I reach out</h3>
+          <p>In your preferred channel. We confirm a time and lock in your payment via Square.</p>
+        </div>
+        <div class="step">
+          <h3>You show up</h3>
+          <p>Comfortable kit, water bottle, an open mind. The rest is on me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

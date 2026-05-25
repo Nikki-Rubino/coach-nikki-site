@@ -1,0 +1,231 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'get-started');
+const hero = page?.data ?? {
+  eyebrow: 'Your first three sessions',
+  heroHeadline: 'Three sessions to set you up for life.',
+  heroSubcopy:
+    "Every new client starts here. We figure out where your body is today, build the foundations you need, and pick the right path forward together.",
+  primaryCtaLabel: 'Tell me about you',
+  primaryCtaHref: '#intro-form',
+  secondaryCtaLabel: 'Skip ahead and book',
+  secondaryCtaHref: '#book',
+};
+
+const acuityUrl = page?.data?.acuityEmbedUrl;
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Get started — Coach Nikki, three session intro'}
+  description={page?.data.seoDescription}
+  activeNav="get-started"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: Nikki coaching a new client through their assessment</span>
+    </div>
+  </section>
+
+  <!-- THE ARC -->
+  <section style="background: #fff;">
+    <div class="container">
+      <span class="eyebrow">The arc</span>
+      <h2 class="section">What the three sessions look like</h2>
+      <p class="lead muted">Same arc whether you end up in 1:1, Sassy Classics, or Animal Flow. Each session is 60 minutes, paced for the body in front of me.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Joint assessment</h3>
+          <p>We map how your body actually moves. Joint range, baseline movements, any history I should know about. Gentle, methodical, no judgement.</p>
+          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · light clothing, water bottle</p>
+        </div>
+        <div class="step">
+          <h3>Strength foundations</h3>
+          <p>Squat, deadlift, push, pull. The four lifts that build the strength to do everyday life well. I'll teach you, you'll surprise yourself.</p>
+          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · same kit, towel optional</p>
+        </div>
+        <div class="step">
+          <h3>Movement foundations</h3>
+          <p>A gentle introduction to ground-based work. Beast, crab, limb lifts. Builds joint resilience and confidence on the floor.</p>
+          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · barefoot or socks</p>
+        </div>
+      </div>
+      <div class="intro-cta" style="margin-top: 48px;">
+        <div>
+          <h3>Intro is $399 upfront or $450 split over three weeks</h3>
+          <p>After session three: continue 1:1, or join the small groups. Your call.</p>
+        </div>
+        <a class="btn-primary" href="#intro-form">Tell me about you</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">What to expect</span>
+      <h2 class="section">A few practical things</h2>
+      <div class="format-grid">
+        <div class="format-card">
+          <div class="num">📍</div>
+          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Matraville studio</div>
+          <p class="muted" style="font-size: 13px; margin-top: 8px;">Unit 3 / 60 Perry St. Off-street parking. Quiet space, no mirrors.</p>
+        </div>
+        <div class="format-card">
+          <div class="num">⏱</div>
+          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Three weeks</div>
+          <p class="muted" style="font-size: 13px; margin-top: 8px;">One session per week, usually. Faster if you need it, slower if life gets in the way.</p>
+        </div>
+        <div class="format-card">
+          <div class="num">👚</div>
+          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Comfortable kit</div>
+          <p class="muted" style="font-size: 13px; margin-top: 8px;">Anything you can move in. Water, a towel. We provide the rest.</p>
+        </div>
+        <div class="format-card">
+          <div class="num">💬</div>
+          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Banter optional</div>
+          <p class="muted" style="font-size: 13px; margin-top: 8px;">Some clients chat, some prefer to work quiet. You get to choose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-SCREENING FORM -->
+  <section id="intro-form" style="background: var(--teal-light);">
+    <div class="container narrow">
+      <span class="eyebrow">Step one</span>
+      <h2 class="section">Tell me a bit about you</h2>
+      <p class="lead">A few quick questions so I can prep properly before our first session. Takes about a minute. Nothing here is shared with anyone else.</p>
+
+      <form
+        id="intro-form-el"
+        name="intro-screening"
+        method="POST"
+        netlify
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/get-started-thanks/"
+        class="contact-form"
+        style="margin-top: 32px;"
+      >
+        <input type="hidden" name="form-name" value="intro-screening" />
+        <p class="hidden-field">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" required />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+
+        <label class="field">
+          <span>Phone</span>
+          <input type="tel" name="phone" required />
+        </label>
+
+        <fieldset class="field">
+          <legend>Age range</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="age" value="under-30" /> Under 30</label>
+            <label class="radio"><input type="radio" name="age" value="30-44" /> 30 to 44</label>
+            <label class="radio"><input type="radio" name="age" value="45-54" /> 45 to 54</label>
+            <label class="radio"><input type="radio" name="age" value="55-64" /> 55 to 64</label>
+            <label class="radio"><input type="radio" name="age" value="65-74" /> 65 to 74</label>
+            <label class="radio"><input type="radio" name="age" value="75-plus" /> 75 plus</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>What brings you in?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="goal" value="rebuild" /> Rebuilding after injury or surgery</label>
+            <label class="radio"><input type="radio" name="goal" value="strength" /> Want to build real strength</label>
+            <label class="radio"><input type="radio" name="goal" value="animal-flow" /> Curious about Animal Flow</label>
+            <label class="radio"><input type="radio" name="goal" value="back-into-it" /> Want to get back into moving</label>
+            <label class="radio"><input type="radio" name="goal" value="pain" /> Pain or stiffness I want to work around</label>
+            <label class="radio"><input type="radio" name="goal" value="unsure" /> Not sure yet — open to a chat</label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Anything I should know about your body?</span>
+          <textarea name="medical" rows="4" placeholder="Injuries, surgeries, joints to be careful with, current medications, anything else I should plan around. If you're not sure, leave it blank and we'll cover it in person."></textarea>
+        </label>
+
+        <fieldset class="field">
+          <legend>How would you like me to reply?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="channel" value="email" checked /> Email</label>
+            <label class="radio"><input type="radio" name="channel" value="phone" /> Phone call</label>
+            <label class="radio"><input type="radio" name="channel" value="sms" /> SMS</label>
+            <label class="radio"><input type="radio" name="channel" value="instagram" /> Instagram DM</label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Anything else?</span>
+          <textarea name="notes" rows="3" placeholder="Schedule constraints, questions, who referred you, whatever you'd like me to know."></textarea>
+        </label>
+
+        <button type="submit" class="btn-primary" style="margin-top: 8px;">Send and book a time</button>
+      </form>
+
+      <p class="muted" style="text-align: center; margin-top: 24px; font-size: 13px;">
+        I read every one of these myself. No automated emails, no marketing sequence.
+      </p>
+    </div>
+  </section>
+
+  <!-- ACUITY BOOKING -->
+  <section id="book" style="background: #fff;">
+    <div class="container wide">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span class="eyebrow">Step two</span>
+        <h2 class="section">Pick a time</h2>
+        <p class="lead muted" style="margin: 0 auto;">Lock in your first session below. I'll confirm by your preferred channel after I've read your screening.</p>
+      </div>
+      {acuityUrl ? (
+        <>
+          <iframe
+            src={acuityUrl}
+            title="Book your intro session — Coach Nikki"
+            width="100%"
+            height="800"
+            frameborder="0"
+            loading="lazy"
+          ></iframe>
+          <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript" is:inline></script>
+        </>
+      ) : (
+        <p class="muted" style="text-align: center; font-size: 14px;">
+          Booking widget will appear here once Acuity is configured for this page.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Still got questions?</h2>
+      <p>Drop me a message and I'll come back to you the same day.</p>
+      <a class="btn-primary" href="/contact">Send a message</a>
+    </div>
+  </section>
+</BaseLayout>

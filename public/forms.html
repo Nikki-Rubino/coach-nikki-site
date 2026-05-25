@@ -9,10 +9,16 @@
   <!--
     Netlify Forms detection bootstrap. Netlify's post-processing bot scans
     every .html file in the deploy for <form data-netlify="true">. This file
-    exists so detection has a plain, vanilla form to find even if Astro's
-    output of /contact/index.html does anything unusual. Keep field names
-    identical between this file and src/pages/contact.astro.
+    exists so detection has plain, vanilla forms to find even if Astro's
+    output of the real pages does anything unusual. Keep field names identical
+    between this file and the real forms.
+
+    DO NOT rename this file with a leading underscore — Netlify treats files
+    starting with `_` as config artefacts (like _redirects, _headers) and
+    excludes them from form-detection scanning. Learned that the hard way.
   -->
+
+  <!-- Contact form (lives at /contact) -->
   <form name="contact" data-netlify="true" netlify netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="contact" />
     <input type="text" name="name" />
@@ -23,6 +29,34 @@
     <input type="radio" name="channel" value="sms" />
     <input type="radio" name="channel" value="instagram" />
     <textarea name="message"></textarea>
+    <input name="bot-field" />
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Intro screening form (lives at /get-started) -->
+  <form name="intro-screening" data-netlify="true" netlify netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="intro-screening" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="radio" name="age" value="under-30" />
+    <input type="radio" name="age" value="30-44" />
+    <input type="radio" name="age" value="45-54" />
+    <input type="radio" name="age" value="55-64" />
+    <input type="radio" name="age" value="65-74" />
+    <input type="radio" name="age" value="75-plus" />
+    <input type="radio" name="goal" value="rebuild" />
+    <input type="radio" name="goal" value="strength" />
+    <input type="radio" name="goal" value="animal-flow" />
+    <input type="radio" name="goal" value="back-into-it" />
+    <input type="radio" name="goal" value="pain" />
+    <input type="radio" name="goal" value="unsure" />
+    <textarea name="medical"></textarea>
+    <input type="radio" name="channel" value="email" />
+    <input type="radio" name="channel" value="phone" />
+    <input type="radio" name="channel" value="sms" />
+    <input type="radio" name="channel" value="instagram" />
+    <textarea name="notes"></textarea>
     <input name="bot-field" />
     <button type="submit">Send</button>
   </form>

@@ -1,0 +1,143 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'terms');
+const hero = page?.data ?? {
+  eyebrow: 'Terms of service',
+  heroHeadline: 'The rules of the room.',
+  heroSubcopy:
+    'Plain language version. Last updated 25 May 2026. These terms cover how we work together.',
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Terms of service — Coach Nikki'}
+  description={page?.data.seoDescription}
+  activeNav="terms"
+>
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="container narrow">
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+    </div>
+  </section>
+
+  <!-- DRAFT NOTICE -->
+  <section style="background: var(--yellow-light); padding: 28px 32px;">
+    <div class="container narrow" style="display: flex; gap: 16px; align-items: flex-start;">
+      <span class="award-tag" style="background: var(--warm-dark); flex-shrink: 0;">Draft</span>
+      <p style="font-size: 14px; line-height: 1.6;">
+        Working draft. Reflects how the studio actually operates today but hasn't been reviewed by a lawyer yet. Questions: <a href="/contact" style="font-weight: 700;">get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section style="background: #fff;">
+    <div class="container narrow">
+      <article class="legal-body">
+
+        <h2>Who these terms apply to</h2>
+        <p>
+          These terms cover anyone who books a session, attends a class, or becomes a client of Coach Nikki — operated by Nikki Rubino, sole trader, ABN registered, based at Unit 3 / 60 Perry Street, Matraville NSW 2036. By booking a session, you're agreeing to these terms.
+        </p>
+
+        <h2>Sessions and intro pack</h2>
+        <p>
+          Every new client begins with the three-session intro pack ($399 upfront or $450 across three weeks). This is non-negotiable — it's how I make sure I can coach you safely. After the third session you can choose to continue as 1:1, join a small group, or step away. No pressure either way.
+        </p>
+        <p>
+          1:1 sessions and group classes run for the published time on the timetable. Late arrivals don't extend the session — please be on time. If you're running late, message me so I know to expect you.
+        </p>
+
+        <h2>Booking and payment</h2>
+        <p>
+          All bookings go through Acuity Scheduling. The intro pack is paid via Square payment link when you book. Ongoing weekly memberships run on direct debit through Square.
+        </p>
+        <p>
+          Prices are in Australian dollars, GST included. The current price list is published at <a href="/pricing">/pricing</a>. I'll always let active clients know directly before any price change takes effect, with at least two weeks notice.
+        </p>
+
+        <h2>Cancellations and pauses</h2>
+        <p>
+          The full policy lives on the <a href="/pricing">pricing page</a>. In short:
+        </p>
+        <ul>
+          <li><strong>1:1 sessions:</strong> 48 hours notice for full credit. 24 to 48 hours, half session lost. Less than 24 hours, full session lost.</li>
+          <li><strong>Weekly memberships:</strong> 7 days notice to pause your week. Less than that, the week is lost. Pause as often as life needs.</li>
+          <li><strong>Group sessions when you're on a weekly:</strong> No fee for cancelling, just message me so I can offer your spot to the waitlist.</li>
+        </ul>
+        <p>
+          Life happens. If something genuinely unavoidable comes up, talk to me — I'd rather solve it together than apply the policy rigidly.
+        </p>
+
+        <h2>Health, safety and your responsibility</h2>
+        <p>
+          Exercise carries inherent risk, especially strength training and movement work. I take that seriously. I assess you, scale to your ability, and watch you train. But you're an adult with your own body, and you know things about it I don't.
+        </p>
+        <p>
+          By training with me, you agree that:
+        </p>
+        <ul>
+          <li>You'll tell me, honestly, about injuries, conditions, medications and anything else relevant — both before we start and as things change</li>
+          <li>You'll tell me if something hurts during a session, not later</li>
+          <li>You'll get medical clearance from your GP or specialist if you're at all unsure whether you should be training</li>
+          <li>You accept that there's always some risk in moving your body, and that I'm doing my reasonable best to keep that risk low</li>
+        </ul>
+        <p>
+          To the extent permitted by Australian law, you participate in sessions at your own risk. Nothing in these terms limits any rights you have under the Australian Consumer Law that can't be excluded.
+        </p>
+
+        <h2>Studio conduct</h2>
+        <p>
+          The studio is small and the crew is mixed. Everyone deserves to feel welcome. I expect:
+        </p>
+        <ul>
+          <li>Respect for other clients, regardless of age, body, ability or background</li>
+          <li>No judgement of other people's lifts, weights, or skill level</li>
+          <li>Clean equipment and put it back where you found it</li>
+          <li>No phones on the training floor unless we agree</li>
+        </ul>
+        <p>
+          If someone's behaviour makes the room feel unsafe or unkind, I'll address it directly. Repeated issues, or anything serious, can end the coaching relationship without a refund of unused sessions.
+        </p>
+
+        <h2>Photos and content</h2>
+        <p>
+          From time to time I take photos or videos in the studio for use on the website, Instagram, or in my own teaching content. I always ask before pointing the camera at anyone, and I'll never publish your image without explicit consent. If you'd rather not be in any media, just tell me — I'll respect it always.
+        </p>
+
+        <h2>Your information</h2>
+        <p>
+          How I handle your personal information is set out in the <a href="/privacy">privacy policy</a>.
+        </p>
+
+        <h2>Stopping training</h2>
+        <p>
+          You can stop training with me at any time. Cancel any active direct debit by giving 7 days notice (per the weekly cancellation policy above). I'll delete or return any of your information you ask me to, except records I'm legally required to keep (mainly payment records for tax purposes).
+        </p>
+
+        <h2>Changes to these terms</h2>
+        <p>
+          If I change these terms in a way that materially affects active clients, I'll let you know directly with at least two weeks notice before the change takes effect. The "last updated" date at the top of the page will always be accurate.
+        </p>
+
+        <h2>Governing law</h2>
+        <p>
+          These terms are governed by the laws of New South Wales, Australia. Any disputes that can't be resolved between us will be dealt with by the courts of NSW.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Nikki Rubino<br />
+          Coach Nikki — Unit 3 / 60 Perry Street, Matraville NSW 2036<br />
+          <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a> · <a href="tel:0403122669">0403 122 669</a>
+        </p>
+
+      </article>
+    </div>
+  </section>
+</BaseLayout>

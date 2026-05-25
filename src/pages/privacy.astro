@@ -1,0 +1,158 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'privacy');
+const hero = page?.data ?? {
+  eyebrow: 'Privacy policy',
+  heroHeadline: 'How I handle your information.',
+  heroSubcopy:
+    "Plain language version. Last updated 25 May 2026. If anything here isn't clear, ask me directly.",
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'Privacy policy — Coach Nikki'}
+  description={page?.data.seoDescription}
+  activeNav="privacy"
+>
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="container narrow">
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+    </div>
+  </section>
+
+  <!-- DRAFT NOTICE -->
+  <section style="background: var(--yellow-light); padding: 28px 32px;">
+    <div class="container narrow" style="display: flex; gap: 16px; align-items: flex-start;">
+      <span class="award-tag" style="background: var(--warm-dark); flex-shrink: 0;">Draft</span>
+      <p style="font-size: 14px; line-height: 1.6;">
+        This is a working draft Nikki and her team wrote for the new site. It reflects how the business actually handles data today, but it hasn't been reviewed by a lawyer yet. If you have a concern about anything specific, please <a href="/contact" style="font-weight: 700;">get in touch</a> and we'll sort it.
+      </p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section style="background: #fff;">
+    <div class="container narrow">
+      <article class="legal-body">
+
+        <h2>Who this policy is about</h2>
+        <p>
+          This site (coachnikki.com.au) and the Matraville studio are operated by Nikki Rubino, a sole trader trading as Coach Nikki, ABN registered, based in Matraville NSW. "I" / "me" in this policy means Nikki Rubino. "You" means anyone who fills in a form on this site, books a session, or becomes a client.
+        </p>
+
+        <h2>What I collect, and why</h2>
+        <p>
+          I only collect what I actually need to coach you well and run the business properly.
+        </p>
+
+        <h3>When you fill in the contact form</h3>
+        <p>
+          Name, email address, phone number (optional), your preferred reply channel, and the message itself. I use this to reply to you in the way you've asked.
+        </p>
+
+        <h3>When you fill in the intro screening form</h3>
+        <p>
+          Everything above, plus age range, your training goal, anything you've shared about injuries or medical history, and any extra notes. I use this to prepare properly for our first session and to make sure I can coach you safely. This is health information, so I treat it with extra care (see "Health information" below).
+        </p>
+
+        <h3>When you book through the booking widget</h3>
+        <p>
+          Bookings are handled by Acuity Scheduling on my behalf. Acuity collects your name, email, phone, session selection, and any pre-session questions I've set up. Acuity stores this on their servers and shares it back with me. <a href="https://www.acuityscheduling.com/privacy.php" target="_blank" rel="noopener">Acuity's privacy policy</a>.
+        </p>
+
+        <h3>When you pay</h3>
+        <p>
+          Payments run through Square. Square handles your card or bank details directly — I never see them. I see your name, the amount, the date, and the description of what you paid for. <a href="https://squareup.com/au/en/legal/general/privacy" target="_blank" rel="noopener">Square's privacy policy</a>.
+        </p>
+
+        <h3>When you email me</h3>
+        <p>
+          Your email and anything in the email lands in my Gmail inbox (nikkir30030@gmail.com). I keep emails for as long as our coaching relationship runs, plus a reasonable period after.
+        </p>
+
+        <h3>When you're an active client</h3>
+        <p>
+          I keep simple training notes for you — programming, weights moved, what worked, what didn't, things to come back to. These live in a private Google Sheet that only I access.
+        </p>
+
+        <h2>Health information</h2>
+        <p>
+          Some of what you'll share with me is health information — injuries, surgeries, pain, medications, conditions. Under Australian privacy law this is treated as <em>sensitive information</em>, even when a small business is involved.
+        </p>
+        <p>
+          I only collect health information that's directly relevant to coaching you safely. I don't share it with anyone outside the business unless you ask me to (for example, if you want me to liaise with your physio). I store it on locked, password-protected devices and accounts.
+        </p>
+        <p>
+          If you want to know exactly what health information I hold for you, ask. If you want it deleted after we stop training together, ask. I'll do it.
+        </p>
+
+        <h2>Who I share information with</h2>
+        <p>
+          I keep your information tight. The third parties that touch it are:
+        </p>
+        <ul>
+          <li><strong>Netlify</strong> — hosts this website and processes the contact + intro screening forms before forwarding the content to me</li>
+          <li><strong>Acuity Scheduling</strong> — manages bookings, calendar, reminders</li>
+          <li><strong>Square</strong> — processes payments and direct debit</li>
+          <li><strong>Google</strong> — my email (Gmail) and notes (Google Sheets) live in a Google Workspace account</li>
+        </ul>
+        <p>
+          Each of these has its own privacy policy. Each is bound by their own data protection obligations. I don't sell, swap, or trade your information with anyone.
+        </p>
+
+        <h2>Cookies and tracking</h2>
+        <p>
+          This site uses a small number of cookies for the things that genuinely need them — keeping the booking widget working, remembering if you're logged into the admin area (which is just me). I don't run advertising trackers, behavioural pixels, or analytics that follow you around the web. If that changes, this policy will tell you.
+        </p>
+
+        <h2>How long I keep things</h2>
+        <p>
+          Form submissions: kept for as long as is useful for replying to you and following up. Form data that doesn't turn into a client relationship is deleted within twelve months.
+        </p>
+        <p>
+          Client records (training notes, health information): kept for the duration of your time with me, plus seven years after we stop training together, in line with general business record-keeping practice. You can ask me to delete this sooner.
+        </p>
+        <p>
+          Payment records: kept as long as the Australian Taxation Office requires me to keep tax records (currently five years).
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          You can ask me at any time to:
+        </p>
+        <ul>
+          <li>Tell you exactly what information I hold about you</li>
+          <li>Correct anything that's wrong</li>
+          <li>Delete information that I no longer need</li>
+          <li>Stop using your information for a particular purpose</li>
+        </ul>
+        <p>
+          Just email me at <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a> or <a href="/contact">fill in the contact form</a>. I'll get back to you within five business days.
+        </p>
+
+        <h2>If something goes wrong</h2>
+        <p>
+          If I have a data breach that involves your information, I'll tell you directly and as soon as I reasonably can. If you're not happy with how I've handled your information, the first step is to raise it with me. If we can't resolve it, you can take it to the <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">Office of the Australian Information Commissioner</a>.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          If I update this policy in a way that's material — meaning it changes what I do with your information — I'll let active clients know directly. Small wording changes won't trigger a notification but the "last updated" date at the top will always be accurate.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Nikki Rubino<br />
+          Coach Nikki — Unit 3 / 60 Perry Street, Matraville NSW 2036<br />
+          <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a> · <a href="tel:0403122669">0403 122 669</a>
+        </p>
+
+      </article>
+    </div>
+  </section>
+</BaseLayout>

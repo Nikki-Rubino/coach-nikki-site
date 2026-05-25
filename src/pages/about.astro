@@ -1,0 +1,174 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'about');
+const hero = page?.data ?? {
+  eyebrow: "Hi, I'm Nikki",
+  heroHeadline: 'Coach Nikki — strength coach, Animal Flow Regional Leader, professional advocate for ageing well.',
+  heroSubcopy:
+    "I work with people who feel out of place in a typical gym. The over 30s, the over 70s, the ones with niggles and histories and stories.",
+  primaryCtaLabel: 'Book your intro',
+  primaryCtaHref: '/get-started',
+  secondaryCtaLabel: 'Read the Fuel speech',
+  secondaryCtaHref: '/speaking',
+};
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'About Coach Nikki'}
+  description={page?.data.seoDescription}
+  activeNav="about"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Hero photo: Nikki in the studio, glow-light vibe, candid</span>
+    </div>
+  </section>
+
+  <!-- MY STORY -->
+  <section style="background: #fff;">
+    <div class="container">
+      <div class="passion-block">
+        <div class="ph"><span class="ph-label">Photo: Nikki younger / origin moment</span></div>
+        <div>
+          <span class="eyebrow">My story</span>
+          <h2 class="section">How I got here</h2>
+          <p><em>[PLACEHOLDER — Nikki's origin story. The path into coaching. Why this audience.]</em> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. I came to coaching the long way round. Studied, lifted, taught, learned, taught again. The thread through all of it has been the same: bodies are smart, they remember, and the right kind of attention changes what they can do.</p>
+          <p><em>[PLACEHOLDER — turning point or insight.]</em> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. The turning point was watching a 68-year-old client deadlift her own bodyweight for the first time. The look on her face said everything I needed to know about who I wanted to coach.</p>
+          <p><em>[PLACEHOLDER — landing in Matraville.]</em> Phasellus volutpat, metus eget egestas mollis. So I built the studio I wished existed. Lights off, glow on, classics on the speakers, no mirrors on the walls. A place for people who'd been told the gym wasn't for them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">The philosophy</span>
+      <h2 class="section">Strength is ageless</h2>
+      <p class="lead muted">It's not a marketing line. It's the thing the research, the bodies, and the lived experience all keep telling me.</p>
+      <div class="promise" style="padding: 60px 0 0;">
+        <div class="tri">
+          <div>
+            <div class="word">Safe</div>
+            <p>Every session scales to the body in front of me. Mechanics first, load second. We work hard, but we work smart.</p>
+          </div>
+          <div>
+            <div class="word">Seen</div>
+            <p>You're never lost in a crowd. Class capacities are small for a reason. Your story, your goals, your wins — tracked, remembered, celebrated.</p>
+          </div>
+          <div>
+            <div class="word">Heard</div>
+            <p>Communication on your terms. Banter if you want banter. Quiet focus if today's a quiet day. Your call, every session.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section style="background: var(--teal-light);">
+    <div class="container">
+      <span class="eyebrow">The receipts</span>
+      <h2 class="section">Qualifications and credentials</h2>
+      <div class="creds-grid">
+        <div class="cred-card">
+          <div class="cred-icon">★</div>
+          <h3>Animal Flow Regional Leader</h3>
+          <p>Sydney's Regional Leader for Animal Flow. Ten years of teaching, coaching instructor candidates, and shaping the system in Australia.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">★</div>
+          <h3>Fuel Woman of the Year 2025</h3>
+          <p>Recognised by the fitness industry for work with the ageing demographic. <a href="/speaking">Read the speech that started it</a>.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">·</div>
+          <h3><em>[PLACEHOLDER — Cert IV / Diploma]</em></h3>
+          <p><em>Add the formal training quals here. Year completed, awarding body.</em></p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">·</div>
+          <h3><em>[PLACEHOLDER — Strength coaching cert]</em></h3>
+          <p><em>Strength coaching credential — StrongFirst, NSCA, RKC, etc. with date.</em></p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">·</div>
+          <h3><em>[PLACEHOLDER — first aid / CPR]</em></h3>
+          <p><em>Current first aid and CPR. Renewal year.</em></p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-icon">·</div>
+          <h3><em>[PLACEHOLDER — public liability insurance]</em></h3>
+          <p><em>Insurer, cover level. Builds trust with older clients especially.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUEL RECOGNITION -->
+  <section class="fuel-band">
+    <div class="container">
+      <div class="grid">
+        <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+        <div>
+          <span class="award-tag">★ Fuel Woman of the Year 2025</span>
+          <h2>Recognised, on stage, for this work.</h2>
+          <p>
+            In 2024 I was invited to the Fuel summit to speak about extending an invitation to the older demographics — into gyms, into studios, into strength. In 2025 the industry came back and named me Fuel Woman of the Year for that work.
+          </p>
+          <blockquote>
+            "We've spent decades telling people in their 60s and 70s to take it easy. The data, the bodies, and the lived experience all say the opposite."
+            <cite>From my Fuel Summit speech</cite>
+          </blockquote>
+          <a class="btn-primary" href="/speaking">Read the speech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STUDIO -->
+  <section>
+    <div class="container">
+      <div class="what-youll-do">
+        <div>
+          <span class="eyebrow">The space</span>
+          <h2 class="section">A studio that feels like the work</h2>
+          <p class="lead">Matraville. Big lights off, glow lights on. Music from the good years — the 50s through to the 2000s, depending on the crew that day. No mirrors, no judgement, lolly jar by the door.</p>
+          <ul style="margin-top: 24px;">
+            <li>Off-street parking right out the front</li>
+            <li>Equipment built for every body — bars, dumbbells, kettlebells, bands, mats</li>
+            <li>Small classes by design. The biggest group caps at 10</li>
+            <li>Bathroom and change space on site</li>
+            <li>Dazzle of zebras energy. Yes that's a real collective noun</li>
+          </ul>
+          <p style="margin-top: 22px;">
+            Unit 3 / 60 Perry Street, Matraville NSW 2036.
+          </p>
+        </div>
+        <div class="ph"><span class="ph-label">Photo: studio wide shot, glow lights on</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Curious to meet the room?</h2>
+      <p>The three session intro is how everyone starts. After that, the door's wide open.</p>
+      <a class="btn-primary" href="/get-started">Book your intro</a>
+      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/contact">Or send a message →</a>
+    </div>
+  </section>
+</BaseLayout>
