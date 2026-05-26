@@ -290,6 +290,7 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   gap: 48px;
   align-items: center;
 }
+.fuel-band .ph { aspect-ratio: 4/5; }
 .fuel-band .award-tag {
   display: inline-flex;
   align-items: center;
