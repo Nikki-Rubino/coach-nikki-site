@@ -19,6 +19,15 @@ const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessi
 
 // FUEL band content — singleton, shared with /about. Edit in CMS under Site → FUEL Woman of the Year band.
 const fuel = await getEntry('site', 'fuel-band');
+
+// Two CMS-editable Sassy blocks: "If this sounds familiar" bullets + "Real strength training" body.
+const ifFamiliar = await getEntry('site', 'sassy-if-familiar');
+const realStrength = await getEntry('site', 'sassy-real-strength');
+
+// Inna testimonial — first featured testimonial tagged "Sassy Seniors" if present.
+const featuredTestimonials = await getCollection('testimonials', (e) => e.data.featured);
+const innaTestimonial =
+  featuredTestimonials.find((t) => t.data.program === 'Sassy Seniors') ?? featuredTestimonials[0];
 ---
 
 <BaseLayout
@@ -67,49 +76,53 @@ const fuel = await getEntry('site', 'fuel-band');
     </section>
   )}
 
-  <!-- IF THIS SOUNDS FAMILIAR -->
-  <section class="if-this-sounds">
-    <div class="container">
-      <span class="eyebrow">Sound familiar?</span>
-      <h2 class="section">If you've thought "this isn't my scene"…</h2>
-      <div class="ifsounds">
-        <ul class="ifsounds-list">
-          <li>I looked at the Animal Flow stuff and thought I couldn't possibly.</li>
-          <li>Gyms feel too loud, too young, too judgey.</li>
-          <li>I've never really lifted weights properly and don't know where to start.</li>
-          <li>
-            I just want to keep gardening, lifting grandkids, and travelling without my body
-            letting me down.
-          </li>
-        </ul>
-        <p class="closing-line">You're exactly who I built this for.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT YOU'LL ACTUALLY DO -->
-  <section style="background:#fff;">
-    <div class="container">
-      <div class="what-youll-do">
-        <div class="ph"><span class="ph-label">Photo: senior client mid-deadlift, smiling</span></div>
-        <div>
-          <span class="eyebrow">No gentle stretching</span>
-          <h2 class="section">Real strength training. Properly coached.</h2>
-          <p class="lead">Don't get fooled by the age bracket.</p>
-          <ul>
-            <li>We deadlift. Yes, with bars.</li>
-            <li>We squat, split squat, and row.</li>
-            <li>We balance, and we learn new tricks.</li>
-            <li>We do it with classic music and big personalities.</li>
-            <li>We do it safely, scaled to where your body is today.</li>
-          </ul>
-          <p style="margin-top: 20px; font-size: 17px;">
-            The music may be on the classics side. The strength gains are still elite.
-          </p>
+  <!-- IF THIS SOUNDS FAMILIAR — content from src/content/site/sassy-if-familiar.md -->
+  {ifFamiliar && (
+    <section class="if-this-sounds">
+      <div class="container">
+        {ifFamiliar.data.eyebrow && <span class="eyebrow">{ifFamiliar.data.eyebrow}</span>}
+        {ifFamiliar.data.heading && <h2 class="section">{ifFamiliar.data.heading}</h2>}
+        <div class="ifsounds">
+          {ifFamiliar.data.bullets && ifFamiliar.data.bullets.length > 0 && (
+            <ul class="ifsounds-list">
+              {ifFamiliar.data.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+          {ifFamiliar.data.closingLine && (
+            <p class="closing-line">{ifFamiliar.data.closingLine}</p>
+          )}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
+
+  <!-- WHAT YOU'LL ACTUALLY DO — content from src/content/site/sassy-real-strength.md -->
+  {realStrength && (
+    <section style="background:#fff;">
+      <div class="container">
+        <div class="what-youll-do">
+          <div class="ph"><span class="ph-label">Photo: senior client mid-deadlift, smiling</span></div>
+          <div>
+            {realStrength.data.eyebrow && <span class="eyebrow">{realStrength.data.eyebrow}</span>}
+            {realStrength.data.heading && <h2 class="section">{realStrength.data.heading}</h2>}
+            {realStrength.data.lead && <p class="lead">{realStrength.data.lead}</p>}
+            {realStrength.data.bullets && realStrength.data.bullets.length > 0 && (
+              <ul>
+                {realStrength.data.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            )}
+            {realStrength.data.closingLine && (
+              <p style="margin-top: 20px; font-size: 17px;">{realStrength.data.closingLine}</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- THE FORMAT -->
   <section>
@@ -183,22 +196,32 @@ const fuel = await getEntry('site', 'fuel-band');
     </div>
   </section>
 
-  <!-- INNA TESTIMONIAL -->
-  <section style="background: var(--teal); color: #fff;">
-    <div class="container narrow" style="text-align: center;">
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
-        <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
-        <blockquote style="font-size: 26px; font-style: italic; line-height: 1.4; font-weight: 500; font-family: var(--font-head);">
-          "Nikki is a very dedicated and talented coach. I came to her with persistent low
-          back pain. Eight months in, I'm almost pain-free, sleeping better, and moving so
-          much more freely. I can't recommend her highly enough."
-        </blockquote>
-        <cite style="font-size: 16px; opacity: 0.85; font-style: normal;">
-          Inna · Strong and Sassy Squad: The Classics member
-        </cite>
+  <!-- FEATURED TESTIMONIAL — pulled from CMS testimonials collection, avatar rendered if set -->
+  {innaTestimonial && (
+    <section style="background: var(--teal); color: #fff;">
+      <div class="container narrow" style="text-align: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+          {innaTestimonial.data.avatar ? (
+            <img
+              src={innaTestimonial.data.avatar}
+              alt={innaTestimonial.data.name}
+              width="100"
+              height="100"
+              style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.5);"
+            />
+          ) : (
+            <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
+          )}
+          <blockquote style="font-size: 26px; font-style: italic; line-height: 1.4; font-weight: 500; font-family: var(--font-head);">
+            "{innaTestimonial.data.quote}"
+          </blockquote>
+          <cite style="font-size: 16px; opacity: 0.85; font-style: normal;">
+            {innaTestimonial.data.name}{innaTestimonial.data.role ? ` · ${innaTestimonial.data.role}` : ''}
+          </cite>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FAQS -->
   {sassyFaqs.length > 0 && (

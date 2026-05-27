@@ -20,6 +20,10 @@ const allSessions = (await getCollection('sessions')).sort(
 
 const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
   .sort((a, b) => a.data.order - b.data.order);
+
+// Shared CMS-editable blocks (also used on /sassy-seniors, /about, /get-started).
+const introBand = await getEntry('site', 'intro-band');
+const sessionsArc = await getEntry('site', 'sessions-arc');
 ---
 
 <BaseLayout
@@ -47,15 +51,24 @@ const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Ses
     </div>
   </section>
 
-  <!-- INTRO REQUIREMENT BAND -->
-  <section style="background: var(--yellow-light); padding: 28px 32px;">
-    <div class="container" style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap; justify-content: center; text-align: center;">
-      <span class="award-tag" style="background: var(--warm-dark);">Start here</span>
-      <p style="font-size: 16px; max-width: 720px;">
-        Every new client begins with the <a href="/get-started" style="font-weight: 700;">three session intro</a> before joining any group session. That's how I keep sessions safe, well-coached and personal.
-      </p>
-    </div>
-  </section>
+  <!-- INTRO REQUIREMENT BAND — content from src/content/site/intro-band.md -->
+  {introBand && (
+    <section style="background: var(--yellow-light); padding: 28px 32px;">
+      <div class="container" style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap; justify-content: center; text-align: center;">
+        {introBand.data.bandTagText && (
+          <span class="award-tag" style="background: var(--warm-dark);">{introBand.data.bandTagText}</span>
+        )}
+        {introBand.data.bandText && (
+          <p style="font-size: 16px; max-width: 720px;">
+            {introBand.data.bandText}
+            {introBand.data.ctaLabel && introBand.data.ctaHref && (
+              <> <a href={introBand.data.ctaHref} style="font-weight: 700;">{introBand.data.ctaLabel} →</a></>
+            )}
+          </p>
+        )}
+      </div>
+    </section>
+  )}
 
   <!-- FULL SESSIONS CATALOGUE -->
   <section style="background: #fff;">
@@ -100,35 +113,39 @@ const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Ses
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">How we start</span>
-      <h2 class="section">Three sessions, then you choose</h2>
-      <p class="lead muted">Same intro arc whether you end up in 1:1, classics, or Animal Flow.</p>
-      <div class="steps">
-        <div class="step">
-          <h3>Joint assessment</h3>
-          <p>We map how your body actually moves. Joint range, history, baseline. Gentle, methodical.</p>
-        </div>
-        <div class="step">
-          <h3>Strength foundations</h3>
-          <p>Squat, deadlift, push, pull. The four lifts behind everyday strength.</p>
-        </div>
-        <div class="step">
-          <h3>Movement foundations</h3>
-          <p>A gentle introduction to ground-based work. Builds joint resilience and confidence.</p>
-        </div>
+  <!-- HOW IT WORKS — content from src/content/site/sessions-arc.md -->
+  {sessionsArc && (
+    <section>
+      <div class="container">
+        {sessionsArc.data.eyebrow && <span class="eyebrow">{sessionsArc.data.eyebrow}</span>}
+        {sessionsArc.data.heading && <h2 class="section">{sessionsArc.data.heading}</h2>}
+        {sessionsArc.data.lead && <p class="lead muted">{sessionsArc.data.lead}</p>}
+        {sessionsArc.data.steps && sessionsArc.data.steps.length > 0 && (
+          <div class="steps">
+            {sessionsArc.data.steps.map((s) => (
+              <div class="step">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {sessionsArc.data.introCtaHeadline && (
+          <div class="intro-cta">
+            <div>
+              <h3>{sessionsArc.data.introCtaHeadline}</h3>
+              {sessionsArc.data.introCtaSubcopy && <p>{sessionsArc.data.introCtaSubcopy}</p>}
+            </div>
+            {sessionsArc.data.introCtaLabel && (
+              <a class="btn-primary" href={sessionsArc.data.introCtaHref ?? '/get-started'}>
+                {sessionsArc.data.introCtaLabel}
+              </a>
+            )}
+          </div>
+        )}
       </div>
-      <div class="intro-cta">
-        <div>
-          <h3>Intro is $399 upfront or $450 split over three weeks</h3>
-          <p>After your three sessions: continue 1:1, or join the semi-private sessions.</p>
-        </div>
-        <a class="btn-primary" href="/get-started">Book your intro</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FAQS -->
   {sessionFaqs.length > 0 && (

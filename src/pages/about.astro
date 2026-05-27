@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const page = await getEntry('pages', 'about');
@@ -14,10 +14,16 @@ const hero = page?.data ?? {
   secondaryCtaHref: '/speaking',
 };
 
-// FUEL band content — singleton, shared with /sassy-seniors. Edit in CMS under Site → FUEL Woman of the Year band.
+// CMS-editable content blocks.
 const fuel = await getEntry('site', 'fuel-band');
-// About-page story body — edit in CMS under Page copy → About → Body.
+const studio = await getEntry('site', 'about-studio');
+
+// "My story" body — edit in CMS under Page copy → About → Body.
 const aboutBody = page?.rendered?.html ?? '';
+
+// Credentials — pulled from the Credentials collection, rendered in order, drafts hidden.
+const credentialsList = (await getCollection('credentials', (e) => !e.data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -41,8 +47,22 @@ const aboutBody = page?.rendered?.html ?? '';
     </div>
   </section>
 
-  <!-- MY STORY — body content from src/content/pages/about.md (edit in CMS Body field) -->
+  <!-- PHILOSOPHY — now first, Safe/Seen/Heard as a bullet list (Nikki's preferred layout) -->
   <section style="background: #fff;">
+    <div class="container narrow">
+      <span class="eyebrow">The philosophy</span>
+      <h2 class="section">Strength is ageless</h2>
+      <p class="lead muted">It's not a marketing line. It's the thing the research, the bodies, and the lived experience all keep telling me.</p>
+      <ul class="philosophy-bullets">
+        <li><strong>Safe.</strong> Every session scales to the body in front of me. Mechanics first, load second. We work hard, but we work smart.</li>
+        <li><strong>Seen.</strong> You're never lost in a crowd. Session capacities are small for a reason. Your story, your goals, your wins — tracked, remembered, celebrated.</li>
+        <li><strong>Heard.</strong> Communication on your terms. Banter if you want banter. Quiet focus if today's a quiet day. Your call, every session.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MY STORY — body content from src/content/pages/about.md -->
+  <section style="background: var(--teal-light);">
     <div class="container">
       <div class="passion-block">
         <div class="ph"><span class="ph-label">Photo: Nikki younger / origin moment</span></div>
@@ -55,70 +75,31 @@ const aboutBody = page?.rendered?.html ?? '';
     </div>
   </section>
 
-  <!-- PHILOSOPHY -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">The philosophy</span>
-      <h2 class="section">Strength is ageless</h2>
-      <p class="lead muted">It's not a marketing line. It's the thing the research, the bodies, and the lived experience all keep telling me.</p>
-      <div class="promise" style="padding: 60px 0 0;">
-        <div class="tri">
-          <div>
-            <div class="word">Safe</div>
-            <p>Every session scales to the body in front of me. Mechanics first, load second. We work hard, but we work smart.</p>
-          </div>
-          <div>
-            <div class="word">Seen</div>
-            <p>You're never lost in a crowd. Class capacities are small for a reason. Your story, your goals, your wins — tracked, remembered, celebrated.</p>
-          </div>
-          <div>
-            <div class="word">Heard</div>
-            <p>Communication on your terms. Banter if you want banter. Quiet focus if today's a quiet day. Your call, every session.</p>
-          </div>
+  <!-- CREDENTIALS — pulled from src/content/credentials/ -->
+  {credentialsList.length > 0 && (
+    <section style="background:#fff;">
+      <div class="container">
+        <span class="eyebrow">The receipts</span>
+        <h2 class="section">Qualifications and credentials</h2>
+        <div class="creds-grid">
+          {credentialsList.map((c) => (
+            <div class="cred-card">
+              <div class={`cred-icon ${c.data.iconStyle === 'standard' ? 'cred-icon-muted' : ''}`}>
+                {c.data.iconStyle === 'featured' ? '★' : '·'}
+              </div>
+              <h3>{c.data.title}</h3>
+              <p>
+                {c.data.body}
+                {c.data.linkLabel && c.data.linkHref && (
+                  <> <a href={c.data.linkHref}>{c.data.linkLabel}</a>.</>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS -->
-  <section style="background: var(--teal-light);">
-    <div class="container">
-      <span class="eyebrow">The receipts</span>
-      <h2 class="section">Qualifications and credentials</h2>
-      <div class="creds-grid">
-        <div class="cred-card">
-          <div class="cred-icon">★</div>
-          <h3>Animal Flow Regional Leader</h3>
-          <p>Sydney's Regional Leader for Animal Flow. Ten years of teaching, coaching instructor candidates, and shaping the system in Australia.</p>
-        </div>
-        <div class="cred-card">
-          <div class="cred-icon">★</div>
-          <h3>Fuel Woman of the Year 2025</h3>
-          <p>Recognised by the fitness industry for work with the ageing demographic. <a href="/speaking">Read the speech that started it</a>.</p>
-        </div>
-        <div class="cred-card">
-          <div class="cred-icon">·</div>
-          <h3><em>[PLACEHOLDER — Cert IV / Diploma]</em></h3>
-          <p><em>Add the formal training quals here. Year completed, awarding body.</em></p>
-        </div>
-        <div class="cred-card">
-          <div class="cred-icon">·</div>
-          <h3><em>[PLACEHOLDER — Strength coaching cert]</em></h3>
-          <p><em>Strength coaching credential — StrongFirst, NSCA, RKC, etc. with date.</em></p>
-        </div>
-        <div class="cred-card">
-          <div class="cred-icon">·</div>
-          <h3><em>[PLACEHOLDER — first aid / CPR]</em></h3>
-          <p><em>Current first aid and CPR. Renewal year.</em></p>
-        </div>
-        <div class="cred-card">
-          <div class="cred-icon">·</div>
-          <h3><em>[PLACEHOLDER — public liability insurance]</em></h3>
-          <p><em>Insurer, cover level. Builds trust with older clients especially.</em></p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FUEL RECOGNITION — content from src/content/site/fuel-band.md -->
   {fuel && (
@@ -145,29 +126,31 @@ const aboutBody = page?.rendered?.html ?? '';
     </section>
   )}
 
-  <!-- THE STUDIO -->
-  <section>
-    <div class="container">
-      <div class="what-youll-do">
-        <div>
-          <span class="eyebrow">The space</span>
-          <h2 class="section">A studio that feels like the work</h2>
-          <p class="lead">Matraville. Big lights off, glow lights on. Music from the good years — the 50s through to the 2000s, depending on the crew that day. No mirrors, no judgement, lolly jar by the door.</p>
-          <ul style="margin-top: 24px;">
-            <li>Off-street parking right out the front</li>
-            <li>Equipment built for every body — bars, dumbbells, kettlebells, bands, mats</li>
-            <li>Small sessions by design. The biggest group caps at 10</li>
-            <li>Bathroom and change space on site</li>
-            <li>Dazzle of zebras energy. Yes that's a real collective noun</li>
-          </ul>
-          <p style="margin-top: 22px;">
-            Unit 3 / 60 Perry Street, Matraville NSW 2036.
-          </p>
+  <!-- THE STUDIO — content from src/content/site/about-studio.md -->
+  {studio && (
+    <section>
+      <div class="container">
+        <div class="what-youll-do">
+          <div>
+            {studio.data.eyebrow && <span class="eyebrow">{studio.data.eyebrow}</span>}
+            {studio.data.heading && <h2 class="section">{studio.data.heading}</h2>}
+            {studio.data.lead && <p class="lead">{studio.data.lead}</p>}
+            {studio.data.bullets && studio.data.bullets.length > 0 && (
+              <ul style="margin-top: 24px;">
+                {studio.data.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            )}
+            {studio.data.closingLine && (
+              <p style="margin-top: 22px;">{studio.data.closingLine}</p>
+            )}
+          </div>
+          <div class="ph"><span class="ph-label">Photo: studio wide shot, glow lights on</span></div>
         </div>
-        <div class="ph"><span class="ph-label">Photo: studio wide shot, glow lights on</span></div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FINAL CTA -->
   <section class="cta-strip">

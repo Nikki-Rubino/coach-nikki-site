@@ -1,0 +1,87 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = await getEntry('pages', 'faq');
+const hero = page?.data ?? {
+  eyebrow: 'FAQ',
+  heroHeadline: 'Honest answers, all in one place.',
+  heroSubcopy:
+    "Everything I get asked, grouped by topic. If your question isn't here, send it through and I'll add it.",
+  primaryCtaLabel: 'Send a question',
+  primaryCtaHref: '/contact',
+  secondaryCtaLabel: 'Book your intro',
+  secondaryCtaHref: '/get-started',
+};
+
+// All FAQs grouped by category. Order: Getting started, Sessions, Pricing, Cancellations, General.
+const categoryOrder = ['Getting started', 'Sessions', 'Pricing', 'Cancellations', 'General'] as const;
+const allFaqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+const grouped = categoryOrder
+  .map((cat) => ({ category: cat, items: allFaqs.filter((f) => f.data.category === cat) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<BaseLayout
+  title={page?.data.seoTitle ?? 'FAQ — Coach Nikki'}
+  description={page?.data.seoDescription}
+  activeNav="faq"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="display">{hero.heroHeadline}</h1>
+      <p class="lead">{hero.heroSubcopy}</p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+        <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+      </div>
+    </div>
+    <div class="image">
+      <span class="ph-label">Photo: studio detail / friendly moment</span>
+    </div>
+  </section>
+
+  <!-- ANCHOR NAV — quick jump to category -->
+  {grouped.length > 1 && (
+    <section style="background: var(--teal-light); padding: 24px 32px;">
+      <div class="container" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center;">
+        <span class="eyebrow" style="margin: 0;">Jump to</span>
+        {grouped.map((g) => (
+          <a class="tt-chip" href={`#${g.category.toLowerCase().replace(/\s+/g, '-')}`}>
+            {g.category}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ GROUPS -->
+  {grouped.map((group) => (
+    <section style="background: #fff;" id={group.category.toLowerCase().replace(/\s+/g, '-')}>
+      <div class="container narrow">
+        <span class="eyebrow">{group.category}</span>
+        <h2 class="section">{group.category}</h2>
+        <div class="faq">
+          {group.items.map((f) => (
+            <details class="faq-item">
+              <summary>{f.data.question}</summary>
+              <div class="faq-body" set:html={f.rendered?.html ?? ''} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- FINAL CTA -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Still got a question?</h2>
+      <p>I read every message. Send yours through and I'll come back to you the same day.</p>
+      <a class="btn-primary" href="/contact">Send a message</a>
+      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/get-started">Book your intro →</a>
+    </div>
+  </section>
+</BaseLayout>

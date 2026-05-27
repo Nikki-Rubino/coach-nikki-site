@@ -22,6 +22,9 @@ const afFaq = (await getCollection('faqs', (e) => e.id === 'will-i-do-animal-flo
 
 // "What it is" body — edit in CMS under Page copy → Animal Flow → Body.
 const afBody = page?.rendered?.html ?? '';
+
+// YouTube video ID for the "See it in motion" block. Edit in CMS under Page copy → Animal Flow.
+const ytId = page?.data?.youtubeVideoId;
 ---
 
 <BaseLayout
@@ -59,15 +62,28 @@ const afBody = page?.rendered?.html ?? '';
     </div>
   </section>
 
-  <!-- VIDEO BLOCK -->
+  <!-- VIDEO BLOCK — YouTube embed if youtubeVideoId set in CMS, else placeholder -->
   <section>
     <div class="container narrow">
       <span class="eyebrow">See it in motion</span>
       <h2 class="section">A short flow, from the studio</h2>
-      <div class="video-block" style="margin-top: 28px;">
-        <div class="play">▶</div>
-        <span class="ph-label">Video: 30-second studio flow demo</span>
-      </div>
+      {ytId ? (
+        <div class="video-embed" style="margin-top: 28px;">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
+            title="A short flow, from the studio"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      ) : (
+        <div class="video-block" style="margin-top: 28px;">
+          <div class="play">▶</div>
+          <span class="ph-label">Add a YouTube video ID in the CMS (Page copy → 04 Animal Flow → YouTube video ID)</span>
+        </div>
+      )}
       <p class="muted" style="text-align: center; margin-top: 18px; font-size: 14px;">
         Or check <a href="https://www.instagram.com/coach_nikkir" target="_blank" rel="noopener">@coach_nikkir</a> for weekly clips from the studio.
       </p>

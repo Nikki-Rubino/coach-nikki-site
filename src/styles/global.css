@@ -550,7 +550,9 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   border-radius: 50%;
   background: var(--placeholder);
   flex-shrink: 0;
+  object-fit: cover;
 }
+img.avatar { border: 1px solid var(--rule); }
 .tperson .name { font-weight: 700; font-size: 14px; }
 .tperson .role { font-size: 13px; color: var(--muted); }
 
@@ -800,6 +802,13 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   align-items: center;
   justify-content: center;
 }
+.video-embed {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: #000;
+}
+.video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
 .video-block::after {
   content: "";
   position: absolute;
@@ -1307,6 +1316,38 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
 }
 .contact-info .info-block p { color: var(--ink); font-size: 16px; line-height: 1.6; }
 .contact-info .info-block p a { color: var(--teal-dark); font-weight: 600; }
+
+/* ---------- About page — philosophy bullets ---------- */
+.philosophy-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+.philosophy-bullets li {
+  padding: 14px 0 14px 36px;
+  position: relative;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+.philosophy-bullets li:last-child { border-bottom: none; }
+.philosophy-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 26px;
+  width: 22px;
+  height: 2px;
+  background: var(--teal);
+}
+.philosophy-bullets strong {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.cred-icon-muted { background: var(--placeholder-dark) !important; color: var(--muted) !important; }
 
 /* ---------- About page — credentials grid ---------- */
 .creds-grid {

@@ -15,6 +15,9 @@ const hero = page?.data ?? {
 };
 
 const acuityUrl = page?.data?.acuityEmbedUrl;
+
+// Shared sessions arc (also used on /sessions, /sassy-seniors).
+const sessionsArc = await getEntry('site', 'sessions-arc');
 ---
 
 <BaseLayout
@@ -38,38 +41,35 @@ const acuityUrl = page?.data?.acuityEmbedUrl;
     </div>
   </section>
 
-  <!-- THE ARC -->
-  <section style="background: #fff;">
-    <div class="container">
-      <span class="eyebrow">The arc</span>
-      <h2 class="section">What the three sessions look like</h2>
-      <p class="lead muted">Same arc whether you end up in 1:1, Sassy Classics, or Animal Flow. Each session is 60 minutes, paced for the body in front of me.</p>
-      <div class="steps">
-        <div class="step">
-          <h3>Joint assessment</h3>
-          <p>We map how your body actually moves. Joint range, baseline movements, any history I should know about. Gentle, methodical, no judgement.</p>
-          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · light clothing, water bottle</p>
-        </div>
-        <div class="step">
-          <h3>Strength foundations</h3>
-          <p>Squat, deadlift, push, pull. The four lifts that build the strength to do everyday life well. I'll teach you, you'll surprise yourself.</p>
-          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · same kit, towel optional</p>
-        </div>
-        <div class="step">
-          <h3>Movement foundations</h3>
-          <p>A gentle introduction to ground-based work. Beast, crab, limb lifts. Builds joint resilience and confidence on the floor.</p>
-          <p class="muted" style="font-size: 13px; margin-top: 12px;">~60 min · barefoot or socks</p>
-        </div>
+  <!-- THE ARC — content from src/content/site/sessions-arc.md -->
+  {sessionsArc && (
+    <section style="background: #fff;">
+      <div class="container">
+        {sessionsArc.data.eyebrow && <span class="eyebrow">{sessionsArc.data.eyebrow}</span>}
+        {sessionsArc.data.heading && <h2 class="section">{sessionsArc.data.heading}</h2>}
+        {sessionsArc.data.lead && <p class="lead muted">{sessionsArc.data.lead}</p>}
+        {sessionsArc.data.steps && sessionsArc.data.steps.length > 0 && (
+          <div class="steps">
+            {sessionsArc.data.steps.map((s) => (
+              <div class="step">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {sessionsArc.data.introCtaHeadline && (
+          <div class="intro-cta" style="margin-top: 48px;">
+            <div>
+              <h3>{sessionsArc.data.introCtaHeadline}</h3>
+              {sessionsArc.data.introCtaSubcopy && <p>{sessionsArc.data.introCtaSubcopy}</p>}
+            </div>
+            <a class="btn-primary" href="#intro-form">Tell me about you</a>
+          </div>
+        )}
       </div>
-      <div class="intro-cta" style="margin-top: 48px;">
-        <div>
-          <h3>Intro is $399 upfront or $450 split over three weeks</h3>
-          <p>After session three: continue 1:1, or join the semi-private sessions. Your call.</p>
-        </div>
-        <a class="btn-primary" href="#intro-form">Tell me about you</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- WHAT TO EXPECT -->
   <section>

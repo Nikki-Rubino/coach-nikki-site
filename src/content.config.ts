@@ -23,6 +23,8 @@ const pages = defineCollection({
     seoDescription: z.string().optional(),
     /** Acuity Scheduling iframe URL — used on the Timetable + Get Started pages */
     acuityEmbedUrl: z.string().url().optional(),
+    /** YouTube video ID (the 11-char bit after watch?v= in the URL). Used on /animal-flow. */
+    youtubeVideoId: z.string().optional(),
   }),
 });
 
@@ -92,19 +94,56 @@ const faqs = defineCollection({
   }),
 });
 
-// Site-wide reusable content blocks (FUEL band, etc) — singletons rendered on
-// multiple pages from one source so Nikki edits once and every page updates.
+// Site-wide reusable content blocks (FUEL band, sessions arc, etc) — singletons
+// rendered on multiple pages from one source so Nikki edits once and every page
+// updates. Most fields are optional — each block uses whichever subset it needs.
 const site = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/site' }),
   schema: z.object({
     title: z.string(),
-    awardTagText: z.string().optional(),
+    eyebrow: z.string().optional(),
     heading: z.string().optional(),
+    lead: z.string().optional(),
+    bullets: z.array(z.string()).optional(),
+    closingLine: z.string().optional(),
+    awardTagText: z.string().optional(),
     pullQuote: z.string().optional(),
     pullQuoteCite: z.string().optional(),
     ctaLabel: z.string().optional(),
     ctaHref: z.string().optional(),
+    steps: z
+      .array(z.object({ title: z.string(), body: z.string() }))
+      .optional(),
+    introCtaHeadline: z.string().optional(),
+    introCtaSubcopy: z.string().optional(),
+    introCtaLabel: z.string().optional(),
+    introCtaHref: z.string().optional(),
+    bandText: z.string().optional(),
+    bandTagText: z.string().optional(),
   }),
 });
 
-export const collections = { pages, blog, testimonials, sessions, faqs, site };
+// Credentials shown on the About page. Each card is its own entry so Nikki can
+// add/remove/reorder them.
+const credentials = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/credentials' }),
+  schema: z.object({
+    title: z.string(),
+    iconStyle: z.enum(['featured', 'standard']).default('standard'),
+    body: z.string(),
+    linkLabel: z.string().optional(),
+    linkHref: z.string().optional(),
+    order: z.number().default(0),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = {
+  pages,
+  blog,
+  testimonials,
+  sessions,
+  faqs,
+  site,
+  credentials,
+};

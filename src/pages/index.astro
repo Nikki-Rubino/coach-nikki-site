@@ -212,7 +212,11 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
             <div class="testimonial">
               <blockquote>"{t.data.quote}"</blockquote>
               <div class="tperson">
-                <div class="avatar"></div>
+                {t.data.avatar ? (
+                  <img src={t.data.avatar} alt={t.data.name} class="avatar" width="44" height="44" />
+                ) : (
+                  <div class="avatar"></div>
+                )}
                 <div>
                   <div class="name">{t.data.name}</div>
                   <div class="role">{t.data.role}</div>
