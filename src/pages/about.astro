@@ -94,12 +94,16 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
                 {c.data.iconStyle === 'featured' ? '★' : '·'}
               </div>
               <h3>{c.data.title}</h3>
-              <p>
-                {c.data.body}
+              <div class="cred-body">
+                {c.rendered?.html ? (
+                  <div set:html={c.rendered.html} />
+                ) : c.data.body ? (
+                  <p>{c.data.body}</p>
+                ) : null}
                 {c.data.linkLabel && c.data.linkHref && (
-                  <> <a href={c.data.linkHref}>{c.data.linkLabel}</a>.</>
+                  <p><a href={c.data.linkHref}>{c.data.linkLabel}</a>.</p>
                 )}
-              </p>
+              </div>
             </div>
           ))}
         </div>

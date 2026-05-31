@@ -389,8 +389,8 @@ collections:
         options: ["featured", "standard"]
         default: "standard"
         hint: "Featured cards get a teal star icon, standard cards get a muted dot."
-      - { name: body, label: "Body", widget: text }
       - { name: linkLabel, label: "Optional link label (e.g. 'Read the speech')", widget: string, required: false }
       - { name: linkHref, label: "Optional link URL", widget: string, required: false }
       - { name: order, label: "Display order", widget: number, default: 99, value_type: "int" }
       - { name: draft, label: "Hide this credential", widget: boolean, default: false }
+      - { name: body, label: "Body (the description text)", widget: markdown, required: false, hint: "The text under the title. Plain sentences are fine — bold, italics and links work too." }

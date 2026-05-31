@@ -213,13 +213,15 @@ const site = defineCollection({
 });
 
 // Credentials shown on the About page. Each card is its own entry so Nikki can
-// add/remove/reorder them.
+// add/remove/reorder them. `body` is optional in the frontmatter — Decap stores
+// long-form text as the markdown content below the frontmatter, which Astro
+// exposes via `rendered.html`. Either source works (see /about template).
 const credentials = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/credentials' }),
   schema: z.object({
     title: z.string(),
     iconStyle: z.enum(['featured', 'standard']).default('standard'),
-    body: z.string(),
+    body: z.string().optional(),
     linkLabel: z.string().optional(),
     linkHref: z.string().optional(),
     order: z.number().default(0),
