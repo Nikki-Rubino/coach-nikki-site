@@ -1,6 +1,8 @@
 ---
-title: "Animal Flow Regional Leader"
-iconStyle: "featured"
+title: Animal Flow Regional Leader
+iconStyle: featured
 order: 1
-body: "Sydney's Regional Leader for Animal Flow. Ten years of teaching, coaching instructor candidates, and shaping the system in Australia."
+draft: false
 ---
+Sydney's Regional Leader for Animal Flow for the last 5 years. Ten years of coaching and practising this QMT modality. Coaching movement enthusiasts, Level 1 Workshop participants and helping them get certified, assisting the L1 and L2 workshops through Sydney.
+
