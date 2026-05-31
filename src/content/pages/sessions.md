@@ -9,4 +9,18 @@ secondaryCtaLabel: "See the timetable"
 secondaryCtaHref: "/timetable"
 seoTitle: "Sessions — Coach Nikki Matraville"
 seoDescription: "Coach Nikki's full session list: 1:1 coaching, Sassy Seniors, semi-private strength, Animal Flow Skills, Build a Flow, Breath & Mobility."
+
+intro:
+  eyebrow: "The full list"
+  heading: "Every session, side by side"
+  lead: "All semi-private sessions sit on the same price. Pick what fits your body, your week, your mood."
+  closingLine: "Weekly unlimited covers 3 to 4 sessions per week across any combination of the semi-private offerings above."
+
+finalCta:
+  heading: "Ready to start?"
+  lead: "Book your three session intro. After that, the door's wide open."
+  ctaLabel: "Book your intro"
+  ctaHref: "/get-started"
+  ctaSecondaryLabel: "See pricing →"
+  ctaSecondaryHref: "/pricing"
 ---

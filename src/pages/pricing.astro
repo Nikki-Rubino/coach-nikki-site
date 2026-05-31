@@ -14,11 +14,11 @@ const hero = page?.data ?? {
   secondaryCtaHref: '/contact',
 };
 
-// CMS-editable pricing sections.
-const tiersBlock = await getEntry('site', 'pricing-tiers');
-const weekly = await getEntry('site', 'pricing-weekly-unpacked');
-const policy = await getEntry('site', 'pricing-policy');
-const finalCta = await getEntry('site', 'pricing-cta');
+// Pricing blocks now live inside the page entry.
+const tiersBlock = page?.data?.tiers;
+const weekly = page?.data?.weeklyUnpacked;
+const policy = page?.data?.policy;
+const finalCta = page?.data?.finalCta;
 
 const pricingFaqs = (await getCollection('faqs', (e) => e.data.category === 'Pricing'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -49,13 +49,13 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
   </section>
 
   <!-- PRICING TIERS — content from src/content/site/pricing-tiers.md -->
-  {tiersBlock && tiersBlock.data.tiers && (
+  {tiersBlock && tiersBlock.items && (
     <section style="background: #fff;">
       <div class="container">
-        {tiersBlock.data.eyebrow && <span class="eyebrow">{tiersBlock.data.eyebrow}</span>}
-        {tiersBlock.data.heading && <h2 class="section">{tiersBlock.data.heading}</h2>}
+        {tiersBlock.eyebrow && <span class="eyebrow">{tiersBlock.eyebrow}</span>}
+        {tiersBlock.heading && <h2 class="section">{tiersBlock.heading}</h2>}
         <div class="pricing-grid">
-          {tiersBlock.data.tiers.map((t) => (
+          {tiersBlock.items.map((t) => (
             <div class={`price${t.featured ? ' featured' : ''}`}>
               <h3>{t.label}</h3>
               <div class="amount">{t.amount} {t.amountNote && <small>{t.amountNote}</small>}</div>
@@ -79,8 +79,8 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
             </div>
           ))}
         </div>
-        {tiersBlock.data.closingLine && (
-          <p class="price-note">{tiersBlock.data.closingLine}</p>
+        {tiersBlock.closingLine && (
+          <p class="price-note">{tiersBlock.closingLine}</p>
         )}
       </div>
     </section>
@@ -90,12 +90,12 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
   {weekly && (
     <section>
       <div class="container">
-        {weekly.data.eyebrow && <span class="eyebrow">{weekly.data.eyebrow}</span>}
-        {weekly.data.heading && <h2 class="section">{weekly.data.heading}</h2>}
-        {weekly.data.lead && <p class="lead muted">{weekly.data.lead}</p>}
-        {weekly.data.capacityGrid && (
+        {weekly.eyebrow && <span class="eyebrow">{weekly.eyebrow}</span>}
+        {weekly.heading && <h2 class="section">{weekly.heading}</h2>}
+        {weekly.lead && <p class="lead muted">{weekly.lead}</p>}
+        {weekly.capacityGrid && (
           <div class="format-grid">
-            {weekly.data.capacityGrid.map((c) => (
+            {weekly.capacityGrid.map((c) => (
               <div class="format-card">
                 <div class="num">{c.number}</div>
                 <div class="lbl">{c.label}</div>
@@ -103,9 +103,9 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
             ))}
           </div>
         )}
-        {weekly.data.capacityCaption && (
+        {weekly.capacityCaption && (
           <p class="muted" style="margin-top: 24px; text-align: center; font-size: 14px;">
-            {weekly.data.capacityCaption}
+            {weekly.capacityCaption}
           </p>
         )}
       </div>
@@ -116,12 +116,12 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
   {policy && (
     <section style="background: var(--teal-light);">
       <div class="container narrow">
-        {policy.data.eyebrow && <span class="eyebrow">{policy.data.eyebrow}</span>}
-        {policy.data.heading && <h2 class="section">{policy.data.heading}</h2>}
-        {policy.data.lead && <p class="lead">{policy.data.lead}</p>}
-        {policy.data.policies && (
+        {policy.eyebrow && <span class="eyebrow">{policy.eyebrow}</span>}
+        {policy.heading && <h2 class="section">{policy.heading}</h2>}
+        {policy.lead && <p class="lead">{policy.lead}</p>}
+        {policy.items && (
           <div class="policy-rows">
-            {policy.data.policies.map((p) => (
+            {policy.items.map((p) => (
               <div class="policy-row">
                 <div class="policy-h">{p.heading}</div>
                 <ul>
@@ -165,20 +165,20 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>
-            {finalCta.data.ctaLabel}
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/get-started'}>
+            {finalCta.ctaLabel}
           </a>
         )}
-        {finalCta.data.ctaSecondaryLabel && (
+        {finalCta.ctaSecondaryLabel && (
           <a
             class="btn-secondary"
             style="color: #fff !important; border-color: #fff; margin-left: 8px;"
-            href={finalCta.data.ctaSecondaryHref ?? '/contact'}
+            href={finalCta.ctaSecondaryHref ?? '/contact'}
           >
-            {finalCta.data.ctaSecondaryLabel}
+            {finalCta.ctaSecondaryLabel}
           </a>
         )}
       </div>

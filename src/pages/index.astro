@@ -15,11 +15,13 @@ const hero = home?.data ?? {
   secondaryCtaHref: '/timetable',
 };
 
-// CMS-editable Home sections.
-const doorsBlock = await getEntry('site', 'home-doors');
-const promise = await getEntry('site', 'home-promise');
-const arc = await getEntry('site', 'home-arc');
-const sectionHeaders = await getEntry('site', 'home-section-headers');
+// CMS-editable home sections — all nested in pages/home.md.
+const doorsBlock = home?.data?.doors;
+const promise = home?.data?.promise;
+const arc = home?.data?.arc;
+const sessionsHeader = home?.data?.sessionsSectionHeader;
+const testimonialsHeader = home?.data?.testimonialsHeader;
+const blogHeader = home?.data?.blogHeader;
 
 // Sessions shown on the home page, ordered.
 const homeSessions = (await getCollection('sessions', (e) => e.data.showOnHome))
@@ -70,15 +72,15 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
     <a class="link" href="/speaking">Read the speech →</a>
   </div>
 
-  <!-- THREE DOORS — content from src/content/site/home-doors.md -->
-  {doorsBlock && doorsBlock.data.doors && (
+  <!-- THREE DOORS — content from pages/home.md → doors -->
+  {doorsBlock && doorsBlock.items && (
     <section>
       <div class="container">
-        {doorsBlock.data.eyebrow && <span class="eyebrow">{doorsBlock.data.eyebrow}</span>}
-        {doorsBlock.data.heading && <h2 class="section">{doorsBlock.data.heading}</h2>}
-        {doorsBlock.data.lead && <p class="lead muted">{doorsBlock.data.lead}</p>}
+        {doorsBlock.eyebrow && <span class="eyebrow">{doorsBlock.eyebrow}</span>}
+        {doorsBlock.heading && <h2 class="section">{doorsBlock.heading}</h2>}
+        {doorsBlock.lead && <p class="lead muted">{doorsBlock.lead}</p>}
         <div class="doors">
-          {doorsBlock.data.doors.map((d) => (
+          {doorsBlock.items.map((d) => (
             <a class="door" href={d.href}>
               <div class="ph"><span class="ph-label">{d.imageHint ?? d.heading}</span></div>
               <div class="body">
@@ -94,15 +96,15 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
     </section>
   )}
 
-  <!-- PROMISE — content from src/content/site/home-promise.md -->
+  <!-- PROMISE — content from pages/home.md → promise -->
   {promise && (
     <section class="promise">
       <div class="container">
-        {promise.data.eyebrow && <span class="eyebrow">{promise.data.eyebrow}</span>}
-        {promise.data.heading && <h2 class="section">{promise.data.heading}</h2>}
-        {promise.data.tiles && (
+        {promise.eyebrow && <span class="eyebrow">{promise.eyebrow}</span>}
+        {promise.heading && <h2 class="section">{promise.heading}</h2>}
+        {promise.tiles && (
           <div class="tri">
-            {promise.data.tiles.map((t) => (
+            {promise.tiles.map((t) => (
               <div>
                 <div class="word">{t.word}</div>
                 <p>{t.body}</p>
@@ -110,26 +112,26 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
             ))}
           </div>
         )}
-        {promise.data.pullQuote && (
+        {promise.pullQuote && (
           <div class="pullquote">
-            "{promise.data.pullQuote}"
-            {promise.data.pullQuoteCite && <cite>{promise.data.pullQuoteCite}</cite>}
+            "{promise.pullQuote}"
+            {promise.pullQuoteCite && <cite>{promise.pullQuoteCite}</cite>}
           </div>
         )}
       </div>
     </section>
   )}
 
-  <!-- HOW IT WORKS — content from src/content/site/home-arc.md -->
+  <!-- HOW IT WORKS — content from pages/home.md → arc -->
   {arc && (
     <section>
       <div class="container">
-        {arc.data.eyebrow && <span class="eyebrow">{arc.data.eyebrow}</span>}
-        {arc.data.heading && <h2 class="section">{arc.data.heading}</h2>}
-        {arc.data.lead && <p class="lead muted">{arc.data.lead}</p>}
-        {arc.data.steps && (
+        {arc.eyebrow && <span class="eyebrow">{arc.eyebrow}</span>}
+        {arc.heading && <h2 class="section">{arc.heading}</h2>}
+        {arc.lead && <p class="lead muted">{arc.lead}</p>}
+        {arc.steps && (
           <div class="steps">
-            {arc.data.steps.map((s) => (
+            {arc.steps.map((s) => (
               <div class="step">
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
@@ -137,15 +139,15 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
             ))}
           </div>
         )}
-        {arc.data.introCtaHeadline && (
+        {arc.introCtaHeadline && (
           <div class="intro-cta">
             <div>
-              <h3>{arc.data.introCtaHeadline}</h3>
-              {arc.data.introCtaSubcopy && <p>{arc.data.introCtaSubcopy}</p>}
+              <h3>{arc.introCtaHeadline}</h3>
+              {arc.introCtaSubcopy && <p>{arc.introCtaSubcopy}</p>}
             </div>
-            {arc.data.introCtaLabel && (
-              <a class="btn-primary" href={arc.data.introCtaHref ?? '/get-started'}>
-                {arc.data.introCtaLabel}
+            {arc.introCtaLabel && (
+              <a class="btn-primary" href={arc.introCtaHref ?? '/get-started'}>
+                {arc.introCtaLabel}
               </a>
             )}
           </div>
@@ -158,8 +160,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
   {homeSessions.length > 0 && (
     <section style="background:#fff;">
       <div class="container">
-        <span class="eyebrow">{sectionHeaders?.data.eyebrow ?? "What's on offer"}</span>
-        <h2 class="section">{sectionHeaders?.data.heading ?? 'Sessions for every body'}</h2>
+        <span class="eyebrow">{sessionsHeader?.eyebrow ?? "What's on offer"}</span>
+        <h2 class="section">{sessionsHeader?.heading ?? 'Sessions for every body'}</h2>
         <div class="sessions">
           {homeSessions.map((s) => (
             <div class="session-card">
@@ -170,9 +172,9 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
             </div>
           ))}
         </div>
-        {sectionHeaders?.data.ctaSubcopy && (
+        {sessionsHeader?.caption && (
           <p class="muted" style="margin-top: 24px; text-align:center; font-size: 14px;">
-            {sectionHeaders.data.ctaSubcopy}
+            {sessionsHeader.caption}
           </p>
         )}
       </div>
@@ -183,8 +185,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
   {featuredTestimonials.length > 0 && (
     <section class="testimonials">
       <div class="container">
-        <span class="eyebrow">{sectionHeaders?.data.bannerHeadline ?? 'Words from the dazzle'}</span>
-        <h2 class="section">{sectionHeaders?.data.subHeading ?? 'What clients say'}</h2>
+        <span class="eyebrow">{testimonialsHeader?.eyebrow ?? 'Words from the dazzle'}</span>
+        <h2 class="section">{testimonialsHeader?.heading ?? 'What clients say'}</h2>
         <div class="tlist">
           {featuredTestimonials.map((t) => (
             <div class="testimonial">
@@ -211,8 +213,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
   {posts.length > 0 && (
     <section>
       <div class="container">
-        <span class="eyebrow">{sectionHeaders?.data.bannerSubcopy ?? 'From the blog'}</span>
-        <h2 class="section">{sectionHeaders?.data.ctaLabel ?? 'Words on movement'}</h2>
+        <span class="eyebrow">{blogHeader?.eyebrow ?? 'From the blog'}</span>
+        <h2 class="section">{blogHeader?.heading ?? 'Words on movement'}</h2>
         <div class="blog-list">
           {posts.map((p) => (
             <a class="post" href={`/blog/${p.id}`}>

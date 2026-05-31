@@ -16,11 +16,13 @@ const hero = page?.data ?? {
 
 const acuityUrl = page?.data?.acuityEmbedUrl;
 
-// Shared sessions arc (also used on /sessions, /sassy-seniors).
+// Shared sessions arc (singleton, also on /sessions and /about).
 const sessionsArc = await getEntry('site', 'sessions-arc');
-const expect = await getEntry('site', 'get-started-expect');
-const bookSection = await getEntry('site', 'get-started-book-section');
-const finalCta = await getEntry('site', 'get-started-final-cta');
+
+// Get Started blocks now live inside the page entry.
+const expect = page?.data?.expect;
+const bookSection = page?.data?.bookSection;
+const finalCta = page?.data?.finalCta;
 ---
 
 <BaseLayout
@@ -78,11 +80,11 @@ const finalCta = await getEntry('site', 'get-started-final-cta');
   {expect && (
     <section>
       <div class="container">
-        {expect.data.eyebrow && <span class="eyebrow">{expect.data.eyebrow}</span>}
-        {expect.data.heading && <h2 class="section">{expect.data.heading}</h2>}
-        {expect.data.cards && (
+        {expect.eyebrow && <span class="eyebrow">{expect.eyebrow}</span>}
+        {expect.heading && <h2 class="section">{expect.heading}</h2>}
+        {expect.cards && (
           <div class="format-grid">
-            {expect.data.cards.map((c) => (
+            {expect.cards.map((c) => (
               <div class="format-card">
                 <div class="num">{c.icon}</div>
                 <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">{c.label}</div>
@@ -189,9 +191,9 @@ const finalCta = await getEntry('site', 'get-started-final-cta');
   <section id="book" style="background: #fff;">
     <div class="container wide">
       <div style="text-align: center; margin-bottom: 32px;">
-        {bookSection?.data.eyebrow && <span class="eyebrow">{bookSection.data.eyebrow}</span>}
-        {bookSection?.data.heading && <h2 class="section">{bookSection.data.heading}</h2>}
-        {bookSection?.data.lead && <p class="lead muted" style="margin: 0 auto;">{bookSection.data.lead}</p>}
+        {bookSection?.eyebrow && <span class="eyebrow">{bookSection.eyebrow}</span>}
+        {bookSection?.heading && <h2 class="section">{bookSection.heading}</h2>}
+        {bookSection?.lead && <p class="lead muted" style="margin: 0 auto;">{bookSection.lead}</p>}
       </div>
       {acuityUrl ? (
         <>
@@ -217,10 +219,10 @@ const finalCta = await getEntry('site', 'get-started-final-cta');
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/contact'}>{finalCta.data.ctaLabel}</a>
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/contact'}>{finalCta.ctaLabel}</a>
         )}
       </div>
     </section>

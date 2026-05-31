@@ -14,11 +14,13 @@ const hero = page?.data ?? {
   secondaryCtaHref: '/speaking',
 };
 
-// CMS-editable content blocks.
+// FUEL band — shared content (also used on /sassy-seniors). Edit in CMS under Shared content.
 const fuel = await getEntry('site', 'fuel-band');
-const studio = await getEntry('site', 'about-studio');
-const philosophy = await getEntry('site', 'about-philosophy');
-const finalCta = await getEntry('site', 'about-cta');
+
+// About blocks now live inside the page entry.
+const studio = page?.data?.studio;
+const philosophy = page?.data?.philosophy;
+const finalCta = page?.data?.finalCta;
 
 // "My story" body — edit in CMS under Page copy → About → Body.
 const aboutBody = page?.rendered?.html ?? '';
@@ -53,12 +55,12 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
   {philosophy && (
     <section style="background: #fff;">
       <div class="container narrow">
-        {philosophy.data.eyebrow && <span class="eyebrow">{philosophy.data.eyebrow}</span>}
-        {philosophy.data.heading && <h2 class="section">{philosophy.data.heading}</h2>}
-        {philosophy.data.lead && <p class="lead muted">{philosophy.data.lead}</p>}
-        {philosophy.data.tiles && (
+        {philosophy.eyebrow && <span class="eyebrow">{philosophy.eyebrow}</span>}
+        {philosophy.heading && <h2 class="section">{philosophy.heading}</h2>}
+        {philosophy.lead && <p class="lead muted">{philosophy.lead}</p>}
+        {philosophy.tiles && (
           <ul class="philosophy-bullets">
-            {philosophy.data.tiles.map((t) => (
+            {philosophy.tiles.map((t) => (
               <li><strong>{t.word}.</strong> {t.body}</li>
             ))}
           </ul>
@@ -142,18 +144,18 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
       <div class="container">
         <div class="what-youll-do">
           <div>
-            {studio.data.eyebrow && <span class="eyebrow">{studio.data.eyebrow}</span>}
-            {studio.data.heading && <h2 class="section">{studio.data.heading}</h2>}
-            {studio.data.lead && <p class="lead">{studio.data.lead}</p>}
-            {studio.data.bullets && studio.data.bullets.length > 0 && (
+            {studio.eyebrow && <span class="eyebrow">{studio.eyebrow}</span>}
+            {studio.heading && <h2 class="section">{studio.heading}</h2>}
+            {studio.lead && <p class="lead">{studio.lead}</p>}
+            {studio.bullets && studio.bullets.length > 0 && (
               <ul style="margin-top: 24px;">
-                {studio.data.bullets.map((b) => (
+                {studio.bullets.map((b) => (
                   <li>{b}</li>
                 ))}
               </ul>
             )}
-            {studio.data.closingLine && (
-              <p style="margin-top: 22px;">{studio.data.closingLine}</p>
+            {studio.closingLine && (
+              <p style="margin-top: 22px;">{studio.closingLine}</p>
             )}
           </div>
           <div class="ph"><span class="ph-label">Photo: studio wide shot, glow lights on</span></div>
@@ -166,14 +168,14 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/get-started'}>{finalCta.ctaLabel}</a>
         )}
-        {finalCta.data.ctaSecondaryLabel && (
-          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/contact'}>
-            {finalCta.data.ctaSecondaryLabel}
+        {finalCta.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.ctaSecondaryHref ?? '/contact'}>
+            {finalCta.ctaSecondaryLabel}
           </a>
         )}
       </div>

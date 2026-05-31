@@ -21,11 +21,13 @@ const allSessions = (await getCollection('sessions')).sort(
 const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
   .sort((a, b) => a.data.order - b.data.order);
 
-// Shared CMS-editable blocks (also used on /sassy-seniors, /about, /get-started).
+// Shared CMS-editable singletons (used on multiple pages).
 const introBand = await getEntry('site', 'intro-band');
 const sessionsArc = await getEntry('site', 'sessions-arc');
-const intro = await getEntry('site', 'sessions-intro');
-const finalCta = await getEntry('site', 'sessions-final-cta');
+
+// Sessions blocks now live inside the page entry.
+const intro = page?.data?.intro;
+const finalCta = page?.data?.finalCta;
 ---
 
 <BaseLayout
@@ -75,9 +77,9 @@ const finalCta = await getEntry('site', 'sessions-final-cta');
   <!-- FULL SESSIONS CATALOGUE — header from src/content/site/sessions-intro.md -->
   <section style="background: #fff;">
     <div class="container">
-      {intro?.data.eyebrow && <span class="eyebrow">{intro.data.eyebrow}</span>}
-      {intro?.data.heading && <h2 class="section">{intro.data.heading}</h2>}
-      {intro?.data.lead && <p class="lead muted">{intro.data.lead}</p>}
+      {intro?.eyebrow && <span class="eyebrow">{intro.eyebrow}</span>}
+      {intro?.heading && <h2 class="section">{intro.heading}</h2>}
+      {intro?.lead && <p class="lead muted">{intro.lead}</p>}
       <div class="session-detail-grid">
         {allSessions.map((s) => (
           <article class="session-detail">
@@ -109,9 +111,9 @@ const finalCta = await getEntry('site', 'sessions-final-cta');
           </article>
         ))}
       </div>
-      {intro?.data.closingLine && (
+      {intro?.closingLine && (
         <p class="muted" style="margin-top: 28px; text-align: center; font-size: 14px;">
-          {intro.data.closingLine}
+          {intro.closingLine}
         </p>
       )}
     </div>
@@ -173,14 +175,14 @@ const finalCta = await getEntry('site', 'sessions-final-cta');
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/get-started'}>{finalCta.ctaLabel}</a>
         )}
-        {finalCta.data.ctaSecondaryLabel && (
-          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/pricing'}>
-            {finalCta.data.ctaSecondaryLabel}
+        {finalCta.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.ctaSecondaryHref ?? '/pricing'}>
+            {finalCta.ctaSecondaryLabel}
           </a>
         )}
       </div>

@@ -17,14 +17,14 @@ const hero = page?.data ?? {
 const sassyFaqs = (await getCollection('faqs', (e) => e.data.category === 'Sessions'))
   .sort((a, b) => a.data.order - b.data.order);
 
-// FUEL band content — singleton, shared with /about. Edit in CMS under Site → FUEL Woman of the Year band.
+// FUEL band — shared content (also used on /about). Edit in CMS under Shared content.
 const fuel = await getEntry('site', 'fuel-band');
 
-// Two CMS-editable Sassy blocks: "If this sounds familiar" bullets + "Real strength training" body.
-const ifFamiliar = await getEntry('site', 'sassy-if-familiar');
-const realStrength = await getEntry('site', 'sassy-real-strength');
-const format = await getEntry('site', 'sassy-format');
-const finalCta = await getEntry('site', 'sassy-final-cta');
+// Page-specific blocks now live inside the page entry.
+const ifFamiliar = page?.data?.ifFamiliar;
+const realStrength = page?.data?.realStrength;
+const format = page?.data?.format;
+const finalCta = page?.data?.finalCta;
 
 // Inna testimonial — first featured testimonial tagged "Sassy Seniors" if present.
 const featuredTestimonials = await getCollection('testimonials', (e) => e.data.featured);
@@ -82,18 +82,18 @@ const innaTestimonial =
   {ifFamiliar && (
     <section class="if-this-sounds">
       <div class="container">
-        {ifFamiliar.data.eyebrow && <span class="eyebrow">{ifFamiliar.data.eyebrow}</span>}
-        {ifFamiliar.data.heading && <h2 class="section">{ifFamiliar.data.heading}</h2>}
+        {ifFamiliar.eyebrow && <span class="eyebrow">{ifFamiliar.eyebrow}</span>}
+        {ifFamiliar.heading && <h2 class="section">{ifFamiliar.heading}</h2>}
         <div class="ifsounds">
-          {ifFamiliar.data.bullets && ifFamiliar.data.bullets.length > 0 && (
+          {ifFamiliar.bullets && ifFamiliar.bullets.length > 0 && (
             <ul class="ifsounds-list">
-              {ifFamiliar.data.bullets.map((b) => (
+              {ifFamiliar.bullets.map((b) => (
                 <li>{b}</li>
               ))}
             </ul>
           )}
-          {ifFamiliar.data.closingLine && (
-            <p class="closing-line">{ifFamiliar.data.closingLine}</p>
+          {ifFamiliar.closingLine && (
+            <p class="closing-line">{ifFamiliar.closingLine}</p>
           )}
         </div>
       </div>
@@ -107,18 +107,18 @@ const innaTestimonial =
         <div class="what-youll-do">
           <div class="ph"><span class="ph-label">Photo: senior client mid-deadlift, smiling</span></div>
           <div>
-            {realStrength.data.eyebrow && <span class="eyebrow">{realStrength.data.eyebrow}</span>}
-            {realStrength.data.heading && <h2 class="section">{realStrength.data.heading}</h2>}
-            {realStrength.data.lead && <p class="lead">{realStrength.data.lead}</p>}
-            {realStrength.data.bullets && realStrength.data.bullets.length > 0 && (
+            {realStrength.eyebrow && <span class="eyebrow">{realStrength.eyebrow}</span>}
+            {realStrength.heading && <h2 class="section">{realStrength.heading}</h2>}
+            {realStrength.lead && <p class="lead">{realStrength.lead}</p>}
+            {realStrength.bullets && realStrength.bullets.length > 0 && (
               <ul>
-                {realStrength.data.bullets.map((b) => (
+                {realStrength.bullets.map((b) => (
                   <li>{b}</li>
                 ))}
               </ul>
             )}
-            {realStrength.data.closingLine && (
-              <p style="margin-top: 20px; font-size: 17px;">{realStrength.data.closingLine}</p>
+            {realStrength.closingLine && (
+              <p style="margin-top: 20px; font-size: 17px;">{realStrength.closingLine}</p>
             )}
           </div>
         </div>
@@ -130,11 +130,11 @@ const innaTestimonial =
   {format && (
     <section>
       <div class="container">
-        {format.data.eyebrow && <span class="eyebrow">{format.data.eyebrow}</span>}
-        {format.data.heading && <h2 class="section">{format.data.heading}</h2>}
-        {format.data.capacityGrid && (
+        {format.eyebrow && <span class="eyebrow">{format.eyebrow}</span>}
+        {format.heading && <h2 class="section">{format.heading}</h2>}
+        {format.capacityGrid && (
           <div class="format-grid">
-            {format.data.capacityGrid.map((c) => (
+            {format.capacityGrid.map((c) => (
               <div class="format-card">
                 <div class="num">{c.number}</div>
                 <div class="lbl">{c.label}</div>
@@ -253,14 +253,14 @@ const innaTestimonial =
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/get-started'}>{finalCta.ctaLabel}</a>
         )}
-        {finalCta.data.ctaSecondaryLabel && (
-          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/contact'}>
-            {finalCta.data.ctaSecondaryLabel}
+        {finalCta.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.ctaSecondaryHref ?? '/contact'}>
+            {finalCta.ctaSecondaryLabel}
           </a>
         )}
       </div>

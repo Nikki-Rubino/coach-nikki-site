@@ -11,7 +11,7 @@ const hero = page?.data ?? {
 };
 
 const acuityUrl = page?.data?.acuityEmbedUrl;
-const paths = await getEntry('site', 'timetable-paths');
+const paths = page?.data?.paths;
 ---
 
 <BaseLayout
@@ -167,11 +167,11 @@ const paths = await getEntry('site', 'timetable-paths');
   {paths && (
     <section class="tt-howto">
       <div class="container">
-        {paths.data.eyebrow && <span class="eyebrow">{paths.data.eyebrow}</span>}
-        {paths.data.heading && <h2 class="section">{paths.data.heading}</h2>}
-        {paths.data.cards && (
+        {paths.eyebrow && <span class="eyebrow">{paths.eyebrow}</span>}
+        {paths.heading && <h2 class="section">{paths.heading}</h2>}
+        {paths.cards && (
           <div class="tt-howto-grid">
-            {paths.data.cards.map((c) => (
+            {paths.cards.map((c) => (
               <div class="tt-howto-card">
                 <div class="icon">{c.icon}</div>
                 <h3>{c.label}</h3>
@@ -180,9 +180,9 @@ const paths = await getEntry('site', 'timetable-paths');
             ))}
           </div>
         )}
-        {paths.data.closingLine && (
+        {paths.closingLine && (
           <p class="muted" style="text-align: center; margin-top: 32px; font-size: 13px;">
-            {paths.data.closingLine}
+            {paths.closingLine}
           </p>
         )}
       </div>

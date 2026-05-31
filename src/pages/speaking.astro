@@ -14,16 +14,19 @@ const hero = page?.data ?? {
   secondaryCtaHref: '#piece',
 };
 
-// CMS-editable speaking sections.
-const fuelMeaning = await getEntry('site', 'speaking-fuel-meaning');
-const speechIntro = await getEntry('site', 'speaking-speech-intro');
-const speechPull = await getEntry('site', 'speaking-speech-pull');
-const passion = await getEntry('site', 'speaking-passion');
-const elsewhere = await getEntry('site', 'speaking-elsewhere');
-const finalCta = await getEntry('site', 'speaking-final-cta');
+// Speaking blocks now live inside the page entry.
+const fuelMeaning = page?.data?.fuelMeaning;
+const speechIntro = page?.data?.speechIntro;
+const speechPull = page?.data?.speechPull;
+const passion = page?.data?.passion;
+const elsewhere = page?.data?.elsewhere;
+const finalCta = page?.data?.finalCta;
 
 const ytId = page?.data?.youtubeVideoId;
-const passionBody = passion?.rendered?.html ?? '';
+// Passion body is a multi-line string in YAML — render as paragraphs.
+const passionParas = (passion?.body ?? '')
+  .split(/\n\s*\n/)
+  .filter((p) => p.trim().length > 0);
 ---
 
 <BaseLayout
@@ -55,11 +58,11 @@ const passionBody = passion?.rendered?.html ?? '';
   {fuelMeaning && (
     <section>
       <div class="container">
-        {fuelMeaning.data.eyebrow && <span class="eyebrow">{fuelMeaning.data.eyebrow}</span>}
-        {fuelMeaning.data.heading && <h2 class="section">{fuelMeaning.data.heading}</h2>}
-        {fuelMeaning.data.lead && <p class="lead">{fuelMeaning.data.lead}</p>}
-        {fuelMeaning.data.closingLine && (
-          <p class="lead" style="margin-top: 18px;">{fuelMeaning.data.closingLine}</p>
+        {fuelMeaning.eyebrow && <span class="eyebrow">{fuelMeaning.eyebrow}</span>}
+        {fuelMeaning.heading && <h2 class="section">{fuelMeaning.heading}</h2>}
+        {fuelMeaning.lead && <p class="lead">{fuelMeaning.lead}</p>}
+        {fuelMeaning.closingLine && (
+          <p class="lead" style="margin-top: 18px;">{fuelMeaning.closingLine}</p>
         )}
         <div class="speaking-grid">
           <div class="ph"><span class="ph-label">Award moment</span></div>
@@ -74,9 +77,9 @@ const passionBody = passion?.rendered?.html ?? '';
   {speechIntro && (
     <section id="speech" style="background: #fff;">
       <div class="container">
-        {speechIntro.data.eyebrow && <span class="eyebrow">{speechIntro.data.eyebrow}</span>}
-        {speechIntro.data.heading && <h2 class="section">{speechIntro.data.heading}</h2>}
-        {speechIntro.data.lead && <p class="lead muted">{speechIntro.data.lead}</p>}
+        {speechIntro.eyebrow && <span class="eyebrow">{speechIntro.eyebrow}</span>}
+        {speechIntro.heading && <h2 class="section">{speechIntro.heading}</h2>}
+        {speechIntro.lead && <p class="lead muted">{speechIntro.lead}</p>}
         {ytId ? (
           <div class="video-embed" style="margin-top: 32px;">
             <iframe
@@ -94,11 +97,11 @@ const passionBody = passion?.rendered?.html ?? '';
             <span class="ph-label">Add a YouTube video ID in the CMS (Page copy → 10 Speaking → YouTube video ID)</span>
           </div>
         )}
-        {speechIntro.data.closingLine && (
+        {speechIntro.closingLine && (
           <p class="muted" style="margin-top: 16px; font-size: 14px; text-align: center;">
-            {speechIntro.data.closingLine}
-            {speechIntro.data.ctaLabel && (
-              <> <a class="btn-secondary" href={speechIntro.data.ctaHref ?? '#piece'}>{speechIntro.data.ctaLabel}</a></>
+            {speechIntro.closingLine}
+            {speechIntro.ctaLabel && (
+              <> <a class="btn-secondary" href={speechIntro.ctaHref ?? '#piece'}>{speechIntro.ctaLabel}</a></>
             )}
           </p>
         )}
@@ -107,11 +110,11 @@ const passionBody = passion?.rendered?.html ?? '';
   )}
 
   <!-- SPEECH PULL QUOTE — content from src/content/site/speaking-speech-pull.md -->
-  {speechPull?.data.pullQuote && (
+  {speechPull?.pullQuote && (
     <section class="speech-pull">
       <blockquote>
-        "{speechPull.data.pullQuote}"
-        {speechPull.data.pullQuoteCite && <cite>{speechPull.data.pullQuoteCite}</cite>}
+        "{speechPull.pullQuote}"
+        {speechPull.pullQuoteCite && <cite>{speechPull.pullQuoteCite}</cite>}
       </blockquote>
     </section>
   )}
@@ -120,18 +123,18 @@ const passionBody = passion?.rendered?.html ?? '';
   {passion && (
     <section id="piece">
       <div class="container">
-        {passion.data.eyebrow && <span class="eyebrow">{passion.data.eyebrow}</span>}
-        {passion.data.heading && <h2 class="section">{passion.data.heading}</h2>}
+        {passion.eyebrow && <span class="eyebrow">{passion.eyebrow}</span>}
+        {passion.heading && <h2 class="section">{passion.heading}</h2>}
         <div class="passion-block" style="margin-top: 36px;">
           <div class="ph"><span class="ph-label">Portrait of Nikki</span></div>
           <div>
-            <div set:html={passionBody} />
+            {passionParas.map((p) => <p>{p}</p>)}
             <div style="margin-top: 32px;">
-              {passion.data.ctaLabel && (
-                <a class="btn-primary" href={passion.data.ctaHref ?? '/get-started'}>{passion.data.ctaLabel}</a>
+              {passion.ctaLabel && (
+                <a class="btn-primary" href={passion.ctaHref ?? '/get-started'}>{passion.ctaLabel}</a>
               )}
-              {passion.data.ctaSecondaryLabel && (
-                <a class="btn-secondary" href={passion.data.ctaSecondaryHref ?? '/sassy-seniors'}>{passion.data.ctaSecondaryLabel}</a>
+              {passion.ctaSecondaryLabel && (
+                <a class="btn-secondary" href={passion.ctaSecondaryHref ?? '/sassy-seniors'}>{passion.ctaSecondaryLabel}</a>
               )}
             </div>
           </div>
@@ -144,11 +147,11 @@ const passionBody = passion?.rendered?.html ?? '';
   {elsewhere && (
     <section style="background: #fff;">
       <div class="container">
-        {elsewhere.data.eyebrow && <span class="eyebrow">{elsewhere.data.eyebrow}</span>}
-        {elsewhere.data.heading && <h2 class="section">{elsewhere.data.heading}</h2>}
-        {elsewhere.data.cards && (
+        {elsewhere.eyebrow && <span class="eyebrow">{elsewhere.eyebrow}</span>}
+        {elsewhere.heading && <h2 class="section">{elsewhere.heading}</h2>}
+        {elsewhere.cards && (
           <div class="blog-list">
-            {elsewhere.data.cards.map((c) => (
+            {elsewhere.cards.map((c) => (
               <a class="post">
                 <div class="ph"><span class="ph-label">{c.label}</span></div>
                 <div class="date">{c.icon}</div>
@@ -166,14 +169,14 @@ const passionBody = passion?.rendered?.html ?? '';
   {finalCta && (
     <section class="cta-strip">
       <div class="container narrow">
-        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
-        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
-        {finalCta.data.ctaLabel && (
-          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        {finalCta.heading && <h2>{finalCta.heading}</h2>}
+        {finalCta.lead && <p>{finalCta.lead}</p>}
+        {finalCta.ctaLabel && (
+          <a class="btn-primary" href={finalCta.ctaHref ?? '/get-started'}>{finalCta.ctaLabel}</a>
         )}
-        {finalCta.data.ctaSecondaryLabel && (
-          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/timetable'}>
-            {finalCta.data.ctaSecondaryLabel}
+        {finalCta.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.ctaSecondaryHref ?? '/timetable'}>
+            {finalCta.ctaSecondaryLabel}
           </a>
         )}
       </div>

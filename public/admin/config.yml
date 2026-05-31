@@ -3,71 +3,894 @@
 backend:
   name: git-gateway
   branch: main
-  # When deploying, enable Netlify Identity on the site and turn on Git Gateway.
-  # If we move off Identity later (it's in maintenance), swap to:
-  #   name: github
-  #   repo: <nikki-account>/coach-nikki-site
-  #   branch: main
 
-# Editorial workflow is OFF — Nikki prefers save-and-publish without review queue
-# and the email noise that comes with it. Leaving the line commented as a flag in
-# case we want to switch it back on later.
+# Editorial workflow is OFF — save means publish, no review queue.
 #publish_mode: editorial_workflow
 
 # Uploaded images land in /public/uploads and are served from the site root.
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# Friendly site name shown in the CMS header
 site_url: https://www.coachnikki.com.au
 display_url: https://www.coachnikki.com.au
 logo_url: https://www.coachnikki.com.au/favicon.svg
 
 collections:
 
-  # ---------------------------------------------------------------
-  # PAGES — editable hero copy for top-level pages (one entry per page)
-  # ---------------------------------------------------------------
+  # ===========================================================================
+  # PAGES — one entry per page on the site. Each entry has hero fields plus the
+  # specific blocks that page renders, in document (top-to-bottom) order.
+  # Files collection means each page has its OWN custom schema.
+  # ===========================================================================
   - name: "pages"
     label: "Page copy"
     label_singular: "Page"
-    folder: "src/content/pages"
-    create: false           # pages are fixed; only edit existing
     delete: false
-    extension: "md"
-    format: "frontmatter"
-    identifier_field: "title"
-    summary: "{{title}}"
-    # Pages are ordered by the numeric prefix in the title field (01, 02, …) so
-    # they appear in website-navigation order in the CMS sidebar. Sort by title
-    # ascending is the default with these prefixes.
-    sortable_fields: ["title"]
-    view_filters:
-      - label: "Live pages"
-        field: "title"
-        pattern: "^0[1-9] |^1[0-2] |^15 "
-      - label: "Thanks pages (hidden)"
-        field: "title"
-        pattern: "^1[34] "
-    fields:
-      - { name: title, label: "Page title (internal)", widget: string }
-      - { name: eyebrow, label: "Eyebrow line", widget: string, required: false }
-      - { name: heroHeadline, label: "Hero headline", widget: string, required: false }
-      - { name: heroSubcopy, label: "Hero subcopy", widget: text, required: false }
-      - { name: heroImage, label: "Hero image", widget: image, required: false }
-      - { name: primaryCtaLabel, label: "Primary CTA label", widget: string, required: false }
-      - { name: primaryCtaHref, label: "Primary CTA link", widget: string, required: false }
-      - { name: secondaryCtaLabel, label: "Secondary CTA label", widget: string, required: false }
-      - { name: secondaryCtaHref, label: "Secondary CTA link", widget: string, required: false }
-      - { name: seoTitle, label: "SEO title (browser tab)", widget: string, required: false }
-      - { name: seoDescription, label: "SEO description", widget: text, required: false }
-      - { name: acuityEmbedUrl, label: "Acuity booking URL (Timetable + Get Started only)", hint: "Paste the iframe URL from Acuity → Embed code. Looks like https://app.acuityscheduling.com/schedule.php?owner=XXXXXXX", widget: string, required: false }
-      - { name: youtubeVideoId, label: "YouTube video ID (Animal Flow only)", hint: "Paste only the 11-character ID from the URL — the bit after 'watch?v=' or in a youtu.be link. Leave blank to show the placeholder.", widget: string, required: false }
-      - { name: body, label: "Body (optional, markdown)", widget: markdown, required: false }
 
-  # ---------------------------------------------------------------
-  # BLOG
-  # ---------------------------------------------------------------
+    files:
+
+      # ─── 01 Home ────────────────────────────────────────────────────────
+      - name: "home"
+        label: "01 Home"
+        file: "src/content/pages/home.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "01 Home" }
+
+          # Hero
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          # Three doors
+          - name: doors
+            label: "DOORS · Three feature cards"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead paragraph", widget: text, required: false }
+              - name: items
+                label: "Door cards"
+                widget: list
+                fields:
+                  - { name: tag, label: "Chip label", widget: string }
+                  - name: tagStyle
+                    label: "Chip colour"
+                    widget: select
+                    options: ["teal", "pink", "orange"]
+                    default: "teal"
+                  - { name: heading, label: "Card heading", widget: string }
+                  - { name: body, label: "Card body", widget: text }
+                  - { name: href, label: "Link", widget: string }
+                  - { name: imageHint, label: "Photo caption (placeholder)", widget: string, required: false }
+                  - { name: arrowLabel, label: "Arrow label", widget: string, default: "Learn more →" }
+
+          # Promise / Safe Seen Heard
+          - name: promise
+            label: "PROMISE · Safe / Seen / Heard"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: tiles
+                label: "Tiles"
+                widget: list
+                required: false
+                fields:
+                  - { name: word, label: "Word", widget: string }
+                  - { name: body, label: "Body", widget: text }
+              - { name: pullQuote, label: "Pull quote", widget: text, required: false }
+              - { name: pullQuoteCite, label: "Pull quote citation", widget: string, required: false }
+
+          # Three-sessions arc
+          - name: arc
+            label: "ARC · Three sessions explainer"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: steps
+                label: "Steps"
+                widget: list
+                fields:
+                  - { name: title, label: "Step title", widget: string }
+                  - { name: body, label: "Step body", widget: text }
+              - { name: introCtaHeadline, label: "Intro CTA headline", widget: string, required: false }
+              - { name: introCtaSubcopy, label: "Intro CTA subcopy", widget: text, required: false }
+              - { name: introCtaLabel, label: "Intro CTA button label", widget: string, required: false }
+              - { name: introCtaHref, label: "Intro CTA button link", widget: string, required: false }
+
+          # Section headers
+          - name: sessionsSectionHeader
+            label: "SECTION · Sessions list header"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: caption, label: "Caption below the cards", widget: text, required: false }
+
+          - name: testimonialsHeader
+            label: "SECTION · Testimonials header"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+
+          - name: blogHeader
+            label: "SECTION · Blog header"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+
+          # SEO
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 02 Sessions ────────────────────────────────────────────────────
+      - name: "sessions-page"
+        label: "02 Sessions"
+        file: "src/content/pages/sessions.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "02 Sessions" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          - name: intro
+            label: "CATALOGUE · Section intro + closing"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - { name: closingLine, label: "Closing line below the cards", widget: text, required: false }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 03 Sassy Seniors ───────────────────────────────────────────────
+      - name: "sassy-seniors"
+        label: "03 Sassy Seniors"
+        file: "src/content/pages/sassy-seniors.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "03 Sassy Seniors" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          - name: ifFamiliar
+            label: "IF FAMILIAR · 'This isn't my scene' bullets"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: bullets
+                label: "Bullets"
+                widget: list
+                required: false
+                field: { name: item, label: "Bullet", widget: string }
+              - { name: closingLine, label: "Closing line", widget: string, required: false }
+
+          - name: realStrength
+            label: "REAL STRENGTH · 'Properly coached' section"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: bullets
+                label: "Bullets"
+                widget: list
+                required: false
+                field: { name: item, label: "Bullet", widget: string }
+              - { name: closingLine, label: "Closing line", widget: string, required: false }
+
+          - name: format
+            label: "FORMAT · Capacity stats grid"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: capacityGrid
+                label: "Cards (number + label)"
+                widget: list
+                required: false
+                fields:
+                  - { name: number, label: "Number", widget: string }
+                  - { name: label, label: "Label", widget: string }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 04 Animal Flow ─────────────────────────────────────────────────
+      - name: "animal-flow"
+        label: "04 Animal Flow"
+        file: "src/content/pages/animal-flow.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "04 Animal Flow" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID (the 11-char bit after watch?v= in the URL)", widget: string, required: false }
+
+          - name: whatIs
+            label: "WHAT IT IS · Section header (body text below)"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+
+          - name: waysToTrain
+            label: "WAYS TO TRAIN · 'Skills or Build a Flow' header"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+
+          - name: foundations
+            label: "FOUNDATIONS · Intro arc"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: steps
+                label: "Steps"
+                widget: list
+                fields:
+                  - { name: title, label: "Step title", widget: string }
+                  - { name: body, label: "Step body", widget: text }
+              - { name: introCtaHeadline, label: "Intro CTA headline", widget: string, required: false }
+              - { name: introCtaSubcopy, label: "Intro CTA subcopy", widget: text, required: false }
+              - { name: introCtaLabel, label: "Intro CTA button label", widget: string, required: false }
+              - { name: introCtaHref, label: "Intro CTA button link", widget: string, required: false }
+
+          - name: l1Cert
+            label: "L1 CERT · Going further section"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - { name: closingLine, label: "Closing line", widget: text, required: false }
+              - { name: ctaLabel, label: "Button label", widget: string, required: false }
+              - { name: ctaHref, label: "Button link", widget: string, required: false }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+          - { name: body, label: "BODY · 'What it is' long-form text (markdown)", widget: markdown, required: false }
+
+      # ─── 05 Timetable ───────────────────────────────────────────────────
+      - name: "timetable"
+        label: "05 Timetable"
+        file: "src/content/pages/timetable.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "05 Timetable" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: acuityEmbedUrl, label: "BOOKING · Acuity URL", hint: "Paste your Acuity schedule URL — looks like https://app.acuityscheduling.com/schedule.php?owner=XXXXXXX", widget: string, required: false }
+
+          - name: paths
+            label: "PATHS · 'Three paths in' cards"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: cards
+                label: "Cards"
+                widget: list
+                fields:
+                  - { name: icon, label: "Icon (number or emoji)", widget: string }
+                  - { name: label, label: "Card label", widget: string }
+                  - { name: body, label: "Card body", widget: text }
+              - { name: closingLine, label: "Closing line", widget: text, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 06 Pricing ─────────────────────────────────────────────────────
+      - name: "pricing"
+        label: "06 Pricing"
+        file: "src/content/pages/pricing.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "06 Pricing" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          - name: tiers
+            label: "TIERS · Three pricing cards"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: items
+                label: "Tier cards"
+                widget: list
+                fields:
+                  - { name: label, label: "Tier label", widget: string }
+                  - { name: amount, label: "Price (e.g. '$150')", widget: string }
+                  - { name: amountNote, label: "Price note (e.g. 'per session')", widget: string, required: false }
+                  - { name: desc, label: "Description", widget: text, required: false }
+                  - name: bullets
+                    label: "Bullets"
+                    widget: list
+                    required: false
+                    field: { name: item, label: "Bullet", widget: string }
+                  - { name: ctaLabel, label: "Button label", widget: string, required: false }
+                  - { name: ctaHref, label: "Button link", widget: string, required: false }
+                  - { name: featured, label: "Featured (gets 'Best value' ribbon)", widget: boolean, default: false }
+              - { name: closingLine, label: "Closing line", widget: text, required: false }
+
+          - name: weeklyUnpacked
+            label: "WEEKLY UNPACKED · Capacity grid"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: capacityGrid
+                label: "Cards (number + label)"
+                widget: list
+                fields:
+                  - { name: number, label: "Number", widget: string }
+                  - { name: label, label: "Label", widget: string }
+              - { name: capacityCaption, label: "Caption below the grid", widget: text, required: false }
+
+          - name: policy
+            label: "POLICY · Cancellations blocks"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: items
+                label: "Policy blocks"
+                widget: list
+                fields:
+                  - { name: heading, label: "Policy heading", widget: string }
+                  - name: bullets
+                    label: "Bullets"
+                    widget: list
+                    field: { name: item, label: "Bullet", widget: string }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 07 About ───────────────────────────────────────────────────────
+      - name: "about"
+        label: "07 About"
+        file: "src/content/pages/about.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "07 About" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          - name: philosophy
+            label: "PHILOSOPHY · Strength is ageless"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: tiles
+                label: "Tiles (Safe / Seen / Heard)"
+                widget: list
+                required: false
+                fields:
+                  - { name: word, label: "Word", widget: string }
+                  - { name: body, label: "Body", widget: text }
+
+          - name: studio
+            label: "STUDIO · 'A studio that feels like the work'"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: bullets
+                label: "Bullets"
+                widget: list
+                required: false
+                field: { name: item, label: "Bullet", widget: string }
+              - { name: closingLine, label: "Closing line (address)", widget: text, required: false }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+          - { name: body, label: "BODY · 'My story' long-form text (markdown)", widget: markdown, required: false }
+
+      # ─── 08 Get Started ─────────────────────────────────────────────────
+      - name: "get-started"
+        label: "08 Get Started"
+        file: "src/content/pages/get-started.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "08 Get Started" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: acuityEmbedUrl, label: "BOOKING · Acuity URL", widget: string, required: false }
+
+          - name: expect
+            label: "EXPECT · 'A few practical things' 4 cards"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: cards
+                label: "Cards"
+                widget: list
+                fields:
+                  - { name: icon, label: "Icon (emoji)", widget: string }
+                  - { name: label, label: "Card label", widget: string }
+                  - { name: body, label: "Card body", widget: text }
+
+          - name: bookSection
+            label: "BOOK SECTION · Header above the booking widget"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 09 Contact ─────────────────────────────────────────────────────
+      - name: "contact"
+        label: "09 Contact"
+        file: "src/content/pages/contact.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "09 Contact" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+
+          - name: info
+            label: "INFO · Studio details block"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: address, label: "Address (use \\n for new lines)", widget: text, required: false }
+              - { name: phone, label: "Phone", widget: string, required: false }
+              - { name: email, label: "Email", widget: string, required: false }
+              - name: links
+                label: "Social links"
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: href, label: "URL", widget: string }
+                  - { name: external, label: "External link?", widget: boolean, default: true }
+              - name: rows
+                label: "Studio hours (label / value pairs)"
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: "Day(s)", widget: string }
+                  - { name: value, label: "Hours", widget: string }
+              - { name: bannerHeadline, label: "Callout · Headline", widget: string, required: false }
+              - { name: bannerSubcopy, label: "Callout · Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Callout · Button label", widget: string, required: false }
+              - { name: ctaHref, label: "Callout · Button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 10 Speaking ────────────────────────────────────────────────────
+      - name: "speaking"
+        label: "10 Speaking"
+        file: "src/content/pages/speaking.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "10 Speaking" }
+          - { name: eyebrow, label: "HERO · Eyebrow (award tag)", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID for the speech embed", widget: string, required: false }
+
+          - name: fuelMeaning
+            label: "FUEL WoY MEANING · The recognition"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - { name: closingLine, label: "Closing line", widget: text, required: false }
+
+          - name: speechIntro
+            label: "SPEECH INTRO · 'How we should be coaching' header"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - { name: closingLine, label: "Closing line (e.g. 'Prefer to read?')", widget: text, required: false }
+              - { name: ctaLabel, label: "Link label", widget: string, required: false }
+              - { name: ctaHref, label: "Link target", widget: string, required: false }
+
+          - name: speechPull
+            label: "SPEECH PULL QUOTE"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: pullQuote, label: "Pull quote", widget: text, required: false }
+              - { name: pullQuoteCite, label: "Citation", widget: string, required: false }
+
+          - name: passion
+            label: "PASSION · 'A piece from me' long-form section"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+              - { name: body, label: "Body (paragraphs separated by blank lines)", widget: text, required: false }
+
+          - name: elsewhere
+            label: "ELSEWHERE · 'Press · further reading' cards"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - name: cards
+                label: "Cards (date / title / body)"
+                widget: list
+                fields:
+                  - { name: icon, label: "Date label (e.g. 'Fuel Magazine · 2025')", widget: string }
+                  - { name: label, label: "Card title", widget: string }
+                  - { name: body, label: "Card body", widget: text }
+
+          - name: finalCta
+            label: "FINAL CTA · Bottom banner"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Subcopy", widget: text, required: false }
+              - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
+              - { name: ctaHref, label: "Primary button link", widget: string, required: false }
+              - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
+              - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
+
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 11 Privacy ─────────────────────────────────────────────────────
+      - name: "privacy"
+        label: "11 Privacy policy"
+        file: "src/content/pages/privacy.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "11 Privacy policy" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 12 Terms ───────────────────────────────────────────────────────
+      - name: "terms"
+        label: "12 Terms"
+        file: "src/content/pages/terms.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "12 Terms" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 13 Contact thanks ──────────────────────────────────────────────
+      - name: "contact-thanks"
+        label: "13 Thanks (contact form)"
+        file: "src/content/pages/contact-thanks.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "13 Thanks (contact form)" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 14 Intro screening thanks ──────────────────────────────────────
+      - name: "get-started-thanks"
+        label: "14 Thanks (intro screening)"
+        file: "src/content/pages/get-started-thanks.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "14 Thanks (intro screening)" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 15 FAQ ─────────────────────────────────────────────────────────
+      - name: "faq"
+        label: "15 FAQ"
+        file: "src/content/pages/faq.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "15 FAQ" }
+          - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
+          - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
+          - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
+          - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
+          - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+  # ===========================================================================
+  # SHARED CONTENT — small singletons reused across multiple pages.
+  # FUEL band (Sassy + About), Sessions arc (Sessions + About + Get Started),
+  # Intro band (Sessions), Footer (everywhere).
+  # ===========================================================================
+  - name: "site"
+    label: "Shared content"
+    label_singular: "Shared block"
+    delete: false
+
+    files:
+
+      - name: "fuel-band"
+        label: "FUEL Woman of the Year band (Sassy + About)"
+        file: "src/content/site/fuel-band.md"
+        fields:
+          - { name: title, label: "Block title (internal)", widget: string }
+          - { name: awardTagText, label: "Award tag text (e.g. '★ Fuel Woman of the Year 2025')", widget: string, required: false }
+          - { name: heading, label: "Heading", widget: string, required: false }
+          - { name: pullQuote, label: "Pull quote", widget: text, required: false }
+          - { name: pullQuoteCite, label: "Pull quote citation", widget: string, required: false }
+          - { name: ctaLabel, label: "Button label", widget: string, required: false }
+          - { name: ctaHref, label: "Button link", widget: string, required: false }
+          - { name: body, label: "Body paragraph (markdown)", widget: markdown, required: false }
+
+      - name: "sessions-arc"
+        label: "Three-sessions arc (Sessions + About + Get Started)"
+        file: "src/content/site/sessions-arc.md"
+        fields:
+          - { name: title, label: "Block title (internal)", widget: string }
+          - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+          - { name: heading, label: "Heading", widget: string, required: false }
+          - { name: lead, label: "Lead", widget: text, required: false }
+          - name: steps
+            label: "Steps"
+            widget: list
+            fields:
+              - { name: title, label: "Step title", widget: string }
+              - { name: body, label: "Step body", widget: text }
+          - { name: introCtaHeadline, label: "Intro CTA headline", widget: string, required: false }
+          - { name: introCtaSubcopy, label: "Intro CTA subcopy", widget: text, required: false }
+          - { name: introCtaLabel, label: "Intro CTA button label", widget: string, required: false }
+          - { name: introCtaHref, label: "Intro CTA button link", widget: string, required: false }
+
+      - name: "intro-band"
+        label: "Yellow 'three session intro required' band (Sessions)"
+        file: "src/content/site/intro-band.md"
+        fields:
+          - { name: title, label: "Block title (internal)", widget: string }
+          - { name: bandTagText, label: "Yellow band tag text", widget: string, required: false }
+          - { name: bandText, label: "Yellow band paragraph", widget: text, required: false }
+          - { name: ctaLabel, label: "Inline link label", widget: string, required: false }
+          - { name: ctaHref, label: "Inline link target", widget: string, required: false }
+
+      - name: "footer"
+        label: "Footer (every page)"
+        file: "src/content/site/footer.md"
+        fields:
+          - { name: title, label: "Block title (internal)", widget: string }
+          - { name: heading, label: "Brand heading (e.g. 'Coach Nikki')", widget: string, required: false }
+          - { name: lead, label: "Tagline (small line under the brand)", widget: text, required: false }
+          - { name: address, label: "Address line", widget: text, required: false }
+          - { name: phone, label: "Phone", widget: string, required: false }
+          - { name: email, label: "Email", widget: string, required: false }
+          - name: linkGroups
+            label: "Footer columns (link groups)"
+            widget: list
+            required: false
+            fields:
+              - { name: heading, label: "Column heading", widget: string }
+              - name: items
+                label: "Links"
+                widget: list
+                fields:
+                  - { name: label, label: "Link label", widget: string }
+                  - { name: href, label: "Link URL", widget: string }
+                  - { name: external, label: "External?", widget: boolean, default: false }
+          - { name: copyrightLine, label: "Copyright line ({year} is replaced automatically)", widget: string, required: false }
+          - { name: creditLine, label: "Credit line (e.g. 'Site by Richie')", widget: string, required: false }
+
+  # ===========================================================================
+  # BLOG POSTS
+  # ===========================================================================
   - name: "blog"
     label: "Blog posts"
     label_singular: "Post"
@@ -89,9 +912,9 @@ collections:
       - { name: draft, label: "Draft (don't publish yet)", widget: boolean, default: false }
       - { name: body, label: "Body", widget: markdown }
 
-  # ---------------------------------------------------------------
+  # ===========================================================================
   # TESTIMONIALS
-  # ---------------------------------------------------------------
+  # ===========================================================================
   - name: "testimonials"
     label: "Testimonials"
     label_singular: "Testimonial"
@@ -108,15 +931,15 @@ collections:
         label: "Program"
         widget: select
         required: false
-        options: ["1:1", "Semi-private", "Animal Flow", "Sassy Seniors", "Small group PT", "Workshop", "Other"]
+        options: ["1:1", "Semi-private", "Animal Flow", "Sassy Seniors", "Semi-Private PT", "Workshop", "Other"]
       - { name: quote, label: "Quote", widget: text }
       - { name: avatar, label: "Avatar image", widget: image, required: false }
       - { name: featured, label: "Show on home page?", widget: boolean, default: false }
       - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
 
-  # ---------------------------------------------------------------
+  # ===========================================================================
   # SESSIONS — class types / products
-  # ---------------------------------------------------------------
+  # ===========================================================================
   - name: "sessions"
     label: "Sessions (class types)"
     label_singular: "Session type"
@@ -145,9 +968,9 @@ collections:
       - { name: showOnHome, label: "Show on home page?", widget: boolean, default: false }
       - { name: body, label: "Long description (markdown)", widget: markdown, required: false }
 
-  # ---------------------------------------------------------------
+  # ===========================================================================
   # FAQS
-  # ---------------------------------------------------------------
+  # ===========================================================================
   - name: "faqs"
     label: "FAQs"
     label_singular: "FAQ"
@@ -167,210 +990,9 @@ collections:
       - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
       - { name: body, label: "Answer", widget: markdown }
 
-  # ---------------------------------------------------------------
-  # SITE — reusable content blocks used across pages.
-  # Filtered by Page (Home, Pricing, About, etc.) in the sidebar.
-  # ---------------------------------------------------------------
-  - name: "site"
-    label: "Site blocks"
-    label_singular: "Block"
-    folder: "src/content/site"
-    create: false
-    delete: false
-    extension: "md"
-    format: "frontmatter"
-    identifier_field: "title"
-    summary: "{{page}} · {{title}}"
-    sortable_fields: ["page", "title"]
-    view_groups:
-      - { label: "By page", field: "page" }
-    view_filters:
-      - { label: "Home", field: "page", pattern: "^Home$" }
-      - { label: "Sessions", field: "page", pattern: "^Sessions$" }
-      - { label: "Sassy", field: "page", pattern: "^Sassy$" }
-      - { label: "Animal Flow", field: "page", pattern: "^Animal Flow$" }
-      - { label: "Pricing", field: "page", pattern: "^Pricing$" }
-      - { label: "About", field: "page", pattern: "^About$" }
-      - { label: "Contact", field: "page", pattern: "^Contact$" }
-      - { label: "Footer", field: "page", pattern: "^Footer$" }
-      - { label: "Shared across pages", field: "page", pattern: "^Shared$" }
-    fields:
-      - { name: title, label: "Block title (internal)", widget: string }
-      - name: page
-        label: "Which page does this block live on?"
-        widget: select
-        options: ["Home", "Sessions", "Sassy", "Animal Flow", "Timetable", "Pricing", "About", "Get Started", "Contact", "FAQ", "Speaking", "Footer", "Shared"]
-        default: "Shared"
-        hint: "Controls which group this block shows under in the sidebar."
-
-      # General-purpose section fields. Each block uses whichever subset it needs.
-      - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
-      - { name: heading, label: "Heading", widget: string, required: false }
-      - { name: subHeading, label: "Sub-heading (optional second heading)", widget: string, required: false }
-      - { name: lead, label: "Lead paragraph (under the heading)", widget: text, required: false }
-      - name: bullets
-        label: "Bullet points"
-        widget: list
-        required: false
-        field: { name: item, label: "Bullet", widget: string }
-      - { name: closingLine, label: "Closing line (after the bullets)", widget: string, required: false }
-
-      # CTAs and buttons
-      - { name: ctaLabel, label: "Primary button label", widget: string, required: false }
-      - { name: ctaHref, label: "Primary button link", widget: string, required: false }
-      - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
-      - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
-      - { name: ctaSubcopy, label: "CTA subcopy", widget: text, required: false }
-
-      # Banner heading/subcopy
-      - { name: bannerHeadline, label: "Banner headline (used inside callout boxes)", widget: string, required: false }
-      - { name: bannerSubcopy, label: "Banner subcopy", widget: text, required: false }
-
-      # Three doors / feature cards (Home etc.)
-      - name: doors
-        label: "Doors / feature cards"
-        widget: list
-        required: false
-        fields:
-          - { name: tag, label: "Chip label", widget: string }
-          - name: tagStyle
-            label: "Chip colour"
-            widget: select
-            options: ["teal", "pink", "orange"]
-            default: "teal"
-          - { name: heading, label: "Heading", widget: string }
-          - { name: body, label: "Body", widget: text }
-          - { name: href, label: "Link", widget: string }
-          - { name: imageHint, label: "Photo caption", widget: string, required: false }
-          - { name: arrowLabel, label: "Arrow label", widget: string, default: "Learn more →" }
-
-      # Word tiles (Safe / Seen / Heard)
-      - name: tiles
-        label: "Word tiles (e.g. Safe / Seen / Heard)"
-        widget: list
-        required: false
-        fields:
-          - { name: word, label: "Word", widget: string }
-          - { name: body, label: "Body", widget: text }
-
-      # Pricing tier cards
-      - name: tiers
-        label: "Pricing tiers"
-        widget: list
-        required: false
-        fields:
-          - { name: label, label: "Tier label", widget: string }
-          - { name: headline, label: "Optional headline (rarely used)", widget: string, required: false }
-          - { name: amount, label: "Price (e.g. '$150')", widget: string }
-          - { name: amountNote, label: "Price note (e.g. 'per session')", widget: string, required: false }
-          - { name: desc, label: "Description", widget: text, required: false }
-          - name: bullets
-            label: "Bullet points"
-            widget: list
-            required: false
-            field: { name: item, label: "Bullet", widget: string }
-          - { name: ctaLabel, label: "Button label", widget: string, required: false }
-          - { name: ctaHref, label: "Button link", widget: string, required: false }
-          - { name: featured, label: "Featured (gets 'Best value' ribbon)", widget: boolean, default: false }
-
-      # Policy blocks (heading + bullets)
-      - name: policies
-        label: "Policy blocks"
-        widget: list
-        required: false
-        fields:
-          - { name: heading, label: "Policy heading", widget: string }
-          - name: bullets
-            label: "Bullets"
-            widget: list
-            field: { name: item, label: "Bullet", widget: string }
-
-      # Get Started "what to expect" cards
-      - name: cards
-        label: "Cards (icon / label / body)"
-        widget: list
-        required: false
-        fields:
-          - { name: icon, label: "Icon / emoji", widget: string }
-          - { name: label, label: "Card label", widget: string }
-          - { name: body, label: "Card body", widget: text }
-
-      # Link lists (footer)
-      - name: links
-        label: "Links (flat list)"
-        widget: list
-        required: false
-        fields:
-          - { name: label, label: "Link label", widget: string }
-          - { name: href, label: "Link URL", widget: string }
-          - { name: external, label: "External link?", widget: boolean, default: false }
-      - name: linkGroups
-        label: "Link groups (e.g. footer columns)"
-        widget: list
-        required: false
-        fields:
-          - { name: heading, label: "Group heading", widget: string }
-          - name: items
-            label: "Items"
-            widget: list
-            fields:
-              - { name: label, label: "Link label", widget: string }
-              - { name: href, label: "Link URL", widget: string }
-              - { name: external, label: "External?", widget: boolean, default: false }
-
-      # Key/value rows (studio hours, etc.)
-      - name: rows
-        label: "Key/value rows (e.g. studio hours)"
-        widget: list
-        required: false
-        fields:
-          - { name: label, label: "Label", widget: string }
-          - { name: value, label: "Value", widget: string }
-
-      # Capacity grid (number + label cards)
-      - name: capacityGrid
-        label: "Capacity grid (number + label cards)"
-        widget: list
-        required: false
-        fields:
-          - { name: number, label: "Number (e.g. '6')", widget: string }
-          - { name: label, label: "Label (e.g. 'Sassy Classics')", widget: string }
-      - { name: capacityCaption, label: "Caption below the capacity grid", widget: text, required: false }
-
-      # Footer-specific
-      - { name: address, label: "Address (use \\n for new lines)", widget: text, required: false }
-      - { name: phone, label: "Phone number", widget: string, required: false }
-      - { name: email, label: "Email", widget: string, required: false }
-      - { name: copyrightLine, label: "Copyright line ({year} is replaced automatically)", widget: string, required: false }
-      - { name: creditLine, label: "Credit line", widget: string, required: false }
-
-      # Sessions arc (used on multiple pages)
-      - name: steps
-        label: "Steps (Sessions arc)"
-        widget: list
-        required: false
-        fields:
-          - { name: title, label: "Step title", widget: string }
-          - { name: body, label: "Step body", widget: text }
-      - { name: introCtaHeadline, label: "Intro CTA headline (Sessions arc)", widget: string, required: false }
-      - { name: introCtaSubcopy, label: "Intro CTA subcopy", widget: text, required: false }
-      - { name: introCtaLabel, label: "Intro CTA button label", widget: string, required: false }
-      - { name: introCtaHref, label: "Intro CTA button link", widget: string, required: false }
-
-      # Intro band (yellow strip)
-      - { name: bandText, label: "Yellow band paragraph (Intro band)", widget: text, required: false }
-      - { name: bandTagText, label: "Yellow band tag text", widget: string, required: false }
-
-      # FUEL band specific
-      - { name: awardTagText, label: "Award tag text (FUEL band)", widget: string, required: false }
-      - { name: pullQuote, label: "Pull quote (FUEL band)", widget: text, required: false }
-      - { name: pullQuoteCite, label: "Pull quote citation", widget: string, required: false }
-
-      - { name: body, label: "Body (markdown, FUEL band only)", widget: markdown, required: false }
-
-  # ---------------------------------------------------------------
+  # ===========================================================================
   # CREDENTIALS — qualification cards shown on /about
-  # ---------------------------------------------------------------
+  # ===========================================================================
   - name: "credentials"
     label: "Credentials"
     label_singular: "Credential"
@@ -389,8 +1011,8 @@ collections:
         options: ["featured", "standard"]
         default: "standard"
         hint: "Featured cards get a teal star icon, standard cards get a muted dot."
-      - { name: linkLabel, label: "Optional link label (e.g. 'Read the speech')", widget: string, required: false }
+      - { name: linkLabel, label: "Optional link label", widget: string, required: false }
       - { name: linkHref, label: "Optional link URL", widget: string, required: false }
       - { name: order, label: "Display order", widget: number, default: 99, value_type: "int" }
       - { name: draft, label: "Hide this credential", widget: boolean, default: false }
-      - { name: body, label: "Body (the description text)", widget: markdown, required: false, hint: "The text under the title. Plain sentences are fine — bold, italics and links work too." }
+      - { name: body, label: "Body (the description text)", widget: markdown, required: false, hint: "Plain sentences are fine — bold, italics and links work too." }
