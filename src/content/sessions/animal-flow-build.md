@@ -9,6 +9,7 @@ summary: All levels. We break down the flow into sequences and drill it
 capacity: Up to 8
 duration: 60 min
 bestFor: Anyone with the skills foundations
+image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780195875/IMG_5269_photo-full_zz3sud.heic
 price: $55 per session · $150/wk unlimited
 order: 5
 showOnHome: true
