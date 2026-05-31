@@ -23,6 +23,8 @@ const fuel = await getEntry('site', 'fuel-band');
 // Two CMS-editable Sassy blocks: "If this sounds familiar" bullets + "Real strength training" body.
 const ifFamiliar = await getEntry('site', 'sassy-if-familiar');
 const realStrength = await getEntry('site', 'sassy-real-strength');
+const format = await getEntry('site', 'sassy-format');
+const finalCta = await getEntry('site', 'sassy-final-cta');
 
 // Inna testimonial — first featured testimonial tagged "Sassy Seniors" if present.
 const featuredTestimonials = await getCollection('testimonials', (e) => e.data.featured);
@@ -124,19 +126,25 @@ const innaTestimonial =
     </section>
   )}
 
-  <!-- THE FORMAT -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">The format</span>
-      <h2 class="section">Small sessions. Real coaching. Off-peak times.</h2>
-      <div class="format-grid">
-        <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per session</div></div>
-        <div class="format-card"><div class="num">4</div><div class="lbl">Sessions per week</div></div>
-        <div class="format-card"><div class="num">60</div><div class="lbl">Minutes per session</div></div>
-        <div class="format-card"><div class="num">11am</div><div class="lbl">Mid-morning timing</div></div>
+  <!-- THE FORMAT — content from src/content/site/sassy-format.md -->
+  {format && (
+    <section>
+      <div class="container">
+        {format.data.eyebrow && <span class="eyebrow">{format.data.eyebrow}</span>}
+        {format.data.heading && <h2 class="section">{format.data.heading}</h2>}
+        {format.data.capacityGrid && (
+          <div class="format-grid">
+            {format.data.capacityGrid.map((c) => (
+              <div class="format-card">
+                <div class="num">{c.number}</div>
+                <div class="lbl">{c.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- HOW WE START -->
   <section style="background: var(--teal-light);">
@@ -241,19 +249,21 @@ const innaTestimonial =
     </section>
   )}
 
-  <!-- FINAL CTA -->
-  <section class="cta-strip">
-    <div class="container narrow">
-      <h2>Ready to feel strong again?</h2>
-      <p>Book your intro session. Or send me a message first if you'd rather chat.</p>
-      <a class="btn-primary" href="/get-started">Book your intro</a>
-      <a
-        class="btn-secondary"
-        style="color: #fff !important; border-color: #fff; margin-left: 8px;"
-        href="/contact"
-      >
-        Send a message instead
-      </a>
-    </div>
-  </section>
+  <!-- FINAL CTA — content from src/content/site/sassy-final-cta.md -->
+  {finalCta && (
+    <section class="cta-strip">
+      <div class="container narrow">
+        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
+        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
+        {finalCta.data.ctaLabel && (
+          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        )}
+        {finalCta.data.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/contact'}>
+            {finalCta.data.ctaSecondaryLabel}
+          </a>
+        )}
+      </div>
+    </section>
+  )}
 </BaseLayout>

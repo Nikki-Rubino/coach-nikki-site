@@ -18,6 +18,9 @@ const acuityUrl = page?.data?.acuityEmbedUrl;
 
 // Shared sessions arc (also used on /sessions, /sassy-seniors).
 const sessionsArc = await getEntry('site', 'sessions-arc');
+const expect = await getEntry('site', 'get-started-expect');
+const bookSection = await getEntry('site', 'get-started-book-section');
+const finalCta = await getEntry('site', 'get-started-final-cta');
 ---
 
 <BaseLayout
@@ -71,35 +74,26 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
     </section>
   )}
 
-  <!-- WHAT TO EXPECT -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">What to expect</span>
-      <h2 class="section">A few practical things</h2>
-      <div class="format-grid">
-        <div class="format-card">
-          <div class="num">📍</div>
-          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Matraville studio</div>
-          <p class="muted" style="font-size: 13px; margin-top: 8px;">Unit 3 / 60 Perry St. Off-street parking. Quiet space, no mirrors.</p>
-        </div>
-        <div class="format-card">
-          <div class="num">⏱</div>
-          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Three weeks</div>
-          <p class="muted" style="font-size: 13px; margin-top: 8px;">One session per week, usually. Faster if you need it, slower if life gets in the way.</p>
-        </div>
-        <div class="format-card">
-          <div class="num">👚</div>
-          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Comfortable kit</div>
-          <p class="muted" style="font-size: 13px; margin-top: 8px;">Anything you can move in. Water, a towel. We provide the rest.</p>
-        </div>
-        <div class="format-card">
-          <div class="num">💬</div>
-          <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">Banter optional</div>
-          <p class="muted" style="font-size: 13px; margin-top: 8px;">Some clients chat, some prefer to work quiet. You get to choose.</p>
-        </div>
+  <!-- WHAT TO EXPECT — content from src/content/site/get-started-expect.md -->
+  {expect && (
+    <section>
+      <div class="container">
+        {expect.data.eyebrow && <span class="eyebrow">{expect.data.eyebrow}</span>}
+        {expect.data.heading && <h2 class="section">{expect.data.heading}</h2>}
+        {expect.data.cards && (
+          <div class="format-grid">
+            {expect.data.cards.map((c) => (
+              <div class="format-card">
+                <div class="num">{c.icon}</div>
+                <div class="lbl" style="font-weight: 600; color: var(--ink); margin-top: 6px;">{c.label}</div>
+                <p class="muted" style="font-size: 13px; margin-top: 8px;">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- PRE-SCREENING FORM -->
   <section id="intro-form" style="background: var(--teal-light);">
@@ -195,9 +189,9 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
   <section id="book" style="background: #fff;">
     <div class="container wide">
       <div style="text-align: center; margin-bottom: 32px;">
-        <span class="eyebrow">Step two</span>
-        <h2 class="section">Pick a time</h2>
-        <p class="lead muted" style="margin: 0 auto;">Lock in your first session below. I'll confirm by your preferred channel after I've read your screening.</p>
+        {bookSection?.data.eyebrow && <span class="eyebrow">{bookSection.data.eyebrow}</span>}
+        {bookSection?.data.heading && <h2 class="section">{bookSection.data.heading}</h2>}
+        {bookSection?.data.lead && <p class="lead muted" style="margin: 0 auto;">{bookSection.data.lead}</p>}
       </div>
       {acuityUrl ? (
         <>
@@ -219,14 +213,18 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="cta-strip">
-    <div class="container narrow">
-      <h2>Still got questions?</h2>
-      <p>Drop me a message and I'll come back to you the same day.</p>
-      <a class="btn-primary" href="/contact">Send a message</a>
-    </div>
-  </section>
+  <!-- FINAL CTA — content from src/content/site/get-started-final-cta.md -->
+  {finalCta && (
+    <section class="cta-strip">
+      <div class="container narrow">
+        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
+        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
+        {finalCta.data.ctaLabel && (
+          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/contact'}>{finalCta.data.ctaLabel}</a>
+        )}
+      </div>
+    </section>
+  )}
 
   <!--
     JS-based form submission so we can redirect to our own thanks page.

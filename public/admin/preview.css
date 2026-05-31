@@ -1,0 +1,186 @@
+/* Decap preview styles — close to the live site so Nikki sees roughly what she'll get */
+
+.coach-preview {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #1F2937;
+  line-height: 1.55;
+  background: #FAFAF9;
+  padding: 28px;
+}
+.coach-preview * { box-sizing: border-box; }
+.coach-preview h1, .coach-preview h2, .coach-preview h3,
+.coach-preview .display, .coach-preview .word, .coach-preview .num {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #111;
+  margin: 0 0 12px;
+}
+.coach-preview .eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #045454;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.coach-preview h1 { font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; }
+.coach-preview h2 { font-size: 26px; line-height: 1.2; }
+.coach-preview h3 { font-size: 17px; }
+.coach-preview .lead { font-size: 16px; color: #1F2937; margin: 0 0 12px; max-width: 540px; }
+.coach-preview .muted { color: #6B7280; font-size: 14px; }
+.coach-preview p { margin: 0 0 10px; }
+.coach-preview ul { padding-left: 20px; margin: 6px 0 12px; }
+.coach-preview li { padding: 3px 0; font-size: 14px; }
+.coach-preview blockquote {
+  border-left: 3px solid #069494;
+  padding: 6px 0 6px 14px;
+  margin: 14px 0;
+  font-style: italic;
+  font-size: 15px;
+  color: #1F2937;
+}
+.coach-preview blockquote cite {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6B7280;
+  font-style: normal;
+}
+.coach-preview .btn-primary {
+  display: inline-block;
+  background: #069494;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  margin-right: 8px;
+}
+.coach-preview .btn-secondary {
+  display: inline-block;
+  color: #045454;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 1px solid #069494;
+  padding-bottom: 1px;
+}
+
+.coach-preview .preview-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.coach-preview .preview-section + .preview-section { margin-top: 14px; }
+
+.coach-preview .door,
+.coach-preview .tier,
+.coach-preview .tile,
+.coach-preview .card,
+.coach-preview .policy {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.coach-preview .tag {
+  display: inline-block;
+  background: #DBEFEF;
+  color: #045454;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.coach-preview .tag.pink { background: #FFE8EC; color: #B8395B; }
+.coach-preview .tag.orange { background: #FFEFE3; color: #E66B2E; }
+
+.coach-preview .tier.featured { border-color: #069494; }
+.coach-preview .tier .amount { font-size: 26px; font-weight: 800; color: #111; }
+.coach-preview .tier .amount small { font-size: 12px; color: #6B7280; font-weight: 500; }
+.coach-preview .tier .desc { color: #6B7280; font-size: 13px; margin-bottom: 8px; }
+
+.coach-preview .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.coach-preview .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.coach-preview .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+
+.coach-preview .word {
+  font-size: 18px;
+  font-weight: 800;
+  color: #069494;
+  margin-bottom: 4px;
+}
+
+.coach-preview .num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #069494;
+  text-align: center;
+}
+.coach-preview .num-label {
+  font-size: 12px;
+  color: #6B7280;
+  margin-top: 2px;
+  text-align: center;
+}
+
+.coach-preview .ph {
+  background: linear-gradient(135deg, #ECECEA 25%, #D9D9D5 25%, #D9D9D5 50%, #ECECEA 50%, #ECECEA 75%, #D9D9D5 75%);
+  background-size: 16px 16px;
+  border-radius: 6px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6B7280;
+  font-size: 12px;
+  font-style: italic;
+  padding: 8px;
+  text-align: center;
+}
+
+.coach-preview .preview-note {
+  background: #FFF5C5;
+  color: #231915;
+  border-left: 3px solid #FF8243;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.coach-preview .fuel-tag {
+  background: #FF8243;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.coach-preview .cta-strip {
+  background: #069494;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.coach-preview .cta-strip h2 { color: #fff; }
+.coach-preview .cta-strip p { color: rgba(255,255,255,0.9); }
+.coach-preview .cta-strip .btn-primary { background: #fff; color: #045454; }
+
+.coach-preview .rows { font-size: 13px; color: #1F2937; }
+.coach-preview .rows .row { display: flex; gap: 8px; padding: 4px 0; border-bottom: 1px dashed #E5E7EB; }
+.coach-preview .rows .row:last-child { border-bottom: none; }
+.coach-preview .rows .row .label { font-weight: 600; min-width: 130px; color: #045454; }

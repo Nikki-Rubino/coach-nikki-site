@@ -25,6 +25,13 @@ const afBody = page?.rendered?.html ?? '';
 
 // YouTube video ID for the "See it in motion" block. Edit in CMS under Page copy → Animal Flow.
 const ytId = page?.data?.youtubeVideoId;
+
+// CMS-editable AF sections.
+const whatIs = await getEntry('site', 'af-what-is-section');
+const waysToTrain = await getEntry('site', 'af-ways-to-train');
+const foundations = await getEntry('site', 'af-foundations-arc');
+const l1Cert = await getEntry('site', 'af-l1-cert');
+const finalCta = await getEntry('site', 'af-final-cta');
 ---
 
 <BaseLayout
@@ -48,13 +55,13 @@ const ytId = page?.data?.youtubeVideoId;
     </div>
   </section>
 
-  <!-- WHAT IS AF — body content from src/content/pages/animal-flow.md (edit in CMS Body field) -->
+  <!-- WHAT IS AF — section header from src/content/site/af-what-is-section.md, body from src/content/pages/animal-flow.md -->
   <section style="background: #fff;">
     <div class="container">
       <div class="what-youll-do">
         <div>
-          <span class="eyebrow">What it is</span>
-          <h2 class="section">Strength, range, brain — all on the floor</h2>
+          {whatIs?.data.eyebrow && <span class="eyebrow">{whatIs.data.eyebrow}</span>}
+          {whatIs?.data.heading && <h2 class="section">{whatIs.data.heading}</h2>}
           <div class="af-body" set:html={afBody} />
         </div>
         <div class="ph"><span class="ph-label">Photo: Beast or Crab hold, mid-flow</span></div>
@@ -90,12 +97,12 @@ const ytId = page?.data?.youtubeVideoId;
     </div>
   </section>
 
-  <!-- THE TWO SESSIONS -->
+  <!-- THE TWO SESSIONS — header from src/content/site/af-ways-to-train.md -->
   <section style="background: var(--teal-light);">
     <div class="container">
-      <span class="eyebrow">Two ways to train</span>
-      <h2 class="section">Skills or Build a Flow</h2>
-      <p class="lead muted">Skills is where you learn each shape clean. Build a Flow is where you string them together.</p>
+      {waysToTrain?.data.eyebrow && <span class="eyebrow">{waysToTrain.data.eyebrow}</span>}
+      {waysToTrain?.data.heading && <h2 class="section">{waysToTrain.data.heading}</h2>}
+      {waysToTrain?.data.lead && <p class="lead muted">{waysToTrain.data.lead}</p>}
       <div class="sessions" style="grid-template-columns: repeat(2, 1fr);">
         {afSessions.map((s) => (
           <article class="session-detail">
@@ -120,48 +127,58 @@ const ytId = page?.data?.youtubeVideoId;
     </div>
   </section>
 
-  <!-- HOW WE START -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">How we start</span>
-      <h2 class="section">The intro covers your AF foundations</h2>
-      <p class="lead muted">Even if Animal Flow is the only thing you want to do, the three-session intro gets you ready for the floor. Session three is where I introduce you to the foundational shapes properly.</p>
-      <div class="steps">
-        <div class="step">
-          <h3>Joint assessment</h3>
-          <p>We map your hips, wrists, shoulders, spine. Find what's loose, what's locked, what to protect.</p>
-        </div>
-        <div class="step">
-          <h3>Strength foundations</h3>
-          <p>The lifts that complement AF. Surprising how much grunt the floor demands.</p>
-        </div>
-        <div class="step">
-          <h3>Animal Flow foundations</h3>
-          <p>Beast, Crab, Limb Lifts, Underswitch, Side Kick Through. The big five before you join a session.</p>
-        </div>
+  <!-- HOW WE START — content from src/content/site/af-foundations-arc.md -->
+  {foundations && (
+    <section>
+      <div class="container">
+        {foundations.data.eyebrow && <span class="eyebrow">{foundations.data.eyebrow}</span>}
+        {foundations.data.heading && <h2 class="section">{foundations.data.heading}</h2>}
+        {foundations.data.lead && <p class="lead muted">{foundations.data.lead}</p>}
+        {foundations.data.steps && (
+          <div class="steps">
+            {foundations.data.steps.map((s) => (
+              <div class="step">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {foundations.data.introCtaHeadline && (
+          <div class="intro-cta">
+            <div>
+              <h3>{foundations.data.introCtaHeadline}</h3>
+              {foundations.data.introCtaSubcopy && <p>{foundations.data.introCtaSubcopy}</p>}
+            </div>
+            {foundations.data.introCtaLabel && (
+              <a class="btn-primary" href={foundations.data.introCtaHref ?? '/get-started'}>
+                {foundations.data.introCtaLabel}
+              </a>
+            )}
+          </div>
+        )}
       </div>
-      <div class="intro-cta">
-        <div>
-          <h3>Intro is $399 upfront or $450 over three weeks</h3>
-          <p>After that, you join Skills, Build a Flow, or both — all under weekly unlimited.</p>
-        </div>
-        <a class="btn-primary" href="/get-started">Book your intro</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- L1 / CERT PATH -->
-  <section style="background: #fff;">
-    <div class="container narrow">
-      <span class="eyebrow">For the keen</span>
-      <h2 class="section">Going further — L1 certification</h2>
-      <p class="lead">If you want to teach Animal Flow, or just go deep into the system, I run prep sessions for the L1 certification. As Sydney's Regional Leader I've helped dozens of people walk into their cert ready.</p>
-      <p style="margin-top: 18px;">Get in touch and we'll map a path. Usually three to six months of prep depending on where you're starting.</p>
-      <div style="margin-top: 24px;">
-        <a class="btn-primary" href="/contact">Ask about L1 prep</a>
+  <!-- L1 / CERT PATH — content from src/content/site/af-l1-cert.md -->
+  {l1Cert && (
+    <section style="background: #fff;">
+      <div class="container narrow">
+        {l1Cert.data.eyebrow && <span class="eyebrow">{l1Cert.data.eyebrow}</span>}
+        {l1Cert.data.heading && <h2 class="section">{l1Cert.data.heading}</h2>}
+        {l1Cert.data.lead && <p class="lead">{l1Cert.data.lead}</p>}
+        {l1Cert.data.closingLine && (
+          <p style="margin-top: 18px;">{l1Cert.data.closingLine}</p>
+        )}
+        {l1Cert.data.ctaLabel && (
+          <div style="margin-top: 24px;">
+            <a class="btn-primary" href={l1Cert.data.ctaHref ?? '/contact'}>{l1Cert.data.ctaLabel}</a>
+          </div>
+        )}
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FAQ -->
   {afFaq.length > 0 && (
@@ -181,13 +198,21 @@ const ytId = page?.data?.youtubeVideoId;
     </section>
   )}
 
-  <!-- CTA -->
-  <section class="cta-strip">
-    <div class="container narrow">
-      <h2>Come and play on the floor</h2>
-      <p>Beginner or seasoned, the door's open. Book the intro and I'll meet you there.</p>
-      <a class="btn-primary" href="/get-started">Book your intro</a>
-      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/contact">Ask a question →</a>
-    </div>
-  </section>
+  <!-- FINAL CTA — content from src/content/site/af-final-cta.md -->
+  {finalCta && (
+    <section class="cta-strip">
+      <div class="container narrow">
+        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
+        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
+        {finalCta.data.ctaLabel && (
+          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        )}
+        {finalCta.data.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/contact'}>
+            {finalCta.data.ctaSecondaryLabel}
+          </a>
+        )}
+      </div>
+    </section>
+  )}
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const page = await getEntry('pages', 'timetable');
@@ -11,6 +11,7 @@ const hero = page?.data ?? {
 };
 
 const acuityUrl = page?.data?.acuityEmbedUrl;
+const paths = await getEntry('site', 'timetable-paths');
 ---
 
 <BaseLayout
@@ -162,40 +163,29 @@ const acuityUrl = page?.data?.acuityEmbedUrl;
     </>
   )}
 
-  <!-- HOW TO BOOK -->
-  <section class="tt-howto">
-    <div class="container">
-      <span class="eyebrow">How to book</span>
-      <h2 class="section">Three paths in</h2>
-      <div class="tt-howto-grid">
-        <div class="tt-howto-card">
-          <div class="icon">1</div>
-          <h3>New to the studio</h3>
-          <p>
-            Start with the three-session intro. I'll assess, build foundations, then place you in
-            the right group session for you.
+  <!-- HOW TO BOOK — content from src/content/site/timetable-paths.md -->
+  {paths && (
+    <section class="tt-howto">
+      <div class="container">
+        {paths.data.eyebrow && <span class="eyebrow">{paths.data.eyebrow}</span>}
+        {paths.data.heading && <h2 class="section">{paths.data.heading}</h2>}
+        {paths.data.cards && (
+          <div class="tt-howto-grid">
+            {paths.data.cards.map((c) => (
+              <div class="tt-howto-card">
+                <div class="icon">{c.icon}</div>
+                <h3>{c.label}</h3>
+                <p>{c.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {paths.data.closingLine && (
+          <p class="muted" style="text-align: center; margin-top: 32px; font-size: 13px;">
+            {paths.data.closingLine}
           </p>
-          <p style="margin-top: 14px;"><a class="btn-secondary" href="/get-started">Book your intro →</a></p>
-        </div>
-        <div class="tt-howto-card">
-          <div class="icon">2</div>
-          <h3>Existing client</h3>
-          <p>
-            Log in to your account to see your recurring bookings, swap a session, or join a
-            waitlist.
-          </p>
-          <p style="margin-top: 14px;"><a class="btn-secondary" href="/timetable#book">Log in →</a></p>
-        </div>
-        <div class="tt-howto-card">
-          <div class="icon">3</div>
-          <h3>Just want a chat</h3>
-          <p>Not ready to book? Drop me a message and I'll get back to you the same day.</p>
-          <p style="margin-top: 14px;"><a class="btn-secondary" href="/contact">Get in touch →</a></p>
-        </div>
+        )}
       </div>
-      <p class="muted" style="text-align: center; margin-top: 32px; font-size: 13px;">
-        Bookings powered by Acuity Scheduling. Direct debit via Square.
-      </p>
-    </div>
-  </section>
+    </section>
+  )}
 </BaseLayout>

@@ -24,6 +24,8 @@ const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Ses
 // Shared CMS-editable blocks (also used on /sassy-seniors, /about, /get-started).
 const introBand = await getEntry('site', 'intro-band');
 const sessionsArc = await getEntry('site', 'sessions-arc');
+const intro = await getEntry('site', 'sessions-intro');
+const finalCta = await getEntry('site', 'sessions-final-cta');
 ---
 
 <BaseLayout
@@ -70,12 +72,12 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
     </section>
   )}
 
-  <!-- FULL SESSIONS CATALOGUE -->
+  <!-- FULL SESSIONS CATALOGUE — header from src/content/site/sessions-intro.md -->
   <section style="background: #fff;">
     <div class="container">
-      <span class="eyebrow">The full list</span>
-      <h2 class="section">Every session, side by side</h2>
-      <p class="lead muted">All semi-private sessions sit on the same price. Pick what fits your body, your week, your mood.</p>
+      {intro?.data.eyebrow && <span class="eyebrow">{intro.data.eyebrow}</span>}
+      {intro?.data.heading && <h2 class="section">{intro.data.heading}</h2>}
+      {intro?.data.lead && <p class="lead muted">{intro.data.lead}</p>}
       <div class="session-detail-grid">
         {allSessions.map((s) => (
           <article class="session-detail">
@@ -107,9 +109,11 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
           </article>
         ))}
       </div>
-      <p class="muted" style="margin-top: 28px; text-align: center; font-size: 14px;">
-        Weekly unlimited covers 3 to 4 sessions per week across any combination of the semi-private offerings above.
-      </p>
+      {intro?.data.closingLine && (
+        <p class="muted" style="margin-top: 28px; text-align: center; font-size: 14px;">
+          {intro.data.closingLine}
+        </p>
+      )}
     </div>
   </section>
 
@@ -165,13 +169,21 @@ const sessionsArc = await getEntry('site', 'sessions-arc');
     </section>
   )}
 
-  <!-- CTA -->
-  <section class="cta-strip">
-    <div class="container narrow">
-      <h2>Ready to start?</h2>
-      <p>Book your three session intro. After that, the door's wide open.</p>
-      <a class="btn-primary" href="/get-started">Book your intro</a>
-      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/pricing">See pricing →</a>
-    </div>
-  </section>
+  <!-- CTA — content from src/content/site/sessions-final-cta.md -->
+  {finalCta && (
+    <section class="cta-strip">
+      <div class="container narrow">
+        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
+        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
+        {finalCta.data.ctaLabel && (
+          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>{finalCta.data.ctaLabel}</a>
+        )}
+        {finalCta.data.ctaSecondaryLabel && (
+          <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href={finalCta.data.ctaSecondaryHref ?? '/pricing'}>
+            {finalCta.data.ctaSecondaryLabel}
+          </a>
+        )}
+      </div>
+    </section>
+  )}
 </BaseLayout>
