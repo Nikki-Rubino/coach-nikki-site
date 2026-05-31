@@ -51,7 +51,19 @@ const finalCta = page?.data?.finalCta;
           <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
         </div>
       </div>
-      <div class="ph"><span class="ph-label">Photo: client in Beast hold, glow lights</span></div>
+      <div class="ph">
+        {hero.heroImage ? (
+          <img
+            src={hero.heroImage}
+            alt={hero.heroHeadline ?? 'Animal Flow'}
+            loading="eager"
+            fetchpriority="high"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
+        ) : (
+          <span class="ph-label">Photo: client in Beast hold, glow lights</span>
+        )}
+      </div>
     </div>
   </section>
 
@@ -64,7 +76,18 @@ const finalCta = page?.data?.finalCta;
           {whatIs?.heading && <h2 class="section">{whatIs.heading}</h2>}
           <div class="af-body" set:html={afBody} />
         </div>
-        <div class="ph"><span class="ph-label">Photo: Beast or Crab hold, mid-flow</span></div>
+        <div class="ph">
+          {whatIs?.image ? (
+            <img
+              src={whatIs.image}
+              alt="Animal Flow Beast or Crab hold"
+              loading="lazy"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+            />
+          ) : (
+            <span class="ph-label">Photo: Beast or Crab hold, mid-flow</span>
+          )}
+        </div>
       </div>
     </div>
   </section>
@@ -106,7 +129,18 @@ const finalCta = page?.data?.finalCta;
       <div class="sessions" style="grid-template-columns: repeat(2, 1fr);">
         {afSessions.map((s) => (
           <article class="session-detail">
-            <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+            <div class="ph">
+              {s.data.image ? (
+                <img
+                  src={s.data.image}
+                  alt={s.data.title}
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                />
+              ) : (
+                <span class="ph-label">{s.data.title}</span>
+              )}
+            </div>
             <div class="body">
               <span class={`session-chip ${s.data.tagStyle}`}>{s.data.tag}</span>
               <h3>{s.data.title}</h3>

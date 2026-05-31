@@ -50,7 +50,19 @@ const passionParas = (passion?.body ?? '')
           </a>
         </div>
       </div>
-      <div class="ph"><span class="ph-label">Photo: Nikki on stage at Fuel Summit, mid-speech</span></div>
+      <div class="ph">
+        {hero.heroImage ? (
+          <img
+            src={hero.heroImage}
+            alt={hero.heroHeadline ?? 'Coach Nikki on stage at Fuel Summit'}
+            loading="eager"
+            fetchpriority="high"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
+        ) : (
+          <span class="ph-label">Photo: Nikki on stage at Fuel Summit, mid-speech</span>
+        )}
+      </div>
     </div>
   </section>
 
@@ -65,9 +77,27 @@ const passionParas = (passion?.body ?? '')
           <p class="lead" style="margin-top: 18px;">{fuelMeaning.closingLine}</p>
         )}
         <div class="speaking-grid">
-          <div class="ph"><span class="ph-label">Award moment</span></div>
-          <div class="ph"><span class="ph-label">Group shot at summit</span></div>
-          <div class="ph"><span class="ph-label">Nikki with award</span></div>
+          <div class="ph">
+            {fuelMeaning.image1 ? (
+              <img src={fuelMeaning.image1} alt="Award moment" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            ) : (
+              <span class="ph-label">Award moment</span>
+            )}
+          </div>
+          <div class="ph">
+            {fuelMeaning.image2 ? (
+              <img src={fuelMeaning.image2} alt="Group shot at summit" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            ) : (
+              <span class="ph-label">Group shot at summit</span>
+            )}
+          </div>
+          <div class="ph">
+            {fuelMeaning.image3 ? (
+              <img src={fuelMeaning.image3} alt="Nikki with award" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            ) : (
+              <span class="ph-label">Nikki with award</span>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -126,7 +156,18 @@ const passionParas = (passion?.body ?? '')
         {passion.eyebrow && <span class="eyebrow">{passion.eyebrow}</span>}
         {passion.heading && <h2 class="section">{passion.heading}</h2>}
         <div class="passion-block" style="margin-top: 36px;">
-          <div class="ph"><span class="ph-label">Portrait of Nikki</span></div>
+          <div class="ph">
+            {passion.image ? (
+              <img
+                src={passion.image}
+                alt="Portrait of Coach Nikki"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            ) : (
+              <span class="ph-label">Portrait of Nikki</span>
+            )}
+          </div>
           <div>
             {passionParas.map((p) => <p>{p}</p>)}
             <div style="margin-top: 32px;">

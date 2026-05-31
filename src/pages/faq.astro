@@ -39,7 +39,17 @@ const grouped = categoryOrder
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Photo: studio detail / friendly moment</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Coach Nikki FAQ'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Photo: studio detail / friendly moment</span>
+      )}
     </div>
   </section>
 

@@ -33,7 +33,18 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', {
       <div class="blog-list" style="margin-top: 48px;">
         {posts.map((post) => (
           <a class="post" href={`/blog/${post.id}`}>
-            <div class="ph"><span class="ph-label">Post thumbnail</span></div>
+            <div class="ph">
+              {post.data.image ? (
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                />
+              ) : (
+                <span class="ph-label">Post thumbnail</span>
+              )}
+            </div>
             <div class="date">{dateFmt.format(post.data.date)}</div>
             <h3>{post.data.title}</h3>
             {post.data.excerpt && <p>{post.data.excerpt}</p>}

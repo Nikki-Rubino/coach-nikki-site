@@ -51,7 +51,17 @@ const finalCta = page?.data?.finalCta;
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Photo: studio collage — classics, AF, semi-private strength</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Sessions'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Photo: studio collage — classics, AF, semi-private strength</span>
+      )}
     </div>
   </section>
 
@@ -83,7 +93,18 @@ const finalCta = page?.data?.finalCta;
       <div class="session-detail-grid">
         {allSessions.map((s) => (
           <article class="session-detail">
-            <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+            <div class="ph">
+              {s.data.image ? (
+                <img
+                  src={s.data.image}
+                  alt={s.data.title}
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                />
+              ) : (
+                <span class="ph-label">{s.data.title}</span>
+              )}
+            </div>
             <div class="body">
               {s.data.tag && (
                 <span class={`session-chip ${s.data.tagStyle}`}>{s.data.tag}</span>

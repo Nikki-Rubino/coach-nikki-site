@@ -34,7 +34,17 @@ const info = page?.data?.info;
       )}
     </div>
     <div class="image">
-      <span class="ph-label">Photo: studio exterior or doorway</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Contact Coach Nikki'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Photo: studio exterior or doorway</span>
+      )}
     </div>
   </section>
 

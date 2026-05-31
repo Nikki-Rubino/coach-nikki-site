@@ -92,7 +92,18 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
         <div class="doors">
           {doorsBlock.items.map((d) => (
             <a class="door" href={d.href}>
-              <div class="ph"><span class="ph-label">{d.imageHint ?? d.heading}</span></div>
+              <div class="ph">
+                {d.image ? (
+                  <img
+                    src={d.image}
+                    alt={d.heading}
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                  />
+                ) : (
+                  <span class="ph-label">{d.imageHint ?? d.heading}</span>
+                )}
+              </div>
               <div class="body">
                 <span class={`tag ${d.tagStyle}`}>{d.tag}</span>
                 <h3>{d.heading}</h3>
@@ -175,7 +186,18 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
         <div class="sessions">
           {homeSessions.map((s) => (
             <div class="session-card">
-              <div class="ph"><span class="ph-label">{s.data.title}</span></div>
+              <div class="ph">
+                {s.data.image ? (
+                  <img
+                    src={s.data.image}
+                    alt={s.data.title}
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                  />
+                ) : (
+                  <span class="ph-label">{s.data.title}</span>
+                )}
+              </div>
               <h3>{s.data.title}</h3>
               <p>{s.data.summary}</p>
               {s.data.price && <span class="meta">{s.data.price}</span>}
@@ -228,7 +250,18 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
         <div class="blog-list">
           {posts.map((p) => (
             <a class="post" href={`/blog/${p.id}`}>
-              <div class="ph"><span class="ph-label">Post thumbnail</span></div>
+              <div class="ph">
+                {p.data.image ? (
+                  <img
+                    src={p.data.image}
+                    alt={p.data.title}
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                  />
+                ) : (
+                  <span class="ph-label">Post thumbnail</span>
+                )}
+              </div>
               <div class="date">{dateFmt.format(p.data.date)}</div>
               <h3>{p.data.title}</h3>
               {p.data.excerpt && <p>{p.data.excerpt}</p>}

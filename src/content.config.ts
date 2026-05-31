@@ -44,6 +44,7 @@ const Door = z.object({
   body: z.string(),
   href: z.string(),
   imageHint: z.string().optional(),
+  image: z.string().optional(),
   arrowLabel: z.string().default('Learn more →'),
 });
 
@@ -159,6 +160,7 @@ const pages = defineCollection({
         lead: z.string().optional(),
         bullets: z.array(z.string()).optional(),
         closingLine: z.string().optional(),
+        image: z.string().optional(),
       })
       .optional(),
     format: z
@@ -174,6 +176,7 @@ const pages = defineCollection({
       .object({
         eyebrow: z.string().optional(),
         heading: z.string().optional(),
+        image: z.string().optional(),
       })
       .optional(),
     waysToTrain: z
@@ -238,8 +241,11 @@ const pages = defineCollection({
         lead: z.string().optional(),
         bullets: z.array(z.string()).optional(),
         closingLine: z.string().optional(),
+        image: z.string().optional(),
       })
       .optional(),
+    /** Photo that sits next to the "My story" body content on /about */
+    storyImage: z.string().optional(),
 
     // ─── Get Started blocks ────────────────────────────────────────────
     expect: z
@@ -299,6 +305,9 @@ const pages = defineCollection({
         heading: z.string().optional(),
         lead: z.string().optional(),
         closingLine: z.string().optional(),
+        image1: z.string().optional(),
+        image2: z.string().optional(),
+        image3: z.string().optional(),
       })
       .optional(),
     speechIntro: z
@@ -326,6 +335,7 @@ const pages = defineCollection({
         ctaSecondaryLabel: z.string().optional(),
         ctaSecondaryHref: z.string().optional(),
         body: z.string().optional(), // long-form story
+        image: z.string().optional(),
       })
       .optional(),
     elsewhere: z
@@ -423,6 +433,8 @@ const site = defineCollection({
     pullQuoteCite: z.string().optional(),
     ctaLabel: z.string().optional(),
     ctaHref: z.string().optional(),
+    /** FUEL band photo (Nikki on stage at the Fuel summit) — rendered on /about, /sassy-seniors, /speaking */
+    image: z.string().optional(),
     // Sessions arc fields
     eyebrow: z.string().optional(),
     lead: z.string().optional(),

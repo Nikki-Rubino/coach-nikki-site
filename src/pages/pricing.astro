@@ -44,7 +44,17 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Photo: studio detail or client smiling mid-session</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Pricing'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Photo: studio detail or client smiling mid-session</span>
+      )}
     </div>
   </section>
 

@@ -91,6 +91,7 @@ collections:
                   - { name: body, label: "Card body", widget: text }
                   - { name: href, label: "Link", widget: string }
                   - { name: imageHint, label: "Photo caption (placeholder)", widget: string, required: false }
+                  - { name: image, label: "Photo", widget: image, required: false }
                   - { name: arrowLabel, label: "Arrow label", widget: string, default: "Learn more →" }
 
           # Promise / Safe Seen Heard
@@ -253,6 +254,7 @@ collections:
                 required: false
                 field: { name: item, label: "Bullet", widget: string }
               - { name: closingLine, label: "Closing line", widget: string, required: false }
+              - { name: image, label: "Photo (senior client mid-deadlift, smiling)", widget: image, required: false }
 
           - name: format
             label: "FORMAT · Capacity stats grid"
@@ -310,6 +312,7 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: image, label: "Photo (Beast or Crab hold, mid-flow)", widget: image, required: false }
 
           - name: waysToTrain
             label: "WAYS TO TRAIN · 'Skills or Build a Flow' header"
@@ -543,6 +546,9 @@ collections:
                 required: false
                 field: { name: item, label: "Bullet", widget: string }
               - { name: closingLine, label: "Closing line (address)", widget: text, required: false }
+              - { name: image, label: "Photo (studio wide shot, glow lights on)", widget: image, required: false }
+
+          - { name: storyImage, label: "MY STORY · Photo (Nikki younger / origin moment)", widget: image, required: false }
 
           - name: finalCta
             label: "FINAL CTA · Bottom banner"
@@ -688,6 +694,9 @@ collections:
               - { name: heading, label: "Heading", widget: string, required: false }
               - { name: lead, label: "Lead", widget: text, required: false }
               - { name: closingLine, label: "Closing line", widget: text, required: false }
+              - { name: image1, label: "Photo 1 (award moment)", widget: image, required: false }
+              - { name: image2, label: "Photo 2 (group shot at summit)", widget: image, required: false }
+              - { name: image3, label: "Photo 3 (Nikki with award)", widget: image, required: false }
 
           - name: speechIntro
             label: "SPEECH INTRO · 'How we should be coaching' header"
@@ -724,6 +733,7 @@ collections:
               - { name: ctaSecondaryLabel, label: "Secondary button label", widget: string, required: false }
               - { name: ctaSecondaryHref, label: "Secondary button link", widget: string, required: false }
               - { name: body, label: "Body (paragraphs separated by blank lines)", widget: text, required: false }
+              - { name: image, label: "Portrait of Nikki (alongside the long-form story)", widget: image, required: false }
 
           - name: elsewhere
             label: "ELSEWHERE · 'Press · further reading' cards"
@@ -852,6 +862,7 @@ collections:
           - { name: pullQuoteCite, label: "Pull quote citation", widget: string, required: false }
           - { name: ctaLabel, label: "Button label", widget: string, required: false }
           - { name: ctaHref, label: "Button link", widget: string, required: false }
+          - { name: image, label: "Photo (Nikki on stage at the Fuel summit)", widget: image, required: false }
           - { name: body, label: "Body paragraph (markdown)", widget: markdown, required: false }
 
       - name: "sessions-arc"

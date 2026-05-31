@@ -49,7 +49,17 @@ const innaTestimonial =
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Photo: senior client mid-strength move, glow lights, real smile</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Sassy Seniors'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Photo: senior client mid-strength move, glow lights, real smile</span>
+      )}
     </div>
   </section>
 
@@ -58,7 +68,18 @@ const innaTestimonial =
     <section class="fuel-band">
       <div class="container">
         <div class="grid">
-          <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+          <div class="ph">
+            {fuel.data.image ? (
+              <img
+                src={fuel.data.image}
+                alt="Nikki on stage at the Fuel summit"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            ) : (
+              <span class="ph-label">Photo: Nikki on stage at the Fuel summit</span>
+            )}
+          </div>
           <div>
             {fuel.data.awardTagText && <span class="award-tag">{fuel.data.awardTagText}</span>}
             {fuel.data.heading && <h2>{fuel.data.heading}</h2>}
@@ -105,7 +126,18 @@ const innaTestimonial =
     <section style="background:#fff;">
       <div class="container">
         <div class="what-youll-do">
-          <div class="ph"><span class="ph-label">Photo: senior client mid-deadlift, smiling</span></div>
+          <div class="ph">
+            {realStrength.image ? (
+              <img
+                src={realStrength.image}
+                alt="Senior client mid-deadlift, smiling"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            ) : (
+              <span class="ph-label">Photo: senior client mid-deadlift, smiling</span>
+            )}
+          </div>
           <div>
             {realStrength.eyebrow && <span class="eyebrow">{realStrength.eyebrow}</span>}
             {realStrength.heading && <h2 class="section">{realStrength.heading}</h2>}

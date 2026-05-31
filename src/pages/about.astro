@@ -47,7 +47,17 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Hero photo: Nikki in the studio, glow-light vibe, candid</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'About Coach Nikki'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Hero photo: Nikki in the studio, glow-light vibe, candid</span>
+      )}
     </div>
   </section>
 
@@ -73,7 +83,18 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
   <section style="background: var(--teal-light);">
     <div class="container">
       <div class="passion-block">
-        <div class="ph"><span class="ph-label">Photo: Nikki younger / origin moment</span></div>
+        <div class="ph">
+          {page?.data?.storyImage ? (
+            <img
+              src={page.data.storyImage}
+              alt="Nikki — younger years"
+              loading="lazy"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+            />
+          ) : (
+            <span class="ph-label">Photo: Nikki younger / origin moment</span>
+          )}
+        </div>
         <div>
           <span class="eyebrow">My story</span>
           <h2 class="section">How I got here</h2>
@@ -118,7 +139,18 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
     <section class="fuel-band">
       <div class="container">
         <div class="grid">
-          <div class="ph"><span class="ph-label">Photo: Nikki on stage at the Fuel summit</span></div>
+          <div class="ph">
+            {fuel.data.image ? (
+              <img
+                src={fuel.data.image}
+                alt="Nikki on stage at the Fuel summit"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            ) : (
+              <span class="ph-label">Photo: Nikki on stage at the Fuel summit</span>
+            )}
+          </div>
           <div>
             {fuel.data.awardTagText && <span class="award-tag">{fuel.data.awardTagText}</span>}
             {fuel.data.heading && <h2>{fuel.data.heading}</h2>}
@@ -158,7 +190,18 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
               <p style="margin-top: 22px;">{studio.closingLine}</p>
             )}
           </div>
-          <div class="ph"><span class="ph-label">Photo: studio wide shot, glow lights on</span></div>
+          <div class="ph">
+            {studio.image ? (
+              <img
+                src={studio.image}
+                alt="Coach Nikki's studio"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            ) : (
+              <span class="ph-label">Photo: studio wide shot, glow lights on</span>
+            )}
+          </div>
         </div>
       </div>
     </section>
