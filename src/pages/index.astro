@@ -61,7 +61,17 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
       </div>
     </div>
     <div class="image">
-      <span class="ph-label">Hero photo: studio glow-light vibe with Nikki coaching</span>
+      {hero.heroImage ? (
+        <img
+          src={hero.heroImage}
+          alt={hero.heroHeadline ?? 'Coach Nikki'}
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
+      ) : (
+        <span class="ph-label">Hero photo: studio glow-light vibe with Nikki coaching</span>
+      )}
     </div>
   </section>
 
