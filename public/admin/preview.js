@@ -9,10 +9,8 @@
 
   CMS.registerPreviewStyle('/admin/preview.css');
 
-  const h = window.h || (window.CMS && window.CMS.h);
-  // Decap exposes a small `h` helper for preview templates. If it's not on
-  // window, fall back to creating from CMS.createPreviewTemplateHelpers — but
-  // realistically Decap 3 sets up `h` globally for preview templates.
+  // Decap 3 exposes a hyperscript `h` helper globally for preview templates.
+  const h = window.h;
 
   // Use template literals → HTML string → dangerouslySetInnerHTML.
   function escape(s) {
@@ -79,7 +77,7 @@
           ${data.get('youtubeVideoId') ? `<div class="preview-section"><strong>YouTube video</strong> embeds here: ${escape(data.get('youtubeVideoId'))}</div>` : ''}
           ${this.props.widgetFor && this.props.widgetFor('body') ? `<div class="preview-section"><strong>Page body:</strong><div style="margin-top:8px;">${this.props.widgetFor('body') || ''}</div></div>` : ''}
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -306,7 +304,7 @@
           ${bodyContent}
         </div>`;
 
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -330,7 +328,7 @@
             </div>
           </div>
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -348,7 +346,7 @@
             ${data.get('featured') ? '<p style="font-size:12px; opacity:0.8;">★ Featured on home page</p>' : ''}
           </div>
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -367,7 +365,7 @@
             ${data.get('linkLabel') ? `<a class="btn-secondary">${escape(data.get('linkLabel'))} →</a>` : ''}
           </div>
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -386,7 +384,7 @@
             <div style="margin-top:10px; color:#1F2937;">${typeof renderedBody === 'string' ? renderedBody : ''}</div>
           </div>
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
@@ -407,15 +405,12 @@
             <div style="margin-top:14px;">${typeof renderedBody === 'string' ? renderedBody : ''}</div>
           </div>
         </div>`;
-      return React.createElement('div', { dangerouslySetInnerHTML: { __html: html } });
+      return h('div', { dangerouslySetInnerHTML: { __html: html } });
     },
   }));
 
-  // Decap's createClass is exposed via window.createClass (compat) or via React.createElement directly.
+  // Decap exposes window.createClass (compat with the old Netlify CMS API).
   function createClass(spec) {
-    if (window.createClass) return window.createClass(spec);
-    return CMS.createClass ? CMS.createClass(spec) : class extends React.Component {
-      render() { return spec.render.call(this); }
-    };
+    return window.createClass(spec);
   }
 })();
