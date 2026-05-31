@@ -15,6 +15,12 @@ const hero = home?.data ?? {
   secondaryCtaHref: '/timetable',
 };
 
+// CMS-editable Home sections.
+const doorsBlock = await getEntry('site', 'home-doors');
+const promise = await getEntry('site', 'home-promise');
+const arc = await getEntry('site', 'home-arc');
+const sectionHeaders = await getEntry('site', 'home-section-headers');
+
 // Sessions shown on the home page, ordered.
 const homeSessions = (await getCollection('sessions', (e) => e.data.showOnHome))
   .sort((a, b) => a.data.order - b.data.order);
@@ -64,126 +70,96 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
     <a class="link" href="/speaking">Read the speech →</a>
   </div>
 
-  <!-- THREE DOORS -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">Find your crew</span>
-      <h2 class="section">Who you might be</h2>
-      <p class="lead muted">Pick the one that sounds like you. I'll meet you there.</p>
-      <div class="doors">
-        <a class="door" href="/sassy-seniors">
-          <div class="ph"><span class="ph-label">Senior client mid-deadlift</span></div>
-          <div class="body">
-            <span class="tag pink">Strong and Sassy Squad: The Classics</span>
-            <h3>I'm 55+ and want to feel strong again.</h3>
-            <p class="muted" style="font-size:14px; margin-top:8px;">
-              You've fallen out of love with training. Or you simply never had the chance to
-              do it consistently. Semi-private strength training for the 55+ crew. Real lifts,
-              classic music, no intimidation.
-            </p>
-            <span class="arrow">Learn more →</span>
-          </div>
-        </a>
-        <a class="door" href="/sessions">
-          <div class="ph"><span class="ph-label">Semi-private strength shot</span></div>
-          <div class="body">
-            <span class="tag">Strength semi-private</span>
-            <h3>I'm an over-30 fixing my niggles, or wanting to move better.</h3>
-            <p class="muted" style="font-size:14px; margin-top:8px;">
-              You want accountability, consistency and some banter. Semi-private coaching for
-              office workers and anyone who isn't after a bro-feel gym, but wants to move well
-              and lift confidently.
-            </p>
-            <span class="arrow">Learn more →</span>
-          </div>
-        </a>
-        <a class="door" href="/animal-flow">
-          <div class="ph"><span class="ph-label">Animal Flow movement</span></div>
-          <div class="body">
-            <span class="tag orange">Animal Flow Sydney</span>
-            <h3>I'm curious about Animal Flow.</h3>
-            <p class="muted" style="font-size:14px; margin-top:8px;">
-              Learn from the Sydney Regional Leader with 10 years' experience. Skills sessions,
-              build-a-flow sessions, or help passing your L1 certification.
-            </p>
-            <span class="arrow">Learn more →</span>
-          </div>
-        </a>
+  <!-- THREE DOORS — content from src/content/site/home-doors.md -->
+  {doorsBlock && doorsBlock.data.doors && (
+    <section>
+      <div class="container">
+        {doorsBlock.data.eyebrow && <span class="eyebrow">{doorsBlock.data.eyebrow}</span>}
+        {doorsBlock.data.heading && <h2 class="section">{doorsBlock.data.heading}</h2>}
+        {doorsBlock.data.lead && <p class="lead muted">{doorsBlock.data.lead}</p>}
+        <div class="doors">
+          {doorsBlock.data.doors.map((d) => (
+            <a class="door" href={d.href}>
+              <div class="ph"><span class="ph-label">{d.imageHint ?? d.heading}</span></div>
+              <div class="body">
+                <span class={`tag ${d.tagStyle}`}>{d.tag}</span>
+                <h3>{d.heading}</h3>
+                <p class="muted" style="font-size:14px; margin-top:8px;">{d.body}</p>
+                <span class="arrow">{d.arrowLabel}</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- PROMISE -->
-  <section class="promise">
-    <div class="container">
-      <span class="eyebrow">The promise</span>
-      <h2 class="section">Safe. Seen. Heard.</h2>
-      <div class="tri">
-        <div>
-          <div class="word">Safe</div>
-          <p>Big lights off, glow lights on. No mirrors. A coach who watches your
-            movement mechanics, knows your history, and respects your pace.</p>
-        </div>
-        <div>
-          <div class="word">Seen</div>
-          <p>You're not lost in a crowd. Class capacities are 4 to 10. Your story, your
-            goals, your wins are tracked.</p>
-        </div>
-        <div>
-          <div class="word">Heard</div>
-          <p>Communication on your terms. I'll banter if you want to banter. I'll work
-            quietly if that's the day. Your call.</p>
-        </div>
+  <!-- PROMISE — content from src/content/site/home-promise.md -->
+  {promise && (
+    <section class="promise">
+      <div class="container">
+        {promise.data.eyebrow && <span class="eyebrow">{promise.data.eyebrow}</span>}
+        {promise.data.heading && <h2 class="section">{promise.data.heading}</h2>}
+        {promise.data.tiles && (
+          <div class="tri">
+            {promise.data.tiles.map((t) => (
+              <div>
+                <div class="word">{t.word}</div>
+                <p>{t.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {promise.data.pullQuote && (
+          <div class="pullquote">
+            "{promise.data.pullQuote}"
+            {promise.data.pullQuoteCite && <cite>{promise.data.pullQuoteCite}</cite>}
+          </div>
+        )}
       </div>
-      <div class="pullquote">
-        "Nikki has changed my relationship with exercise into a positive one,
-        using my new strength and increased energy for doing life."
-        <cite>Sarah, nurse</cite>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- HOW IT WORKS -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">How we start</span>
-      <h2 class="section">Three sessions, one foundation</h2>
-      <p class="lead muted">Every new client begins with three private sessions. I'll assess
-        where your body is at, build your foundations, and together we'll figure out where to
-        go next.</p>
-      <div class="steps">
-        <div class="step">
-          <h3>Joint assessment</h3>
-          <p>We map how your body actually moves. Joint range, baseline movements, history.
-            Gentle, methodical.</p>
-        </div>
-        <div class="step">
-          <h3>Strength foundations</h3>
-          <p>Squat. Deadlift. Push. Pull. The four lifts that build the strength to do
-            everyday life well.</p>
-        </div>
-        <div class="step">
-          <h3>Animal Flow foundations</h3>
-          <p>Beast, crab, limb lifts, underswitch. Ground-based training that unlocks
-            strength, range, resilience and confidence.</p>
-        </div>
+  <!-- HOW IT WORKS — content from src/content/site/home-arc.md -->
+  {arc && (
+    <section>
+      <div class="container">
+        {arc.data.eyebrow && <span class="eyebrow">{arc.data.eyebrow}</span>}
+        {arc.data.heading && <h2 class="section">{arc.data.heading}</h2>}
+        {arc.data.lead && <p class="lead muted">{arc.data.lead}</p>}
+        {arc.data.steps && (
+          <div class="steps">
+            {arc.data.steps.map((s) => (
+              <div class="step">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {arc.data.introCtaHeadline && (
+          <div class="intro-cta">
+            <div>
+              <h3>{arc.data.introCtaHeadline}</h3>
+              {arc.data.introCtaSubcopy && <p>{arc.data.introCtaSubcopy}</p>}
+            </div>
+            {arc.data.introCtaLabel && (
+              <a class="btn-primary" href={arc.data.introCtaHref ?? '/get-started'}>
+                {arc.data.introCtaLabel}
+              </a>
+            )}
+          </div>
+        )}
       </div>
-      <div class="intro-cta">
-        <div>
-          <h3>Ready to start? Intro is $399 upfront, or $450 over three weeks.</h3>
-          <p>After your three sessions you choose: continue 1:1, or join semi-private sessions.</p>
-        </div>
-        <a class="btn-primary" href="/get-started">Book your intro</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- SESSIONS -->
   {homeSessions.length > 0 && (
     <section style="background:#fff;">
       <div class="container">
-        <span class="eyebrow">What's on offer</span>
-        <h2 class="section">Sessions for every body</h2>
+        <span class="eyebrow">{sectionHeaders?.data.eyebrow ?? "What's on offer"}</span>
+        <h2 class="section">{sectionHeaders?.data.heading ?? 'Sessions for every body'}</h2>
         <div class="sessions">
           {homeSessions.map((s) => (
             <div class="session-card">
@@ -194,9 +170,11 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
             </div>
           ))}
         </div>
-        <p class="muted" style="margin-top: 24px; text-align:center; font-size: 14px;">
-          Weekly unlimited covers 3 to 4 sessions per week across any combination of group types.
-        </p>
+        {sectionHeaders?.data.ctaSubcopy && (
+          <p class="muted" style="margin-top: 24px; text-align:center; font-size: 14px;">
+            {sectionHeaders.data.ctaSubcopy}
+          </p>
+        )}
       </div>
     </section>
   )}
@@ -205,8 +183,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
   {featuredTestimonials.length > 0 && (
     <section class="testimonials">
       <div class="container">
-        <span class="eyebrow">Words from the dazzle</span>
-        <h2 class="section">What clients say</h2>
+        <span class="eyebrow">{sectionHeaders?.data.bannerHeadline ?? 'Words from the dazzle'}</span>
+        <h2 class="section">{sectionHeaders?.data.subHeading ?? 'What clients say'}</h2>
         <div class="tlist">
           {featuredTestimonials.map((t) => (
             <div class="testimonial">
@@ -233,8 +211,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
   {posts.length > 0 && (
     <section>
       <div class="container">
-        <span class="eyebrow">From the blog</span>
-        <h2 class="section">Words on movement</h2>
+        <span class="eyebrow">{sectionHeaders?.data.bannerSubcopy ?? 'From the blog'}</span>
+        <h2 class="section">{sectionHeaders?.data.ctaLabel ?? 'Words on movement'}</h2>
         <div class="blog-list">
           {posts.map((p) => (
             <a class="post" href={`/blog/${p.id}`}>

@@ -1,57 +1,51 @@
 ---
+import { getEntry } from 'astro:content';
+
+const footer = await getEntry('site', 'footer');
 const year = new Date().getFullYear();
+const f = footer?.data;
+
+// Fallback values if the singleton isn't loaded.
+const heading = f?.heading ?? 'Coach Nikki';
+const lead = f?.lead ?? 'Strength & movement coaching for over 30s.';
+const address = f?.address ?? 'Unit 3 / 60 Perry St, Matraville NSW 2036.';
+const phone = f?.phone ?? '0403 122 669';
+const email = f?.email ?? 'nikkir30030@gmail.com';
+const linkGroups = f?.linkGroups ?? [];
+const copyrightLine = (f?.copyrightLine ?? '© {year} Nikki Rubino. Coach Nikki is a sole trader business in Sydney, Australia.').replace('{year}', String(year));
+const creditLine = f?.creditLine ?? 'Site by Richie. Strength is ageless.';
 ---
 
 <footer class="wf-footer">
   <div class="grid">
     <div>
-      <h4>Coach Nikki</h4>
+      <h4>{heading}</h4>
       <p style="color:#bdb6b3; font-size:14px; line-height:1.6;">
-        Strength &amp; movement coaching for over 30s.<br />
-        Unit 3 / 60 Perry St, Matraville NSW 2036.
+        {lead}<br />
+        {address}
       </p>
       <p style="margin-top:14px; font-size:14px;">
-        <a href="tel:+61403122669">0403 122 669</a><br />
-        <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a>
+        <a href={`tel:${phone.replace(/\s+/g, '')}`}>{phone}</a><br />
+        <a href={`mailto:${email}`}>{email}</a>
       </p>
     </div>
-    <div>
-      <h4>Sessions</h4>
-      <ul>
-        <li><a href="/sessions">1:1 coaching</a></li>
-        <li><a href="/sessions">Semi-private</a></li>
-        <li><a href="/sassy-seniors">Sassy Seniors</a></li>
-        <li><a href="/animal-flow">Animal Flow</a></li>
-        <li><a href="/timetable">Timetable</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Visit</h4>
-      <ul>
-        <li><a href="/about">About Nikki</a></li>
-        <li><a href="/pricing">Pricing</a></li>
-        <li><a href="/faq">FAQ</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/get-started">Get started</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Follow</h4>
-      <ul>
-        <li>
-          <a href="https://www.instagram.com/coach_nikkir/" target="_blank" rel="noopener">Instagram</a>
-        </li>
-        <li>
-          <a href="https://www.facebook.com/nikki.rubino.5" target="_blank" rel="noopener">Facebook</a>
-        </li>
-        <li><a href="/privacy">Privacy</a></li>
-        <li><a href="/terms">Terms</a></li>
-      </ul>
-    </div>
+    {linkGroups.map((g) => (
+      <div>
+        <h4>{g.heading}</h4>
+        <ul>
+          {g.items.map((i) => (
+            <li>
+              <a href={i.href} target={i.external ? '_blank' : undefined} rel={i.external ? 'noopener' : undefined}>
+                {i.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
   <div class="legal">
-    <span>© {year} Nikki Rubino. Coach Nikki is a sole trader business in Sydney, Australia.</span>
-    <span>Site by Richie. Strength is ageless.</span>
+    <span>{copyrightLine}</span>
+    <span>{creditLine}</span>
   </div>
 </footer>

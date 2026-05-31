@@ -11,6 +11,9 @@ const hero = page?.data ?? {
   primaryCtaLabel: 'Book your intro instead',
   primaryCtaHref: '/get-started',
 };
+
+// CMS-editable studio info (address, hours, phone, email, socials, callout).
+const info = await getEntry('site', 'contact-info');
 ---
 
 <BaseLayout
@@ -95,41 +98,66 @@ const hero = page?.data ?? {
           <button type="submit" class="btn-primary" style="margin-top: 8px;">Send the message</button>
         </form>
 
-        <!-- INFO -->
-        <aside class="contact-info">
-          <div class="info-block">
-            <h3>The studio</h3>
-            <p>Unit 3 / 60 Perry Street<br />Matraville NSW 2036</p>
-          </div>
-          <div class="info-block">
-            <h3>Direct lines</h3>
-            <p>
-              <a href="tel:0403122669">0403 122 669</a><br />
-              <a href="mailto:nikkir30030@gmail.com">nikkir30030@gmail.com</a>
-            </p>
-          </div>
-          <div class="info-block">
-            <h3>On socials</h3>
-            <p>
-              <a href="https://www.instagram.com/coach_nikkir" target="_blank" rel="noopener">@coach_nikkir on Instagram</a><br />
-              <a href="https://www.facebook.com/nikki.rubino.5" target="_blank" rel="noopener">Nikki Rubino on Facebook</a>
-            </p>
-          </div>
-          <div class="info-block">
-            <h3>Studio hours</h3>
-            <p class="muted" style="font-size: 14px;">
-              Tue / Wed / Thu / Fri: 6am to evening<br />
-              Tue + Thu: evenings only<br />
-              Sat: mornings only<br />
-              Mon + Sun: closed
-            </p>
-          </div>
-          <div class="info-block" style="background: var(--teal-light); padding: 18px; border-radius: var(--radius-sm);">
-            <h3 style="color: var(--teal-dark);">Ready to book?</h3>
-            <p style="font-size: 14px; margin: 6px 0 12px;">Skip the form. Head straight to the intro booking.</p>
-            <a class="btn-primary" href="/get-started" style="padding: 10px 18px; font-size: 14px;">Get started →</a>
-          </div>
-        </aside>
+        <!-- INFO — content from src/content/site/contact-info.md -->
+        {info && (
+          <aside class="contact-info">
+            {info.data.address && (
+              <div class="info-block">
+                <h3>The studio</h3>
+                <p set:html={info.data.address.split('\n').join('<br />')} />
+              </div>
+            )}
+            {(info.data.phone || info.data.email) && (
+              <div class="info-block">
+                <h3>Direct lines</h3>
+                <p>
+                  {info.data.phone && <a href={`tel:${info.data.phone.replace(/\s+/g, '')}`}>{info.data.phone}</a>}
+                  {info.data.phone && info.data.email && <br />}
+                  {info.data.email && <a href={`mailto:${info.data.email}`}>{info.data.email}</a>}
+                </p>
+              </div>
+            )}
+            {info.data.links && info.data.links.length > 0 && (
+              <div class="info-block">
+                <h3>On socials</h3>
+                <p>
+                  {info.data.links.map((l, i) => (
+                    <>
+                      <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+                      {i < info.data.links.length - 1 && <br />}
+                    </>
+                  ))}
+                </p>
+              </div>
+            )}
+            {info.data.rows && info.data.rows.length > 0 && (
+              <div class="info-block">
+                <h3>Studio hours</h3>
+                <p class="muted" style="font-size: 14px;">
+                  {info.data.rows.map((r, i) => (
+                    <>
+                      {r.label}: {r.value}
+                      {i < info.data.rows.length - 1 && <br />}
+                    </>
+                  ))}
+                </p>
+              </div>
+            )}
+            {info.data.bannerHeadline && (
+              <div class="info-block" style="background: var(--teal-light); padding: 18px; border-radius: var(--radius-sm);">
+                <h3 style="color: var(--teal-dark);">{info.data.bannerHeadline}</h3>
+                {info.data.bannerSubcopy && (
+                  <p style="font-size: 14px; margin: 6px 0 12px;">{info.data.bannerSubcopy}</p>
+                )}
+                {info.data.ctaLabel && (
+                  <a class="btn-primary" href={info.data.ctaHref ?? '/get-started'} style="padding: 10px 18px; font-size: 14px;">
+                    {info.data.ctaLabel}
+                  </a>
+                )}
+              </div>
+            )}
+          </aside>
+        )}
       </div>
     </div>
   </section>

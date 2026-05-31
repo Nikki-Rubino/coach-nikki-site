@@ -1,5 +1,6 @@
 ---
 title: "Sessions arc — three steps + intro CTA"
+page: "Shared"
 eyebrow: "How we start"
 heading: "Three sessions, then you choose"
 lead: "Same arc whether you end up in 1:1, semi-private, or Animal Flow. Each session is 60 minutes, paced for the body in front of me."

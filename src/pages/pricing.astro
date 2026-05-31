@@ -14,6 +14,12 @@ const hero = page?.data ?? {
   secondaryCtaHref: '/contact',
 };
 
+// CMS-editable pricing sections.
+const tiersBlock = await getEntry('site', 'pricing-tiers');
+const weekly = await getEntry('site', 'pricing-weekly-unpacked');
+const policy = await getEntry('site', 'pricing-policy');
+const finalCta = await getEntry('site', 'pricing-cta');
+
 const pricingFaqs = (await getCollection('faqs', (e) => e.data.category === 'Pricing'))
   .sort((a, b) => a.data.order - b.data.order);
 
@@ -42,112 +48,94 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
     </div>
   </section>
 
-  <!-- PRICING TIERS -->
-  <section style="background: #fff;">
-    <div class="container">
-      <span class="eyebrow">Three ways in</span>
-      <h2 class="section">What you'll pay</h2>
-      <div class="pricing-grid">
-        <!-- INTRO -->
-        <div class="price featured">
-          <h3>Three session intro</h3>
-          <div class="amount">$399 <small>upfront</small></div>
-          <p class="desc">or $450 split across three weeks</p>
-          <ul>
-            <li>Three private sessions with me</li>
-            <li>Joint assessment, strength + movement foundations</li>
-            <li>Required before any group session</li>
-            <li>Choose your next step at session three</li>
-          </ul>
-          <a class="btn-primary" href="/get-started" style="margin-top: 12px;">Book your intro</a>
+  <!-- PRICING TIERS — content from src/content/site/pricing-tiers.md -->
+  {tiersBlock && tiersBlock.data.tiers && (
+    <section style="background: #fff;">
+      <div class="container">
+        {tiersBlock.data.eyebrow && <span class="eyebrow">{tiersBlock.data.eyebrow}</span>}
+        {tiersBlock.data.heading && <h2 class="section">{tiersBlock.data.heading}</h2>}
+        <div class="pricing-grid">
+          {tiersBlock.data.tiers.map((t) => (
+            <div class={`price${t.featured ? ' featured' : ''}`}>
+              <h3>{t.label}</h3>
+              <div class="amount">{t.amount} {t.amountNote && <small>{t.amountNote}</small>}</div>
+              {t.desc && <p class="desc">{t.desc}</p>}
+              {t.bullets && t.bullets.length > 0 && (
+                <ul>
+                  {t.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              )}
+              {t.ctaLabel && (
+                <a
+                  class={t.featured ? 'btn-primary' : 'btn-secondary'}
+                  href={t.ctaHref ?? '/get-started'}
+                  style={t.featured ? 'margin-top: 12px;' : ''}
+                >
+                  {t.ctaLabel}
+                </a>
+              )}
+            </div>
+          ))}
         </div>
-
-        <!-- 1:1 -->
-        <div class="price">
-          <h3>1:1 coaching</h3>
-          <div class="amount">$150 <small>per session</small></div>
-          <p class="desc">My full attention. 60 minutes.</p>
-          <ul>
-            <li>Best for injury rehab, complex needs, faster progress</li>
-            <li>Programmed week to week around your goals</li>
-            <li>Book individually or in blocks</li>
-            <li>Limited slots — weekday middles preferred</li>
-          </ul>
-          <a class="btn-secondary" href="/sessions">See all 1:1 details →</a>
-        </div>
-
-        <!-- SEMI-PRIVATE -->
-        <div class="price">
-          <h3>Semi-private weekly</h3>
-          <div class="amount">$150 <small>per week unlimited</small></div>
-          <p class="desc">or $55 per single session</p>
-          <ul>
-            <li>3 to 4 sessions per week, any combination</li>
-            <li>Sassy Classics, Strength, Animal Flow, Breath &amp; Mobility</li>
-            <li>Direct debit through Square</li>
-            <li>Pause with 7 days notice</li>
-          </ul>
-          <a class="btn-secondary" href="/timetable">See the timetable →</a>
-        </div>
+        {tiersBlock.data.closingLine && (
+          <p class="price-note">{tiersBlock.data.closingLine}</p>
+        )}
       </div>
-      <p class="price-note">
-        All prices in AUD. GST included. Payments via Square — Apple Pay, Google Pay, card.
-      </p>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- WHAT WEEKLY INCLUDES -->
-  <section>
-    <div class="container">
-      <span class="eyebrow">Weekly unlimited, unpacked</span>
-      <h2 class="section">One price. Every group session.</h2>
-      <p class="lead muted">$150 a week gets you across the whole timetable. Numbers in each card are the per-session capacity caps.</p>
-      <div class="format-grid">
-        <div class="format-card"><div class="num">6</div><div class="lbl">Sassy Classics</div></div>
-        <div class="format-card"><div class="num">6</div><div class="lbl">Strength semi-private</div></div>
-        <div class="format-card"><div class="num">8</div><div class="lbl">Animal Flow Skills + Build</div></div>
-        <div class="format-card"><div class="num">10</div><div class="lbl">Breath &amp; Mobility</div></div>
+  <!-- WEEKLY UNLIMITED UNPACKED — content from src/content/site/pricing-weekly-unpacked.md -->
+  {weekly && (
+    <section>
+      <div class="container">
+        {weekly.data.eyebrow && <span class="eyebrow">{weekly.data.eyebrow}</span>}
+        {weekly.data.heading && <h2 class="section">{weekly.data.heading}</h2>}
+        {weekly.data.lead && <p class="lead muted">{weekly.data.lead}</p>}
+        {weekly.data.capacityGrid && (
+          <div class="format-grid">
+            {weekly.data.capacityGrid.map((c) => (
+              <div class="format-card">
+                <div class="num">{c.number}</div>
+                <div class="lbl">{c.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {weekly.data.capacityCaption && (
+          <p class="muted" style="margin-top: 24px; text-align: center; font-size: 14px;">
+            {weekly.data.capacityCaption}
+          </p>
+        )}
       </div>
-      <p class="muted" style="margin-top: 24px; text-align: center; font-size: 14px;">
-        Capacity stays small. Sassy at 6, Strength at 6, Animal Flow at 8, Breath &amp; Mobility at 10.
-      </p>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- CANCELLATION POLICY -->
-  <section style="background: var(--teal-light);">
-    <div class="container narrow">
-      <span class="eyebrow">The policy</span>
-      <h2 class="section">Cancellations, paused weeks, no surprises</h2>
-      <p class="lead">Life happens. Here's the deal so we both know where we stand.</p>
-      <div class="policy-rows">
-        <div class="policy-row">
-          <div class="policy-h">1:1 cancellations</div>
-          <ul>
-            <li>48+ hours notice: full credit</li>
-            <li>24 to 48 hours: half session lost</li>
-            <li>Less than 24 hours: full session lost</li>
-          </ul>
-        </div>
-        <div class="policy-row">
-          <div class="policy-h">Weekly memberships</div>
-          <ul>
-            <li>7 days notice to pause: week credited</li>
-            <li>Less than 7 days: week is lost</li>
-            <li>Pause as often as you need — travel, illness, life</li>
-          </ul>
-        </div>
-        <div class="policy-row">
-          <div class="policy-h">Group sessions</div>
-          <ul>
-            <li>Covered by weekly — no fee, just message me</li>
-            <li>Casual one-off: 1:1 notice rules apply</li>
-            <li>Waitlists run for full sessions</li>
-          </ul>
-        </div>
+  <!-- CANCELLATION POLICY — content from src/content/site/pricing-policy.md -->
+  {policy && (
+    <section style="background: var(--teal-light);">
+      <div class="container narrow">
+        {policy.data.eyebrow && <span class="eyebrow">{policy.data.eyebrow}</span>}
+        {policy.data.heading && <h2 class="section">{policy.data.heading}</h2>}
+        {policy.data.lead && <p class="lead">{policy.data.lead}</p>}
+        {policy.data.policies && (
+          <div class="policy-rows">
+            {policy.data.policies.map((p) => (
+              <div class="policy-row">
+                <div class="policy-h">{p.heading}</div>
+                <ul>
+                  {p.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- FAQS -->
   {(pricingFaqs.length > 0 || cancelFaqs.length > 0) && (
@@ -173,13 +161,27 @@ const cancelFaqs = (await getCollection('faqs', (e) => e.data.category === 'Canc
     </section>
   )}
 
-  <!-- CTA -->
-  <section class="cta-strip">
-    <div class="container narrow">
-      <h2>Pick your starting point</h2>
-      <p>The three session intro opens the door to everything else.</p>
-      <a class="btn-primary" href="/get-started">Book your intro</a>
-      <a class="btn-secondary" style="color: #fff !important; border-color: #fff; margin-left: 8px;" href="/contact">Ask a question first →</a>
-    </div>
-  </section>
+  <!-- CTA — content from src/content/site/pricing-cta.md -->
+  {finalCta && (
+    <section class="cta-strip">
+      <div class="container narrow">
+        {finalCta.data.heading && <h2>{finalCta.data.heading}</h2>}
+        {finalCta.data.lead && <p>{finalCta.data.lead}</p>}
+        {finalCta.data.ctaLabel && (
+          <a class="btn-primary" href={finalCta.data.ctaHref ?? '/get-started'}>
+            {finalCta.data.ctaLabel}
+          </a>
+        )}
+        {finalCta.data.ctaSecondaryLabel && (
+          <a
+            class="btn-secondary"
+            style="color: #fff !important; border-color: #fff; margin-left: 8px;"
+            href={finalCta.data.ctaSecondaryHref ?? '/contact'}
+          >
+            {finalCta.data.ctaSecondaryLabel}
+          </a>
+        )}
+      </div>
+    </section>
+  )}
 </BaseLayout>

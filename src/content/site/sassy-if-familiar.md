@@ -1,5 +1,6 @@
 ---
 title: "Sassy — If this sounds familiar"
+page: "Sassy"
 eyebrow: "Sound familiar?"
 heading: "If you've thought \"this isn't my scene\"…"
 bullets:
