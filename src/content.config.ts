@@ -454,6 +454,11 @@ const site = defineCollection({
     linkGroups: z.array(LinkGroup).optional(),
     copyrightLine: z.string().optional(),
     creditLine: z.string().optional(),
+    // Branding fields (used by src/content/site/branding.md)
+    logoImage: z.string().optional(),
+    logoAlt: z.string().optional(),
+    siteName: z.string().optional(),
+    siteTagline: z.string().optional(),
   }),
 });
 

@@ -851,6 +851,16 @@ collections:
 
     files:
 
+      - name: "branding"
+        label: "Site branding — header logo + name"
+        file: "src/content/site/branding.md"
+        fields:
+          - { name: title, label: "Block title (internal)", widget: string }
+          - { name: logoImage, label: "Header logo (recommended 1:1 square, 512×512+ PNG with transparent background)", widget: image, required: false }
+          - { name: logoAlt, label: "Logo alt text (for screen readers)", widget: string, required: false }
+          - { name: siteName, label: "Site name (text fallback if logo isn't set)", widget: string, required: false }
+          - { name: siteTagline, label: "Tagline (under the site name)", widget: string, required: false }
+
       - name: "fuel-band"
         label: "FUEL Woman of the Year band (Sassy + About)"
         file: "src/content/site/fuel-band.md"

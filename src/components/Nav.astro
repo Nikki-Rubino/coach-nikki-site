@@ -1,8 +1,18 @@
 ---
+import { getEntry } from 'astro:content';
+
 interface Props {
   active?: string;
 }
 const { active } = Astro.props;
+
+// Header branding — content from src/content/site/branding.md.
+// If logoImage is set, render it instead of the text-mark.
+const branding = await getEntry('site', 'branding');
+const logoImage = branding?.data?.logoImage;
+const logoAlt = branding?.data?.logoAlt ?? 'Coach Nikki';
+const siteName = branding?.data?.siteName ?? 'Coach Nikki';
+const siteTagline = branding?.data?.siteTagline ?? 'Strength is ageless';
 
 const links = [
   { href: '/sessions', label: 'Sessions', key: 'sessions' },
@@ -19,10 +29,21 @@ const links = [
 
 <nav class="wf-nav" aria-label="Primary">
   <a href="/" class="logo">
-    <span class="mark" aria-hidden="true"></span>
+    {logoImage ? (
+      <img
+        src={logoImage}
+        alt={logoAlt}
+        width="44"
+        height="44"
+        class="logo-img"
+        style="width: 44px; height: 44px; object-fit: contain; display: block; border-radius: 8px;"
+      />
+    ) : (
+      <span class="mark" aria-hidden="true"></span>
+    )}
     <span>
-      Coach Nikki
-      <span class="sub">Strength is ageless</span>
+      {siteName}
+      <span class="sub">{siteTagline}</span>
     </span>
   </a>
   <div class="links">
