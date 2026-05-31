@@ -7,9 +7,30 @@ backend:
 # Editorial workflow is OFF — save means publish, no review queue.
 #publish_mode: editorial_workflow
 
-# Uploaded images land in /public/uploads and are served from the site root.
+# ──────────────────────────────────────────────────────────────────────────────
+# MEDIA — Cloudinary handles image upload, crop, and CDN delivery.
+# Every `widget: image` field across the site uses Cloudinary's media library
+# (browse, drag-upload, crop, transform). URLs saved into markdown look like:
+#   https://res.cloudinary.com/db6eijltv/image/upload/v123456/abc.jpg
+# Astro renders them directly from Cloudinary's CDN.
+#
+# The local /public/uploads folder is kept as a fallback only — Cloudinary
+# is the canonical store. Any legacy /uploads/... paths still resolve.
+# ──────────────────────────────────────────────────────────────────────────────
 media_folder: "public/uploads"
 public_folder: "/uploads"
+
+media_library:
+  name: cloudinary
+  output_filename_only: false   # save the full https URL, not just the filename
+  config:
+    cloud_name: db6eijltv
+    api_key: "274697822168352"
+    upload_preset: "coach-nikki"
+    # Default upload behaviour: tag everything so it's filterable in Cloudinary
+    default_transformations:
+      - - fetch_format: auto
+          quality: auto
 
 site_url: https://www.coachnikki.com.au
 display_url: https://www.coachnikki.com.au
