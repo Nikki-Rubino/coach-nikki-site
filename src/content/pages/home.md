@@ -23,15 +23,17 @@ doors:
       href: /sassy-seniors
       imageHint: Senior client mid-deadlift
       arrowLabel: Learn more →
+      image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780383005/Screenshot_2026-05-29_at_8.15.06_pm_hlnvyn.png
     - tag: Strength semi-private
       tagStyle: teal
-      heading: I'm an over-30 fixing my niggles, or wanting to move better.
+      heading: I'm an over-40, fixing my niggles, or wanting to move better.
       body: You want accountability, consistency and some banter. Semi-private
-        coaching for office workers and anyone who isn't after a bro-feel gym,
-        but wants to move well and lift confidently.
+        coaching for anyone who isn't after a bro-feel gym, but wants to move
+        well and lift confidently.
       href: /sessions
       imageHint: Semi-private strength shot
       arrowLabel: Learn more →
+      image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780395280/IMG_5333_photo-full_qcgjne.heic
     - tag: Animal Flow Sydney
       tagStyle: orange
       heading: I'm curious about Animal Flow.
@@ -40,6 +42,7 @@ doors:
       href: /animal-flow
       imageHint: Animal Flow movement
       arrowLabel: Learn more →
+      image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780379671/IMG_5289_photo-full_dr1pag.heic
 promise:
   eyebrow: The promise
   heading: Safe. Seen. Heard.
