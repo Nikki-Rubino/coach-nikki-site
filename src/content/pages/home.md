@@ -23,7 +23,7 @@ doors:
       href: /sassy-seniors
       imageHint: Senior client mid-deadlift
       arrowLabel: Learn more →
-      image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780383005/Screenshot_2026-05-29_at_8.15.06_pm_hlnvyn.png
+      image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780380240/IMG_5034_photo-full_czwdto.heic
     - tag: Strength semi-private
       tagStyle: teal
       heading: I'm an over-40, fixing my niggles, or wanting to move better.
