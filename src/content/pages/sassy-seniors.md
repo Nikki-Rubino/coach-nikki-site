@@ -4,6 +4,7 @@ eyebrow: Sassy Seniors · Strong & Sassy Classics
 heroHeadline: Strength training that meets you where you are.
 heroSubcopy: For the 55+ crew who want to keep doing the things they love. Up to
   6 in a session. Real strength work. Music from the good years.
+heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780380240/IMG_5034_photo-full_czwdto.heic
 primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
