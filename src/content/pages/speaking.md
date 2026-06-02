@@ -25,15 +25,15 @@ fuelMeaning:
   image3: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780397141/IMG_1773_photo_cffzr2.jpg
 speechIntro:
   eyebrow: The speech
-  heading: '"How we should be coaching the 55-plus crew"'
-  lead: Recorded at the Fuel Summit 2025. About 22 minutes.
+  heading: '"The Importance of one single rep"'
+  lead: "Recorded at the Fuel Summit 2024. "
   closingLine: Prefer to read?
   ctaLabel: Read the transcript →
   ctaHref: "#piece"
 speechPull:
   pullQuote: >+
-    "We are an aging population, what impact is that going to have on our
-    economy, health care demands, family dynamics,  housing, and infrastructure
+    "We are an aging population. What impact is that going to have on our
+    economy, health care demands, family dynamics, housing, and infrastructure
     IF this demographic lacks confidence, Independence, and the ability to adapt
     to external environments?
 
