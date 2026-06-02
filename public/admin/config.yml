@@ -223,6 +223,7 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO (optional) · YouTube video ID for the section below the hero (e.g. clip of clients training). Leave blank to skip the video section.", widget: string, required: false }
 
           - name: ifFamiliar
             label: "IF FAMILIAR · 'This isn't my scene' bullets"
@@ -682,7 +683,8 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
-          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID for the speech embed", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID for the speech embed (16:9 — the main speech)", widget: string, required: false }
+          - { name: awardVideoId, label: "VIDEO (optional) · Second YouTube video ID — short clip of receiving the award. Renders inside the Recognition section.", widget: string, required: false }
 
           - name: fuelMeaning
             label: "FUEL WoY MEANING · The recognition"

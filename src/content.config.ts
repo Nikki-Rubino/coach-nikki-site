@@ -102,8 +102,10 @@ const pages = defineCollection({
     seoDescription: z.string().optional(),
     /** Acuity Scheduling iframe URL — used on the Timetable + Get Started pages */
     acuityEmbedUrl: z.string().url().optional(),
-    /** YouTube video ID — used on /animal-flow and /speaking */
+    /** YouTube video ID — used on /animal-flow and /speaking (main video for the page) */
     youtubeVideoId: z.string().optional(),
+    /** Secondary video ID — used on /speaking for the vertical award-acceptance clip */
+    awardVideoId: z.string().optional(),
 
     // ─── Home blocks ───────────────────────────────────────────────────
     doors: z

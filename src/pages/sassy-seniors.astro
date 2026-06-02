@@ -26,6 +26,9 @@ const realStrength = page?.data?.realStrength;
 const format = page?.data?.format;
 const finalCta = page?.data?.finalCta;
 
+// Optional video block — only renders when youtubeVideoId is set in CMS.
+const ytId = page?.data?.youtubeVideoId;
+
 // Inna testimonial — first featured testimonial tagged "Sassy Seniors" if present.
 const featuredTestimonials = await getCollection('testimonials', (e) => e.data.featured);
 const innaTestimonial =
@@ -94,6 +97,26 @@ const innaTestimonial =
               <a class="btn-primary" href={fuel.data.ctaHref ?? '/speaking'}>{fuel.data.ctaLabel}</a>
             )}
           </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- OPTIONAL VIDEO — renders only if youtubeVideoId is set on the page in CMS -->
+  {ytId && (
+    <section style="background: #fff;">
+      <div class="container narrow">
+        <span class="eyebrow">See it in action</span>
+        <h2 class="section">A look inside a session</h2>
+        <div class="video-embed" style="margin-top: 28px;">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
+            title="A session with the Sassy crew"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </section>

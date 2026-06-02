@@ -23,6 +23,7 @@ const elsewhere = page?.data?.elsewhere;
 const finalCta = page?.data?.finalCta;
 
 const ytId = page?.data?.youtubeVideoId;
+const awardYtId = page?.data?.awardVideoId;
 // Passion body is a multi-line string in YAML — render as paragraphs.
 const passionParas = (passion?.body ?? '')
   .split(/\n\s*\n/)
@@ -75,6 +76,19 @@ const passionParas = (passion?.body ?? '')
         {fuelMeaning.lead && <p class="lead">{fuelMeaning.lead}</p>}
         {fuelMeaning.closingLine && (
           <p class="lead" style="margin-top: 18px;">{fuelMeaning.closingLine}</p>
+        )}
+        {awardYtId && (
+          <div class="video-embed" style="margin-top: 32px; max-width: 420px; margin-left: auto; margin-right: auto; aspect-ratio: 9 / 16;">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${awardYtId}?rel=0&modestbranding=1`}
+              title="Nikki receiving the Fuel Woman of the Year award"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+              style="width: 100%; height: 100%;"
+            ></iframe>
+          </div>
         )}
         <div class="speaking-grid">
           <div class="ph">
