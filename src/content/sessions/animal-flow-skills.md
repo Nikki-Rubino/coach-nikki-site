@@ -7,7 +7,7 @@ summary: Foundations of Quadrupedal Movement Training. Beginner friendly, deep
 capacity: Up to 8
 duration: 60 min
 bestFor: Curious beginners and improvers
-image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780379671/IMG_5289_photo-full_dr1pag.heic
+image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780195875/IMG_5269_photo-full_zz3sud.heic
 price: $55 per session · $150/wk unlimited
 order: 4
 showOnHome: true
