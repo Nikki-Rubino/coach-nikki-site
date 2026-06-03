@@ -10,6 +10,8 @@ primaryCtaLabel: Watch the speech
 primaryCtaHref: "#speech"
 secondaryCtaLabel: Read my piece
 secondaryCtaHref: "#piece"
+youtubeVideoId: Lxdhg5COpDY
+awardVideoId: x_x9s9QDVpE
 fuelMeaning:
   eyebrow: The recognition
   heading: What "Fuel Woman of the Year" means
