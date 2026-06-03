@@ -10,7 +10,7 @@ primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
-youtubeVideoId: ?v=BXKizhGXIHI
+youtubeVideoId: BXKizhGXIHI
 whatIs:
   eyebrow: What it is
   heading: Strength, range, brain — all on the floor
