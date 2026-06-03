@@ -71,7 +71,7 @@ passion:
 
 
     If that resonates with you, or with someone you love, come and find me in Matraville.
-  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382972/Screenshot_2026-05-29_at_8.08.40_pm_jaqvhc.png
+  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382991/IMG_1167_photo_i8izgs.heic
 elsewhere:
   eyebrow: Press · further reading
   heading: Elsewhere on the topic
