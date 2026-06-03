@@ -1,7 +1,7 @@
 ---
 title: 04 Animal Flow
 eyebrow: Animal Flow Sydney · Regional Leader
-heroHeadline: Animal Flow. Ground-based movement for the brain and body.
+heroHeadline: Animal Flow®. Ground-based movement for the brain and body.
 heroSubcopy: Quadrupedal Movement Training that builds strength, range and
   confidence on the floor. Beginner-friendly to experienced flowist. Run by
   Sydney's Animal Flow Regional Leader with ten years of coaching experience.
@@ -44,11 +44,12 @@ l1Cert:
   eyebrow: For the keen
   heading: Going further — L1 certification
   lead: If you want to teach Animal Flow, or just go deep into the system, I run
-    prep sessions for the L1 certification. As Sydney's Regional Leader I've
-    helped dozens of people walk into their cert ready.
-  closingLine: Get in touch and we'll map a path. Usually three to six months of
-    prep depending on where you're starting.
-  ctaLabel: Ask about L1 prep
+    prep sessions for the L1 certification or simply help you after the workshop
+    with your test-out process. As Sydney's Regional Leader I've helped dozens
+    of people walk into their cert ready and join the AF community, whether as a
+    coach or simply a movement enthusiast of the discipline.
+  closingLine: Get in touch and we'll map a path best suited for you.
+  ctaLabel: Ask about L1 Workshop
   ctaHref: /contact
 finalCta:
   heading: Come and play on the floor
