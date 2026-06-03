@@ -9,6 +9,7 @@ primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
+youtubeVideoId: https://youtube.com/shorts/E-6EYtpqOEg?feature=share
 ifFamiliar:
   eyebrow: Sound familiar?
   heading: If you've thought "this isn't my scene"…
