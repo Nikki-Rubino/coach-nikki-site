@@ -13,8 +13,9 @@ secondaryCtaHref: /timetable
 doors:
   eyebrow: Find your crew
   heading: Pick your vibe...
-  lead: Pick the one that sounds like you. I'll meet you there. pssst it's also ok
-    to bit of both.
+  lead: |-
+    Pick the one that sounds like you. I'll meet you there. 
+    pssst it's also ok to be bit of both.
   items:
     - tag: "Strong and Sassy Squad: The Classics"
       tagStyle: pink
