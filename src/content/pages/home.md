@@ -15,7 +15,7 @@ doors:
   heading: Pick your vibe...
   lead: |-
     Pick the one that sounds like you. I'll meet you there. 
-    pssst it's also ok to be bit of both.
+    pssst it's also ok to be a bit of both.
   items:
     - tag: "Strong and Sassy Squad: The Classics"
       tagStyle: pink
