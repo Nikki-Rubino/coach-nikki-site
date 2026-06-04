@@ -3,7 +3,8 @@ title: 01 Home
 eyebrow: Coach Nikki · Matraville, Sydney
 heroHeadline: Strength is ageless.
 heroSubcopy: I help over 30s through 90s eliminate pain, build confidence, and
-  get strong for life. No mirrors. No grunting. No judgement.
+  get strong for life. No mirrors. No grunting. No judgement. 1:1 and
+  Semi-Private coaching available.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780195263/Nikki_BioPic_qz7sd0.png
 primaryCtaLabel: Book your intro session
 primaryCtaHref: /get-started
@@ -11,15 +12,16 @@ secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
 doors:
   eyebrow: Find your crew
-  heading: Who you might be
-  lead: Pick the one that sounds like you. I'll meet you there.
+  heading: Pick your vibe...
+  lead: Pick the one that sounds like you. I'll meet you there. pssst it's also ok
+    to bit of both.
   items:
     - tag: "Strong and Sassy Squad: The Classics"
       tagStyle: pink
-      heading: I'm 55+ and want to feel strong again.
+      heading: I'm 55+ and want to feel strong and confident, for me and future me.
       body: You've fallen out of love with training. Or you simply never had the
-        chance to do it consistently. Small group strength training for the 55+
-        crew. Real lifts, classic music, no intimidation.
+        chance to do it confidently and consistently. Small group strength
+        training for the 55+ crew. Real lifts, classic music, no intimidation.
       href: /sassy-seniors
       imageHint: Senior client mid-deadlift
       arrowLabel: Learn more →
@@ -37,8 +39,13 @@ doors:
     - tag: Animal Flow Sydney
       tagStyle: orange
       heading: I'm curious about Animal Flow.
-      body: Learn from the Sydney Regional Leader with 10 years' experience. Skills
-        sessions, build-a-flow sessions, or help passing your L1 certification.
+      body: >-
+        You have heard about ground-based movement but are unsure what it is or
+        where to start. You don't want to look like a fool and curious - "could
+        my body even do this?" I can assure you our motto is "no one gets left
+        behind here!".
+
+        Learn from the Sydney Regional Leader with 10 years' experience. Skills sessions for foundations, build-a-flow sessions to unleash your creativity and brain power, or simply need help passing your L1 certification and getting welcomed into the AF global community.
       href: /animal-flow
       imageHint: Animal Flow movement
       arrowLabel: Learn more →
@@ -62,19 +69,19 @@ promise:
 arc:
   eyebrow: How we start
   heading: Three sessions, one foundation
-  lead: Every new client begins with three private sessions. I'll assess where
-    your body is at, build your foundations, and together we'll figure out where
-    to go next.
+  lead: Every new legendary human begins with three private sessions. I'll assess
+    where your body is at, build your foundations, and together we'll figure out
+    where to go next.
   steps:
     - title: Joint assessment
       body: We map how your body actually moves. Joint range, baseline movements,
         history. Gentle, methodical.
     - title: Strength foundations
-      body: Squat. Deadlift. Push. Pull. The four lifts that build the strength to do
+      body: Squat. Deadlift. Push. Pull. The lifts that build the strength to do
         everyday life well.
     - title: Animal Flow foundations
-      body: Beast, crab, limb lifts, underswitch. Ground-based training that unlocks
-        strength, range, resilience and confidence.
+      body: Beast, crab, limb lifts, underswitch. An introduction to ground-based
+        training that unlocks strength, range, resilience and confidence.
   introCtaHeadline: Ready to start? Intro is $399 upfront, or $450 over three weeks.
   introCtaSubcopy: "After your three sessions you choose: continue 1:1, or join
     semi-private sessions."
