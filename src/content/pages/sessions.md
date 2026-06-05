@@ -5,7 +5,7 @@ heroHeadline: Sessions for every BODY.
 heroSubcopy: >-
   If gyms have ever felt loud, lost, or just not built for you, I invite you to
   the alternative. Real coaching and a community that actually notices when you
-  show up. (and feel it when you don't)
+  show up. (and feel it when you don't).
 
 
   This is where movement gets to feel good again. Sessions are small on purpose, capped at 4 to 10 people, because you're not a number in our sessions; you're a person with a history, a body, and goals worth coaching properly.
