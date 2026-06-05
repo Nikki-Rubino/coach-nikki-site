@@ -8,6 +8,7 @@ heroSubcopy: >-
   show up. (and feel it when you don't)
 
 
+
   This is where movement gets to feel good again. Sessions are small on purpose, capped at 4 to 10 people, because you're not a number in our sessions; you're a person with a history, a body, and goals worth coaching properly.
 
 
