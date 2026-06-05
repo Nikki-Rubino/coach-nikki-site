@@ -88,8 +88,18 @@ h2.section {
   margin-bottom: 14px;
 }
 h3 { font-size: 20px; font-weight: 700; color: var(--black); }
-.lead { font-size: 19px; color: var(--ink); max-width: 640px; }
+.lead { font-size: 19px; color: var(--ink); max-width: 640px; white-space: pre-line; }
 .muted { color: var(--muted); }
+
+/* ---------- CMS multi-paragraph text ----------
+   Decap "text" widgets (hero subcopy, leads, final-CTA copy, etc.) save
+   blank-line-separated paragraphs as \n\n. white-space: pre-line preserves
+   those blank lines so the live site matches what the admin textarea shows.
+   Single soft-wraps inside a paragraph are folded to spaces by YAML, so this
+   only ever inserts the paragraph breaks the editor actually typed. */
+.af-hero p,
+.speaking-hero p,
+.cta-strip p { white-space: pre-line; }
 
 /* ---------- buttons ---------- */
 .btn-primary {
