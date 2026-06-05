@@ -8,7 +8,6 @@ heroSubcopy: >-
   show up. (and feel it when you don't)
 
 
-
   This is where movement gets to feel good again. Sessions are small on purpose, capped at 4 to 10 people, because you're not a number in our sessions; you're a person with a history, a body, and goals worth coaching properly.
 
 
@@ -24,7 +23,9 @@ secondaryCtaHref: /timetable
 intro:
   eyebrow: The full list
   heading: Every session, side by side
-  lead: Choose from a 1, 2, or 3+ sessions-a-week membership.
+  lead: |-
+    Choose from a 1, 2, or 3+ sessions-a-week membership.
+    Minimum 6-week commitment.
   closingLine: Weekly unlimited covers 3 to 4 sessions per week across any
     combination of the semi-private offerings above.
 finalCta:
