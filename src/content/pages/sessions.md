@@ -2,8 +2,12 @@
 title: 02 Sessions
 eyebrow: What's on offer
 heroHeadline: Sessions for every BODY.
-heroSubcopy: 1:1, semi-private, classics, Animal Flow, breath and mobility. Pick
-  what you need. Your weekly unlimited covers them all.
+heroSubcopy: >-
+  No gym vibes. Small group, big strength and community gains, real-time
+  coaching. 
+
+  1:1 and semi-private sessions. Semi-Private memberships include Strength, Strength-classics, Animal Flow, and Mobility. Sessions are capped at 4-10 legendary humans.
+heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780648718/WEBITESITE_HERO1_xgst3t.jpg
 primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
@@ -11,8 +15,7 @@ secondaryCtaHref: /timetable
 intro:
   eyebrow: The full list
   heading: Every session, side by side
-  lead: All semi-private sessions sit on the same price. Pick what fits your body,
-    your week, your mood.
+  lead: Choose from a 1, 2, or 3+ sessions-a-week membership.
   closingLine: Weekly unlimited covers 3 to 4 sessions per week across any
     combination of the semi-private offerings above.
 finalCta:
