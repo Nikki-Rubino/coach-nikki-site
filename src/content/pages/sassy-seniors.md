@@ -1,15 +1,27 @@
 ---
 title: 03 Sassy Seniors
 eyebrow: Sassy Seniors · Strong & Sassy Classics
-heroHeadline: Strength training that meets you where you are.
-heroSubcopy: For the 55+ crew who want to keep doing the things they love. Up to
-  6 in a session. Real strength work. Music from the good years.
+heroHeadline: For the 55+ crew who are done being overlooked
+heroSubcopy: >-
+  "We don't stop playing because we grow old. We grow old because we stop
+  playing."
+
+  — George Bernard Shaw (a man who clearly knew what was up)
+
+
+  We bring back the play, the strength, the balance, and the banter from before everything got too sensored. You are stronger than you think. Not "strong for your age." Just strong.
+
+
+  Real strength work, real coaching, and the firm belief that ageing is a privilege. We show up for it, get strong for it, and have a bloody good time doing it, for as long as our lil hearts desire.
+
+
+  Capped at 6. Everyone coached. Music from the good years.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780465911/45_WebsiteSassTrio_uvdzs8.jpg
 primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
-youtubeVideoId: https://youtube.com/shorts/E-6EYtpqOEg?feature=share
+youtubeVideoId: E-6EYtpqOEg
 ifFamiliar:
   eyebrow: Sound familiar?
   heading: If you've thought "this isn't my scene"…
@@ -31,6 +43,7 @@ realStrength:
     - We do it with classic music and all personalities.
     - We do it safely, scaled to where your body is today.
   closingLine: The music may be on the classics side. The strength gains are still elite.
+  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780654332/Screenshot_2026-05-29_at_8.20.15_pm_qygcta.png
 format:
   eyebrow: The format
   heading: Small sessions. Real coaching. Off-peak times.
