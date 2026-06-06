@@ -1,98 +1,103 @@
 ---
-title: "06 Pricing"
-eyebrow: "Simple, honest pricing"
-heroHeadline: "One rate per session. One rate for the week. That's it."
-heroSubcopy: "Whichever session you choose, the price is the same. Weekly unlimited covers three to four sessions a week across any combination."
-primaryCtaLabel: "Book your intro"
-primaryCtaHref: "/get-started"
-secondaryCtaLabel: "Have a question"
-secondaryCtaHref: "/contact"
-seoTitle: "Pricing — Coach Nikki Matraville"
-seoDescription: "Coach Nikki pricing: 1:1 at $150, three session intro at $399 upfront or $450 split, semi-private at $55 or $150 weekly unlimited."
+title: 06 Pricing
+eyebrow: Simple, honest pricing
+heroHeadline: Choose a 1, 2 or 3+ session weekly Membership
+heroSubcopy: >-
+  Choose how many sessions per week you want to attend. Weekly membership covers
+  any session of your choice. Choose, Book In, and simply come on in.
 
+  Weekly unlimited covers over 3 sessions per week.
+heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780737842/IMG_5306_photo_jhxlpo.heic
+primaryCtaLabel: Book your intro
+primaryCtaHref: /get-started
+secondaryCtaLabel: Have a question
+secondaryCtaHref: /contact
 tiers:
-  eyebrow: "Three ways in"
-  heading: "What you'll pay"
+  eyebrow: Three ways in
+  heading: What you'll pay
   items:
-    - label: "Three session intro"
-      amount: "$399"
-      amountNote: "upfront"
-      desc: "or $450 split across three weeks"
+    - label: Three session intro
+      amount: $399
+      amountNote: upfront
+      desc: or $450 split across three weeks
       bullets:
-        - "Three private sessions with me"
-        - "Joint assessment, strength + movement foundations"
-        - "Required before any group session"
-        - "Choose your next step at session three"
-      ctaLabel: "Book your intro"
-      ctaHref: "/get-started"
+        - Three private sessions with me
+        - Joint assessment, strength + movement foundations
+        - Required before any group session
+        - Choose your next step at session three
+      ctaLabel: Book your intro
+      ctaHref: /get-started
       featured: true
-    - label: "1:1 coaching"
-      amount: "$150"
-      amountNote: "per session"
-      desc: "My full attention. 60 minutes."
+    - label: 1:1 coaching
+      amount: $150
+      amountNote: per session
+      desc: My full attention. 60 minutes.
       bullets:
-        - "Best for injury rehab, complex needs, faster progress"
-        - "Programmed week to week around your goals"
-        - "Book individually or in blocks"
-        - "Limited slots — weekday middles preferred"
-      ctaLabel: "See all 1:1 details →"
-      ctaHref: "/sessions"
+        - Best for injury rehab, complex needs, faster progress
+        - Programmed week to week around your goals
+        - Book individually or in blocks
+        - Limited slots — weekday middles preferred
+      ctaLabel: See all 1:1 details →
+      ctaHref: /sessions
       featured: false
-    - label: "Semi-private weekly"
-      amount: "$150"
-      amountNote: "per week unlimited"
-      desc: "or $55 per single session"
+    - label: Semi-private weekly
+      amount: $150
+      amountNote: per week unlimited
+      desc: or $55 per single session
       bullets:
-        - "3 to 4 sessions per week, any combination"
-        - "Sassy Classics, Strength, Animal Flow, Breath & Mobility"
-        - "Direct debit through Square"
-        - "Pause with 7 days notice"
-      ctaLabel: "See the timetable →"
-      ctaHref: "/timetable"
+        - 3 to 4 sessions per week, any combination
+        - Sassy Classics, Strength, Animal Flow, Breath & Mobility
+        - Direct debit through Square
+        - Pause with 7 days notice
+      ctaLabel: See the timetable →
+      ctaHref: /timetable
       featured: false
-  closingLine: "All prices in AUD. GST included. Payments via Square — Apple Pay, Google Pay, card."
-
+  closingLine: All prices in AUD. GST included. Payments via Square — Apple Pay,
+    Google Pay, card.
 weeklyUnpacked:
-  eyebrow: "Weekly unlimited, unpacked"
-  heading: "One price. Every group session."
-  lead: "$150 a week gets you across the whole timetable. Numbers in each card are the per-session capacity caps."
+  eyebrow: Weekly unlimited, unpacked
+  heading: One price. Every group session.
+  lead: $150 a week gets you across the whole timetable. Numbers in each card are
+    the per-session capacity caps.
   capacityGrid:
     - number: "6"
-      label: "Sassy Classics"
+      label: Sassy Classics
     - number: "6"
-      label: "Strength semi-private"
+      label: Strength semi-private
     - number: "8"
-      label: "Animal Flow Skills + Build"
+      label: Animal Flow Skills + Build
     - number: "10"
-      label: "Breath & Mobility"
-  capacityCaption: "Capacity stays small. Sassy at 6, Strength at 6, Animal Flow at 8, Breath & Mobility at 10."
-
+      label: Breath & Mobility
+  capacityCaption: Capacity stays small. Sassy at 6, Strength at 6, Animal Flow at
+    8, Breath & Mobility at 10.
 policy:
-  eyebrow: "The policy"
-  heading: "Cancellations, paused weeks, no surprises"
-  lead: "Life happens. Here's the deal so we both know where we stand."
+  eyebrow: The policy
+  heading: Cancellations, paused weeks, no surprises
+  lead: Life happens. Here's the deal so we both know where we stand.
   items:
-    - heading: "1:1 cancellations"
+    - heading: 1:1 cancellations
       bullets:
         - "48+ hours notice: full credit"
         - "24 to 48 hours: half session lost"
         - "Less than 24 hours: full session lost"
-    - heading: "Weekly memberships"
+    - heading: Weekly memberships
       bullets:
         - "7 days notice to pause: week credited"
         - "Less than 7 days: week is lost"
-        - "Pause as often as you need — travel, illness, life"
-    - heading: "Group sessions"
+        - Pause as often as you need — travel, illness, life
+    - heading: Group sessions
       bullets:
-        - "Covered by weekly — no fee, just message me"
+        - Covered by weekly — no fee, just message me
         - "Casual one-off: 1:1 notice rules apply"
-        - "Waitlists run for full sessions"
-
+        - Waitlists run for full sessions
 finalCta:
-  heading: "Pick your starting point"
-  lead: "The three session intro opens the door to everything else."
-  ctaLabel: "Book your intro"
-  ctaHref: "/get-started"
-  ctaSecondaryLabel: "Ask a question first →"
-  ctaSecondaryHref: "/contact"
+  heading: Pick your starting point
+  lead: The three session intro opens the door to everything else.
+  ctaLabel: Book your intro
+  ctaHref: /get-started
+  ctaSecondaryLabel: Ask a question first →
+  ctaSecondaryHref: /contact
+seoTitle: Pricing — Coach Nikki Matraville
+seoDescription: "Coach Nikki pricing: 1:1 at $150, three session intro at $399
+  upfront or $450 split, semi-private at $55 or $150 weekly unlimited."
 ---
