@@ -1,6 +1,6 @@
 ---
 title: 04 Animal Flow
-eyebrow: Animal Flow Sydney · Regional Leader
+eyebrow: Animal Flow Sydney ·
 heroHeadline: Animal Flow®. Ground-based movement for the brain and body.
 heroSubcopy: Quadrupedal Movement Training that builds strength, range and
   confidence on the floor. Beginner-friendly to experienced flowist. Run by
