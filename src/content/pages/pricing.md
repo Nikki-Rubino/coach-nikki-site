@@ -4,7 +4,9 @@ eyebrow: Simple, honest pricing
 heroHeadline: Choose a 1, 2 or 3+ session weekly Membership
 heroSubcopy: >-
   Choose how many sessions per week you want to attend. Weekly membership covers
-  any session of your choice. Choose, Book In, and simply come on in.
+  any session of your choice. 
+
+  Choose, Book In, and simply come on in.
 
   Weekly unlimited covers over 3 sessions per week.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780737842/IMG_5306_photo_jhxlpo.heic
