@@ -2,9 +2,11 @@
 title: 04 Animal Flow
 eyebrow: Animal Flow Sydney ·
 heroHeadline: Animal Flow®. Ground-based movement for the brain and body.
-heroSubcopy: Quadrupedal Movement Training that builds strength, range and
-  confidence on the floor. Beginner-friendly to experienced flowist. Run by
-  Sydney's Animal Flow Regional Leader with ten years of coaching experience.
+heroSubcopy: You're training hard but something still feels off, a shoulder that
+  seized up, a hip that won't cooperate, a body that moves great until it
+  suddenly doesn't. That's the gap. Animal Flow fills it - with movement
+  freedom, creative expression, strength and resilience you didn't know you were
+  missing.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780381822/IMG_5293_photo_qwqn7d.heic
 primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
@@ -42,12 +44,13 @@ foundations:
   introCtaHref: /get-started
 l1Cert:
   eyebrow: For the keen
-  heading: Going further — L1 certification
-  lead: If you want to teach Animal Flow, or just go deep into the system, I run
-    prep sessions for the L1 certification or simply help you after the workshop
-    with your test-out process. As Sydney's Regional Leader I've helped dozens
-    of people walk into their cert ready and join the AF community, whether as a
-    coach or simply a movement enthusiast of the discipline.
+  heading: Going further - L1 certification or Animal Flow On demand
+  lead: >-
+    If you want to teach Animal Flow, or just delve deep into the system, ask me
+    about the next Certification Workshop details. Certification Workshops come
+    1-2 times a year; don't miss your chance (or a cheeky discount code).
+
+    Want to learn from the comfort of home as me about the Animal Flow On Demand Channel.
   closingLine: Get in touch and we'll map a path best suited for you.
   ctaLabel: Ask about L1 Workshop
   ctaHref: /contact
@@ -64,18 +67,19 @@ seoDescription: Animal Flow Sydney with Coach Nikki, Regional Leader. Skills
   sessions for beginners, Build a Flow for all levels, L1 certification support.
   Matraville studio.
 ---
-Welcome to QMT - Quadrupedal Movement Training. 
+Welcome to QMT! Quadrupedal Movement Training. 
 
-Simply put, Animal Flow is a ground-based bodyweight system. 
+Simply put, it's a ground-based bodyweight system. But the "Animal" in Animal Flow is NOT about just mimicking animals - it's about YOU. Your whole vessel. The connection between your brain, body and central nervous system and how they all talk to each other.
 
-The "Animal" in Animal flow refers to not simply mimicking animals but rather the connection, communication and function of our Human Animal.
+Here's a thought: how many times have you been injured doing something while thinking about something else? Read that again. 
 
-What is that? **US** - Our whole vessel and how it all communicates with itself- brain, body and central nervous system.
-Think about it, how many times have you been injured **doing** something while **thinking** about something else? Read that again!
+Animal Flow brings you back into your body, building real connection, control and joint range across all planes of motion. It exposes your limits, then quietly helps fix them. 
 
-Animal Flow is a chance to really gain connection and control of how your body can truely move, in all planes of motion and introduce better joint range and stability. A great accompaniment to regular strength training & perfect for women in perimenopause to keep an eye on that shoulder joint range. No matter how you enjoy to move or train, Animal Flow can expose and limits and then help correct them.
+A brilliant companion to strength training, and particularly powerful for women in perimenopause, keeping an eye on that shoulder joint range (hi menopause frozen shoulder, we know your tricks).
 
-* Builds joint resilience for hips, shoulders, wrists, spine
-* Develops coordination, balance, and proprioception
-* No equipment. No mirrors. Just you, the floor, your breath and the music
+No equipment. No mirrors. Just you, the floor, your breath and the music.
+
+* Builds joint resilience for hips, shoulders, wrists and spine
+* Develops coordination, balance and proprioception
 * Scales from total beginner to certified instructor
+* Led Animal Flow Sydney Regional Leader, coaching and practising herself since 2016
