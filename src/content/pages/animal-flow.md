@@ -50,7 +50,7 @@ l1Cert:
     about the next Certification Workshop details. Certification Workshops come
     1-2 times a year; don't miss your chance (or a cheeky discount code).
 
-    Want to learn from the comfort of home as me about the Animal Flow On Demand Channel.
+    Want to learn from the comfort of home ask me about the Animal Flow On Demand Channel.
   closingLine: Get in touch and we'll map a path best suited for you.
   ctaLabel: Ask about L1 Workshop
   ctaHref: /contact
