@@ -43,7 +43,7 @@ realStrength:
     - We do it with classic music and all personalities.
     - We do it safely, scaled to where your body is today.
   closingLine: The music may be on the classics side. The strength gains are still elite.
-  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780654332/Screenshot_2026-05-29_at_8.20.15_pm_qygcta.png
+  image: https://res.cloudinary.com/db6eijltv/image/upload/c_auto,g_south,h_5000,w_4000/f_auto,q_auto/v1780654332/Screenshot_2026-05-29_at_8.20.15_pm_qygcta.png
 format:
   eyebrow: The format
   heading: Small sessions. Real coaching. Off-peak times.
