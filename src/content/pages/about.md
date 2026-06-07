@@ -1,7 +1,7 @@
 ---
 title: 07 About
 eyebrow: Hi, I'm Nikki
-heroHeadline: Strength coach,      AF Regional Leader,      professional
+heroHeadline: Strength coach,           AF Regional Leader,      professional
   advocate for ageing well.
 heroSubcopy: >-
   Your body has a history. A story. An adaptation to every level of this game of
