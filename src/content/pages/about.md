@@ -1,8 +1,8 @@
 ---
 title: 07 About
 eyebrow: Hi, I'm Nikki
-heroHeadline: Coach Nikki — strength coach, Animal Flow Regional Leader,
-  professional advocate for ageing well.
+heroHeadline: Strength coach, Animal Flow Regional Leader, professional advocate
+  for ageing well.
 heroSubcopy: >-
   Your body has a history. A story. An adaptation to every level of this game of
   life you've moved through so far. It's been through things, and niggles are
