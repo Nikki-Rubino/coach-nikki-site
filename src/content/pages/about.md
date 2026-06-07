@@ -3,10 +3,16 @@ title: 07 About
 eyebrow: Hi, I'm Nikki
 heroHeadline: Coach Nikki — strength coach, Animal Flow Regional Leader,
   professional advocate for ageing well.
-heroSubcopy: I work with people who feel out of place in a typical gym. The over
-  30s, the over 70s, the ones with niggles and histories and stories. I help
-  them build real strength, move with confidence, and stop letting their bodies
-  dictate what they can and can't do.
+heroSubcopy: >-
+  Your body has a history. A story. An adaptation to every level of this game of
+  life you've moved through so far. It's been through things, and niggles are
+  more than likely part of the package.
+
+
+  That doesn't mean strength, movement and feeling good in your body aren't for you. It simply means you need a different approach. A coach who gets it, without the noise and distraction of a typical gym environment.
+
+
+  Curious but hesitant? That's completely valid. All you need to do is show up, and I'll take care of the rest.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780195263/Nikki_BioPic_qz7sd0.png
 primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
@@ -41,6 +47,7 @@ studio:
     - Dazzle of zebras energy. Yes that's a real collective noun
   closingLine: Unit 3 / 60 Perry Street, Matraville NSW 2036.
   image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382972/Screenshot_2026-05-29_at_8.08.40_pm_jaqvhc.png
+storyImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780803294/IMG_3458_photo_wssvif.jpg
 finalCta:
   heading: Curious to meet the room?
   lead: The three session intro is how everyone starts. After that, the door's
@@ -54,11 +61,16 @@ seoDescription: "Coach Nikki: Sydney-based strength and movement coach, Fuel
   Woman of the Year 2025, Animal Flow Regional Leader. Specialising in over-30s
   coaching at the Matraville studio."
 ---
+Like a lot of young Aussies, I moved to London at 21 and somehow ended up in gym membership sales (better than a usual pub job, I guess). Once back home, a friend-of-a-friend landed me a job in TV advertising, pretty sure I only got it because I was free on a Monday. Twelve years later, I was good at it. But I wasn't *well*.
 
-*[Replace these three placeholder paragraphs with your real story. Click into this Body field in the CMS to edit.]*
+The turning point came when I lost my big sister. Watching my ageing parents made something click. I enrolled in my fitness certs purely to help them, and a personal mission quietly became a career change at 33.
 
-I came to coaching the long way round. Studied, lifted, taught, learned, taught again. The thread through all of it has been the same: bodies are smart, they remember, and the right kind of attention changes what they can do.
+My first mentor, Joe, pushed me out of my comfort zone early, and my first clients did the rest. Shoulder bursitis, hip issues, brain injuries, wheelchairs. I learned fast that real coaching means adapting, not just programming, and that nobody should ever feel inadequate for where their body is right now.
 
-The turning point was watching a 68-year-old client deadlift her own bodyweight for the first time. The look on her face said everything I needed to know about who I wanted to coach.
+Discovering Animal Flow deepened that understanding completely. It showed me how truly connected the body is, and how disconnected we become through repetitive movement patterns, long periods of no movement at all, or simply the wear of living. Those gaps don't make you broken. They just show us where to start.
 
-So I built the studio I wished existed. Lights off, glow on, classics on the speakers, no mirrors on the walls. A place for people who'd been told the gym wasn't for them.
+I've also witnessed firsthand how a decline in physical health directly correlates with a decline in mental health and confidence. The two are inseparable - and that's exactly why this work matters!
+
+My niche found me gradually, then my dad made it official - his hip replacement recovery - humbling, frustrating, and one of the most rewarding things I've done. That opened the door to more stories. A client washing her own hair after a frozen shoulder. Decades of knee pain gone just in time for a holiday.
+
+These are the people I love coaching. They show up, work hard, and watching their confidence grow never gets old. Today I want to help you get started too.
