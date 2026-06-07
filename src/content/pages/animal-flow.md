@@ -82,4 +82,4 @@ No equipment. No mirrors. Just you, the floor, your breath and the music.
 * Builds joint resilience for hips, shoulders, wrists and spine
 * Develops coordination, balance and proprioception
 * Scales from total beginner to certified instructor
-* Led Animal Flow Sydney Regional Leader, coaching and practising herself since 2016
+* Led by Animal Flow Sydney Regional Leader, coaching and practising herself since 2016
