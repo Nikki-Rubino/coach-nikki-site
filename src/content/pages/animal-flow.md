@@ -69,16 +69,16 @@ seoDescription: Animal Flow Sydney with Coach Nikki, Regional Leader. Skills
 ---
 Welcome to QMT! Quadrupedal Movement Training. 
 
-Simply put, it's a ground-based bodyweight system. But the "Animal" in Animal Flow is NOT about just mimicking animals - it's about YOU. Your whole vessel. The connection between your brain, body and central nervous system and how they all talk to each other.
+Simply put, it's a ground-based bodyweight system. But the "Animal" in Animal Flow is NOT about just mimicking animals - it's about YOU. Your whole vessel. The connection between your brain, body and central nervous system and how they all talk to each other. 
 
 Here's a thought: how many times have you been injured doing something while thinking about something else? Read that again. 
 
 Animal Flow brings you back into your body, building real connection, control and joint range across all planes of motion. It exposes your limits, then quietly helps fix them. 
 
-A brilliant companion to strength training, and particularly powerful for women in perimenopause, keeping an eye on that shoulder joint range (hi menopause frozen shoulder, we know your tricks).
-
 No equipment. No mirrors. Just you, the floor, your breath and the music.
 
+* Brilliant companion to strength training
+* Powerful for women in perimenopause to keep an eye on that shoulder joint range! (hi, sneaky frozen shoulder, we know your tricks)
 * Builds joint resilience for hips, shoulders, wrists and spine
 * Develops coordination, balance and proprioception
 * Scales from total beginner to certified instructor
