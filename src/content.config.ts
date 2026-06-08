@@ -247,8 +247,10 @@ const pages = defineCollection({
         heading: z.string().optional(),
         lead: z.string().optional(),
         tiles: z.array(Tile).optional(),
-        /** Optional row of 3–4 photos shown under the philosophy block on /about */
-        photos: z.array(z.object({ image: z.string() })).optional(),
+        /** Optional row of 3–4 photos shown under the philosophy block on /about.
+         *  Stored as plain image-URL strings to match the Decap CMS list (single
+         *  `field:` image widget), so CMS edits don't break the schema. */
+        photos: z.array(z.string()).optional(),
       })
       .optional(),
     studio: z

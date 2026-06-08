@@ -82,7 +82,7 @@ const credentialsList = (await getCollection('credentials', (e) => !e.data.draft
           {philosophy.photos && philosophy.photos.length > 0 ? (
             philosophy.photos.map((p) => (
               <div class="ph">
-                <img src={p.image} alt="Strength is ageless" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <img src={p} alt="Strength is ageless" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
               </div>
             ))
           ) : (
