@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SessionsArc from '../components/SessionsArc.astro';
 
 const page = await getEntry('pages', 'animal-flow');
 const hero = page?.data ?? {
@@ -161,39 +162,8 @@ const finalCta = page?.data?.finalCta;
     </div>
   </section>
 
-  <!-- HOW WE START — content from src/content/site/af-foundations-arc.md -->
-  {foundations && (
-    <section>
-      <div class="container">
-        {foundations.eyebrow && <span class="eyebrow">{foundations.eyebrow}</span>}
-        {foundations.heading && <h2 class="section">{foundations.heading}</h2>}
-        {foundations.lead && <p class="lead muted">{foundations.lead}</p>}
-        {foundations.steps && (
-          <div class="steps">
-            {foundations.steps.map((s) => (
-              <div class="step">
-                <h3>{s.title}</h3>
-                <p>{s.body}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        {foundations.introCtaHeadline && (
-          <div class="intro-cta">
-            <div>
-              <h3>{foundations.introCtaHeadline}</h3>
-              {foundations.introCtaSubcopy && <p>{foundations.introCtaSubcopy}</p>}
-            </div>
-            {foundations.introCtaLabel && (
-              <a class="btn-primary" href={foundations.introCtaHref ?? '/get-started'}>
-                {foundations.introCtaLabel}
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
-  )}
+  <!-- HOW WE START — shared steps + CTA (Shared content); header per-page from animal-flow.md → foundations -->
+  <SessionsArc eyebrow={foundations?.eyebrow} heading={foundations?.heading} lead={foundations?.lead} />
 
   <!-- L1 / CERT PATH — content from src/content/site/af-l1-cert.md -->
   {l1Cert && (

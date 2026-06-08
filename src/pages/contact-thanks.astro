@@ -20,7 +20,7 @@ const hero = page?.data ?? {
   description={page?.data.seoDescription}
   activeNav="contact"
 >
-  <section class="hero">
+  <section class="hero" style="grid-template-columns: 1fr;">
     <div>
       <span class="eyebrow">{hero.eyebrow}</span>
       <h1 class="display">{hero.heroHeadline}</h1>
@@ -31,9 +31,6 @@ const hero = page?.data ?? {
           <a class="btn-secondary" href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
         )}
       </div>
-    </div>
-    <div class="image">
-      <span class="ph-label">Photo: studio dazzle moment</span>
     </div>
   </section>
 

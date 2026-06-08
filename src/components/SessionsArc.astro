@@ -1,0 +1,57 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  /** Per-page header copy. Falls back to the shared singleton's own copy. */
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  /** Optional section background (e.g. "#fff") to preserve a page's rhythm. */
+  background?: string;
+}
+
+const { eyebrow, heading, lead, background } = Astro.props;
+
+// The three step boxes and the green intro CTA are shared across every page —
+// edit them once in Shared content → "Three-session arc" and all pages update.
+// The header (eyebrow / heading / lead) is passed per-page so each page can read
+// differently; if a page passes nothing, it falls back to the singleton's copy.
+const arc = await getEntry('site', 'sessions-arc');
+const d = arc?.data;
+const e = eyebrow ?? d?.eyebrow;
+const h = heading ?? d?.heading;
+const l = lead ?? d?.lead;
+---
+
+{d && (
+  <section style={background ? `background: ${background};` : undefined}>
+    <div class="container">
+      {e && <span class="eyebrow">{e}</span>}
+      {h && <h2 class="section">{h}</h2>}
+      {l && <p class="lead muted">{l}</p>}
+      {d.steps && d.steps.length > 0 && (
+        <div class="steps">
+          {d.steps.map((s) => (
+            <div class="step">
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {d.introCtaHeadline && (
+        <div class="intro-cta">
+          <div>
+            <h3>{d.introCtaHeadline}</h3>
+            {d.introCtaSubcopy && <p>{d.introCtaSubcopy}</p>}
+          </div>
+          {d.introCtaLabel && (
+            <a class="btn-primary" href={d.introCtaHref ?? '/get-started#intro-form'}>
+              {d.introCtaLabel}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+)}

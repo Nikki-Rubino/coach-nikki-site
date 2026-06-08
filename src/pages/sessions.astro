@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SessionsArc from '../components/SessionsArc.astro';
 
 const page = await getEntry('pages', 'sessions');
 const hero = page?.data ?? {
@@ -23,7 +24,6 @@ const sessionFaqs = (await getCollection('faqs', (e) => e.data.category === 'Ses
 
 // Shared CMS-editable singletons (used on multiple pages).
 const introBand = await getEntry('site', 'intro-band');
-const sessionsArc = await getEntry('site', 'sessions-arc');
 
 // Sessions blocks now live inside the page entry.
 const intro = page?.data?.intro;
@@ -140,39 +140,8 @@ const finalCta = page?.data?.finalCta;
     </div>
   </section>
 
-  <!-- HOW IT WORKS — content from src/content/site/sessions-arc.md -->
-  {sessionsArc && (
-    <section>
-      <div class="container">
-        {sessionsArc.data.eyebrow && <span class="eyebrow">{sessionsArc.data.eyebrow}</span>}
-        {sessionsArc.data.heading && <h2 class="section">{sessionsArc.data.heading}</h2>}
-        {sessionsArc.data.lead && <p class="lead muted">{sessionsArc.data.lead}</p>}
-        {sessionsArc.data.steps && sessionsArc.data.steps.length > 0 && (
-          <div class="steps">
-            {sessionsArc.data.steps.map((s) => (
-              <div class="step">
-                <h3>{s.title}</h3>
-                <p>{s.body}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        {sessionsArc.data.introCtaHeadline && (
-          <div class="intro-cta">
-            <div>
-              <h3>{sessionsArc.data.introCtaHeadline}</h3>
-              {sessionsArc.data.introCtaSubcopy && <p>{sessionsArc.data.introCtaSubcopy}</p>}
-            </div>
-            {sessionsArc.data.introCtaLabel && (
-              <a class="btn-primary" href={sessionsArc.data.introCtaHref ?? '/get-started'}>
-                {sessionsArc.data.introCtaLabel}
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
-  )}
+  <!-- HOW IT WORKS — shared steps + CTA (Shared content); header per-page from sessions.md → arc -->
+  <SessionsArc eyebrow={page?.data?.arc?.eyebrow} heading={page?.data?.arc?.heading} lead={page?.data?.arc?.lead} />
 
   <!-- FAQS -->
   {sessionFaqs.length > 0 && (

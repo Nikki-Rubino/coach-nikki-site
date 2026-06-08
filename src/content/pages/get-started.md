@@ -8,9 +8,10 @@ heroSubcopy: Every new client starts here. We figure out where your body is
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/c_auto,g_auto,h_5000,w_4000/f_auto,q_auto/v1780905614/IMG_5360_photo_iguogh.heic
 primaryCtaLabel: Tell me about you
 primaryCtaHref: "#intro-form"
-secondaryCtaLabel: Skip ahead and book
-secondaryCtaHref: "#book"
-acuityEmbedUrl: https://app.acuityscheduling.com/schedule.php?owner=39406984
+arc:
+  eyebrow: "How we start"
+  heading: "Three sessions, then you choose"
+  lead: "Same arc whether you end up in 1:1, semi-private, or Animal Flow. Each session is 60 minutes, paced for the body in front of me."
 expect:
   eyebrow: What to expect
   heading: A few practical things
@@ -31,11 +32,6 @@ expect:
         preferred way to learn? Tell me, I understand that some people like the
         words, some just need the demo, some prefer that tactile feedback. I can
         be as simple or as sciencey as you want.
-bookSection:
-  eyebrow: Step two
-  heading: Pick a time
-  lead: Lock in your first session below. I'll confirm by your preferred channel
-    after I've read your screening.
 finalCta:
   heading: Still got questions?
   lead: Drop me a message and I'll come back to you the same day.

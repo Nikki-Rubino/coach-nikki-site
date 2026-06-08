@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SessionsArc from '../components/SessionsArc.astro';
 
 // Editable hero copy comes from src/content/pages/home.md (via Decap CMS).
 const home = await getEntry('pages', 'home');
@@ -143,39 +144,8 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
     </section>
   )}
 
-  <!-- HOW IT WORKS — content from pages/home.md → arc -->
-  {arc && (
-    <section>
-      <div class="container">
-        {arc.eyebrow && <span class="eyebrow">{arc.eyebrow}</span>}
-        {arc.heading && <h2 class="section">{arc.heading}</h2>}
-        {arc.lead && <p class="lead muted">{arc.lead}</p>}
-        {arc.steps && (
-          <div class="steps">
-            {arc.steps.map((s) => (
-              <div class="step">
-                <h3>{s.title}</h3>
-                <p>{s.body}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        {arc.introCtaHeadline && (
-          <div class="intro-cta">
-            <div>
-              <h3>{arc.introCtaHeadline}</h3>
-              {arc.introCtaSubcopy && <p>{arc.introCtaSubcopy}</p>}
-            </div>
-            {arc.introCtaLabel && (
-              <a class="btn-primary" href={arc.introCtaHref ?? '/get-started'}>
-                {arc.introCtaLabel}
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
-  )}
+  <!-- HOW IT WORKS — shared steps + CTA (Shared content); header per-page from home.md → arc -->
+  <SessionsArc eyebrow={arc?.eyebrow} heading={arc?.heading} lead={arc?.lead} />
 
   <!-- SESSIONS -->
   {homeSessions.length > 0 && (

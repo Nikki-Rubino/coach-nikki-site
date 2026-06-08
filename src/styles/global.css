@@ -78,6 +78,11 @@ h1.display {
   line-height: 1.05;
   color: var(--black);
   margin-bottom: 18px;
+  /* Even out headline lines so no single word hangs on its own line.
+     Browser balances line lengths automatically; honours any manual
+     line breaks the editor adds (see white-space: pre-line below). */
+  text-wrap: balance;
+  white-space: pre-line;
 }
 h2.section {
   font-size: 38px;
@@ -86,6 +91,7 @@ h2.section {
   line-height: 1.15;
   color: var(--black);
   margin-bottom: 14px;
+  text-wrap: balance;
 }
 h3 { font-size: 20px; font-weight: 700; color: var(--black); }
 .lead { font-size: 19px; color: var(--ink); max-width: 640px; white-space: pre-line; }
@@ -203,6 +209,15 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   font-size: 14px;
 }
 .wf-nav .cta:hover { background: var(--teal-dark); }
+/* Instagram icon link, sits just left of the Get started button */
+.wf-nav .ig-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wf-nav .ig-link:hover { color: var(--teal); }
+.wf-nav .ig-link svg { width: 22px; height: 22px; display: block; }
 
 /* ---------- placeholder image (swap for real <img> later) ---------- */
 .ph {

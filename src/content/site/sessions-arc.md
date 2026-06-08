@@ -1,22 +1,15 @@
 ---
-title: Sessions arc — three steps + intro CTA
-eyebrow: How we start
-heading: Three sessions, then you choose
-lead: Same arc whether you end up in 1:1, semi-private, or Animal Flow. Each
-  session is 60 minutes, paced for the body in front of me.
+title: "Sessions arc — shared steps + button"
+page: "Shared"
 steps:
-  - title: Joint assessment
-    body: We map how your body actually moves. Joint range, baseline movements,
-      history. Gentle, methodical.
-  - title: Strength foundations
-    body: Squat, deadlift, push, pull. The four lifts behind everyday strength.
-  - title: Movement foundations
-    body: A gentle introduction to ground-based work. Builds joint resilience and
-      confidence.
-introCtaHref: /get-started
-page: Shared
-introCtaHeadline: Intro is $399 upfront or $450 split over three weeks
-introCtaSubcopy: "After session three: continue 1:1, or join the semi-private
-  sessions. Your call."
-introCtaLabel: Tell me more
+  - title: "Joint assessment"
+    body: "We map how your body actually moves. Joint range, baseline movements, history. Gentle, methodical."
+  - title: "Strength foundations"
+    body: "Squat. Deadlift. Push. Pull. The lifts that build the strength to do everyday life well."
+  - title: "Animal Flow foundations"
+    body: "Beast, crab, limb lifts, underswitch. An introduction to ground-based training that unlocks strength, range, resilience and confidence."
+introCtaHeadline: "Ready to start? Intro is $399 upfront, or $450 over three weeks."
+introCtaSubcopy: "After your three sessions you choose: continue 1:1, or join semi-private sessions."
+introCtaLabel: "Take your first step"
+introCtaHref: "/get-started#intro-form"
 ---

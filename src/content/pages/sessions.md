@@ -20,6 +20,11 @@ primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
+arc:
+  eyebrow: How we start
+  heading: Three sessions, then you choose
+  lead: Same arc whether you end up in 1:1, semi-private, or Animal Flow. Each
+    session is 60 minutes, paced for the body in front of me.
 intro:
   eyebrow: The full list
   heading: Every session, side by side
