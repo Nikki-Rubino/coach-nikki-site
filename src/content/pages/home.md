@@ -6,7 +6,7 @@ heroSubcopy: I help over 30s through 90s eliminate pain, build confidence, and
   get strong for life. No mirrors. No grunting. No judgement. 1:1 and
   Semi-Private coaching available.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780195263/Nikki_BioPic_qz7sd0.png
-primaryCtaLabel: Book your intro session
+primaryCtaLabel: Take your first step
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
