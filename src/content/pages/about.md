@@ -1,8 +1,8 @@
 ---
 title: 07 About
 eyebrow: Hi, I'm Nikki
-heroHeadline: Strength coach,           AF Regional Leader,      professional
-  advocate for ageing well.
+heroHeadline: Strength coach,               AF Regional
+  Leader,      professional advocate for ageing well.
 heroSubcopy: >-
   Your body has a history. A story. An adaptation to every level of this game of
   life you've moved through so far. It's been through things, and niggles are
@@ -48,6 +48,7 @@ studio:
   closingLine: Unit 3 / 60 Perry Street, Matraville NSW 2036.
   image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382972/Screenshot_2026-05-29_at_8.08.40_pm_jaqvhc.png
 storyImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780803294/IMG_3458_photo_wssvif.jpg
+storyImage2: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780887415/WEBITESITE_Mikecoach_cj2qwt.jpg
 finalCta:
   heading: Curious to meet the room?
   lead: The three session intro is how everyone starts. After that, the door's
