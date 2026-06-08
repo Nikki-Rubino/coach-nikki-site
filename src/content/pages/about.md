@@ -33,20 +33,27 @@ philosophy:
     - word: Heard
       body: Communication on your terms. Banter if you want banter. Quiet focus if
         today's a quiet day. Your call, every session.
+  photos:
+    - https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780382984/IMG_1061_photo_eu2uxr.heic
+    - https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto/f_auto,q_auto/v1780887814/IMG_2788_photo_ozalor.heic
+    - https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_crop,g_north_west,h_746,w_994,x_386,y_466/f_auto,q_auto/v1780382972/Screenshot_2026-05-29_at_8.08.40_pm_jaqvhc.png
 studio:
-  eyebrow: The space
-  heading: A studio that feels like the work
-  lead: Matraville. Big lights off, glow lights on. Music from the good years —
-    the 50s through to the 2000s, depending on the crew that day. No mirrors, no
-    judgement, lolly jar by the door.
+  eyebrow: The Studio Space
+  heading: Come as you are. Leave stronger than you thought.
+  lead: Matraville. Big lights off, glow lights on. Music from the good years, the
+    50s through to the 2000s, depending on the crew that day. No mirrors, no
+    judgement, lolly jar in the cupboard.
   bullets:
-    - Off-street parking right out the front
-    - Equipment built for every body — bars, dumbbells, kettlebells, bands, mats
     - Small sessions by design. The biggest group caps at 10
+    - Simple and welcoming design. There is a client story behind every trinket
+      in here.
+    - Street and Off-street parking right out the front
     - Bathroom and change space on site
     - Dazzle of zebras energy. Yes that's a real collective noun
   closingLine: Unit 3 / 60 Perry Street, Matraville NSW 2036.
-  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382972/Screenshot_2026-05-29_at_8.08.40_pm_jaqvhc.png
+  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780900611/WEBITESITE_HERO_Studio_zle31h.jpg
+storyEyebrow: Adverting, loss, and an inconvenient calling
+storyHeading: 9 Years in, but what brought me here!
 storyImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780803294/IMG_3458_photo_wssvif.jpg
 storyImage2: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780887415/WEBITESITE_Mikecoach_cj2qwt.jpg
 finalCta:
