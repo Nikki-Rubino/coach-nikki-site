@@ -4,7 +4,7 @@ eyebrow: What's on this week
 heroHeadline: The weekly timetable
 heroSubcopy: All sessions, all capacities. Have a look around. New clients start
   with a three-session intro before joining any group.
-heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780381738/Semi_Private_Times_hwggtz.png
+heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780881667/Timetable_tf8cah.png
 acuityEmbedUrl: https://app.acuityscheduling.com/schedule.php?owner=39406984
 paths:
   eyebrow: How to book
