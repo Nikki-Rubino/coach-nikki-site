@@ -1,5 +1,5 @@
 ---
-import { getEntry, getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const page = await getEntry('pages', 'timetable');
@@ -10,8 +10,10 @@ const hero = page?.data ?? {
     'All sessions, all capacities. Have a look around. New clients start with a three-session intro before joining any group.',
 };
 
-const acuityUrl = page?.data?.acuityEmbedUrl;
-const paths = page?.data?.paths;
+// Static schedule image + intro note. Edit both in the CMS:
+// Page copy → 05 Timetable → Schedule image / Schedule note.
+const scheduleImage = page?.data?.scheduleImage;
+const scheduleNote = page?.data?.scheduleNote;
 ---
 
 <BaseLayout
@@ -30,162 +32,38 @@ const paths = page?.data?.paths;
     </div>
   </section>
 
-  {acuityUrl ? (
-    <!-- ACUITY LIVE EMBED -->
-    <section style="background: #fff; padding: 32px;">
-      <div class="container wide">
-        <iframe
-          src={acuityUrl}
-          title="Book a session — Coach Nikki"
-          width="100%"
-          height="800"
-          frameborder="0"
-          loading="lazy"
-        ></iframe>
-        <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript" is:inline></script>
-      </div>
-    </section>
-  ) : (
-    <>
-      <!-- PLACEHOLDER: static example grid until Acuity URL is configured -->
-      <div class="tt-filters">
-        <span class="label">Filter:</span>
-        <a class="tt-chip active">All sessions</a>
-        <a class="tt-chip"><span class="dot s-sassy"></span>Sassy Seniors</a>
-        <a class="tt-chip"><span class="dot s-strength"></span>Strength semi-private</a>
-        <a class="tt-chip"><span class="dot s-af"></span>Animal Flow</a>
-        <a class="tt-chip"><span class="dot s-breath"></span>Breath &amp; Mobility</a>
-        <a class="tt-chip"><span class="dot s-11"></span>1:1 slots</a>
-      </div>
-
-      <div class="tt-grid-wrap">
-        <div class="tt-grid">
-          <div class="gh"></div>
-          <div class="gh">Tue</div>
-          <div class="gh">Wed</div>
-          <div class="gh">Thu</div>
-          <div class="gh">Fri</div>
-          <div class="gh">Sat</div>
-          <div class="gh">Sun</div>
-
-          <div class="time-h">9:15 AM</div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell s-af"><div class="name">AF Skills</div><div class="cap">Capped at 8</div></div>
-          <div class="tt-cell empty"></div>
-
-          <div class="time-h">10:00 AM</div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell s-af"><div class="name">AF Build a Flow</div><div class="cap">Capped at 8</div></div>
-          <div class="tt-cell empty"></div>
-
-          <div class="time-h">11:00 AM</div>
-          <div class="tt-cell s-sassy"><div class="name">Strong &amp; Sassy</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell s-sassy"><div class="name">Strong &amp; Sassy</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell s-sassy"><div class="name">Strong &amp; Sassy</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell s-sassy"><div class="name">Strong &amp; Sassy</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-
-          <div class="time-h">12:30 PM</div>
-          <div class="tt-cell s-11"><div class="name">1:1 slot</div><div class="cap">By request</div></div>
-          <div class="tt-cell s-11"><div class="name">1:1 slot</div><div class="cap">By request</div></div>
-          <div class="tt-cell s-11"><div class="name">1:1 slot</div><div class="cap">By request</div></div>
-          <div class="tt-cell s-11"><div class="name">1:1 slot</div><div class="cap">By request</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-
-          <div class="time-h">5:15 PM</div>
-          <div class="tt-cell s-af"><div class="name">AF Build a Flow</div><div class="cap">Capped at 8</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell s-strength"><div class="name">Strength</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-
-          <div class="time-h">6:15 PM</div>
-          <div class="tt-cell s-strength"><div class="name">Strength</div><div class="cap">Capped at 6</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell s-breath"><div class="name">Breath &amp; Mobility</div><div class="cap">Capped at 10</div></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
-          <div class="tt-cell empty"></div>
+  <!-- STATIC SCHEDULE IMAGE — Page copy → 05 Timetable → Schedule image -->
+  <section style="background: #fff;">
+    <div class="container">
+      {scheduleImage ? (
+        <img
+          src={scheduleImage}
+          alt="Coach Nikki weekly semi-private timetable"
+          loading="eager"
+          style="width: 100%; height: auto; display: block; border-radius: 14px;"
+        />
+      ) : (
+        <div class="video-block" style="aspect-ratio: 16/9;">
+          <span class="ph-label">Add the timetable image in the CMS (Page copy → 05 Timetable → Schedule image)</span>
         </div>
+      )}
 
-        <div class="tt-legend">
-          <span class="leg"><span class="dot" style="background: var(--pink);"></span>Sassy Seniors</span>
-          <span class="leg"><span class="dot" style="background: var(--teal);"></span>Strength semi-private</span>
-          <span class="leg"><span class="dot" style="background: var(--orange);"></span>Animal Flow</span>
-          <span class="leg"><span class="dot" style="background: var(--yellow);"></span>Breath &amp; Mobility</span>
-          <span class="leg"><span class="dot" style="background: var(--warm-dark);"></span>1:1 slots</span>
-        </div>
-
-        <p class="muted" style="text-align: center; margin-top: 28px; font-size: 13px;">
-          Showing an example week. Live booking will appear here once Acuity is wired up.
-        </p>
-      </div>
-
-      <!-- Mobile list view -->
-      <div class="tt-mobile-list">
-        <div class="tt-day-block">
-          <div class="day-h-m">Tuesday</div>
-          <div class="slot"><span class="time">11:00am</span><span class="name">Strong &amp; Sassy</span><span class="cap">Capped at 6</span></div>
-          <div class="slot"><span class="time">12:30pm</span><span class="name">1:1 slot</span><span class="cap">By request</span></div>
-          <div class="slot"><span class="time">5:15pm</span><span class="name">AF Build a Flow</span><span class="cap">Capped at 8</span></div>
-          <div class="slot"><span class="time">6:15pm</span><span class="name">Strength</span><span class="cap">Capped at 6</span></div>
-        </div>
-        <div class="tt-day-block">
-          <div class="day-h-m">Wednesday</div>
-          <div class="slot"><span class="time">11:00am</span><span class="name">Strong &amp; Sassy</span><span class="cap">Capped at 6</span></div>
-          <div class="slot"><span class="time">12:30pm</span><span class="name">1:1 slot</span><span class="cap">By request</span></div>
-        </div>
-        <div class="tt-day-block">
-          <div class="day-h-m">Thursday</div>
-          <div class="slot"><span class="time">11:00am</span><span class="name">Strong &amp; Sassy</span><span class="cap">Capped at 6</span></div>
-          <div class="slot"><span class="time">5:15pm</span><span class="name">Strength</span><span class="cap">Capped at 6</span></div>
-          <div class="slot"><span class="time">6:15pm</span><span class="name">Breath &amp; Mobility</span><span class="cap">Capped at 10</span></div>
-        </div>
-        <div class="tt-day-block">
-          <div class="day-h-m">Friday</div>
-          <div class="slot"><span class="time">11:00am</span><span class="name">Strong &amp; Sassy</span><span class="cap">Capped at 6</span></div>
-        </div>
-        <div class="tt-day-block">
-          <div class="day-h-m">Saturday</div>
-          <div class="slot"><span class="time">9:15am</span><span class="name">AF Skills</span><span class="cap">Capped at 8</span></div>
-          <div class="slot"><span class="time">10:00am</span><span class="name">AF Build a Flow</span><span class="cap">Capped at 8</span></div>
-        </div>
-      </div>
-    </>
-  )}
-
-  <!-- HOW TO BOOK — content from src/content/site/timetable-paths.md -->
-  {paths && (
-    <section class="tt-howto">
-      <div class="container">
-        {paths.eyebrow && <span class="eyebrow">{paths.eyebrow}</span>}
-        {paths.heading && <h2 class="section">{paths.heading}</h2>}
-        {paths.cards && (
-          <div class="tt-howto-grid">
-            {paths.cards.map((c) => (
-              <div class="tt-howto-card">
-                <div class="icon">{c.icon}</div>
-                <h3>{c.label}</h3>
-                <p>{c.body}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        {paths.closingLine && (
-          <p class="muted" style="text-align: center; margin-top: 32px; font-size: 13px;">
-            {paths.closingLine}
-          </p>
-        )}
-      </div>
-    </section>
-  )}
+      {scheduleNote && (
+        <p class="tt-note">{scheduleNote}</p>
+      )}
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .tt-note {
+    max-width: 720px;
+    margin: 28px auto 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    background: var(--teal-light);
+    border-radius: 14px;
+    padding: 22px 26px;
+  }
+</style>

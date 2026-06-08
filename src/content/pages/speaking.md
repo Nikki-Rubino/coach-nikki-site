@@ -88,6 +88,17 @@ elsewhere:
       label: "Workshop: coaching the senior client"
       body: One-day workshop for coaches and studio owners on running effective
         strength programmes for the 55+ audience.
+podcasts:
+  eyebrow: On the mic
+  heading: Podcast conversations
+  lead: A couple of recent chats on coaching strength and confidence in the 55-plus crew.
+  items:
+    - title: "#13 Sassy Seniors With Coach Nikki"
+      embedUrl: https://open.spotify.com/embed/episode/3B0u3PXFxWFLlipi6HKd28
+      href: https://open.spotify.com/episode/3B0u3PXFxWFLlipi6HKd28
+    - title: Building Strength and Confidence in Older Adults with Nikki Rubino
+      embedUrl: https://open.spotify.com/embed/episode/0eKpkWL87PQP7N3GNQk6fu
+      href: https://open.spotify.com/episode/0eKpkWL87PQP7N3GNQk6fu
 finalCta:
   heading: Want to train with me?
   lead: "The 'Strong and Sassy: The Classics' sessions run four mornings a week at

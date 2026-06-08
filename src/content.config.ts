@@ -106,6 +106,19 @@ const pages = defineCollection({
     youtubeVideoId: z.string().optional(),
     /** Secondary video ID — used on /speaking for the vertical award-acceptance clip */
     awardVideoId: z.string().optional(),
+    /** Animal Flow hero badge text (orange pill) */
+    badgeText: z.string().optional(),
+    /** Timetable: static schedule image + intro note (replaces the live booking widget) */
+    scheduleImage: z.string().optional(),
+    scheduleNote: z.string().optional(),
+    /** Sassy Seniors: up to three photos shown under the video */
+    videoPhotos: z
+      .object({
+        image1: z.string().optional(),
+        image2: z.string().optional(),
+        image3: z.string().optional(),
+      })
+      .optional(),
 
     // ─── Home blocks ───────────────────────────────────────────────────
     doors: z
@@ -234,6 +247,8 @@ const pages = defineCollection({
         heading: z.string().optional(),
         lead: z.string().optional(),
         tiles: z.array(Tile).optional(),
+        /** Optional row of 3–4 photos shown under the philosophy block on /about */
+        photos: z.array(z.object({ image: z.string() })).optional(),
       })
       .optional(),
     studio: z
@@ -246,8 +261,11 @@ const pages = defineCollection({
         image: z.string().optional(),
       })
       .optional(),
-    /** Photo that sits next to the "My story" body content on /about */
+    /** "My story" block on /about — editable eyebrow/heading + up to two portrait photos */
+    storyEyebrow: z.string().optional(),
+    storyHeading: z.string().optional(),
     storyImage: z.string().optional(),
+    storyImage2: z.string().optional(),
 
     // ─── Get Started blocks ────────────────────────────────────────────
     expect: z
@@ -345,6 +363,23 @@ const pages = defineCollection({
         eyebrow: z.string().optional(),
         heading: z.string().optional(),
         cards: z.array(Card).optional(),
+      })
+      .optional(),
+    /** Podcasts / audio appearances — Spotify (or other) embeds on /speaking */
+    podcasts: z
+      .object({
+        eyebrow: z.string().optional(),
+        heading: z.string().optional(),
+        lead: z.string().optional(),
+        items: z
+          .array(
+            z.object({
+              title: z.string(),
+              embedUrl: z.string(),
+              href: z.string().optional(),
+            }),
+          )
+          .optional(),
       })
       .optional(),
 

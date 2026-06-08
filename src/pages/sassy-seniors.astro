@@ -29,6 +29,9 @@ const finalCta = page?.data?.finalCta;
 // Optional video block — only renders when youtubeVideoId is set in CMS.
 const ytId = page?.data?.youtubeVideoId;
 
+// Three photos under the video. Edit in CMS: Page copy → 03 Sassy Seniors → Video photos.
+const videoPhotos = page?.data?.videoPhotos;
+
 // Inna testimonial — first featured testimonial tagged "Sassy Seniors" if present.
 const featuredTestimonials = await getCollection('testimonials', (e) => e.data.featured);
 const innaTestimonial =
@@ -121,6 +124,35 @@ const innaTestimonial =
       </div>
     </section>
   )}
+
+  <!-- THREE PHOTOS UNDER THE VIDEO — Page copy → 03 Sassy Seniors → Video photos -->
+  <section style="background: #fff; padding-top: 0;">
+    <div class="container">
+      <div class="speaking-grid">
+        <div class="ph">
+          {videoPhotos?.image1 ? (
+            <img src={videoPhotos.image1} alt="Sassy Seniors session" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo 1: Sassy crew in session</span>
+          )}
+        </div>
+        <div class="ph">
+          {videoPhotos?.image2 ? (
+            <img src={videoPhotos.image2} alt="Sassy Seniors session" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo 2: a real smile mid-lift</span>
+          )}
+        </div>
+        <div class="ph">
+          {videoPhotos?.image3 ? (
+            <img src={videoPhotos.image3} alt="Sassy Seniors session" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo 3: the crew, post-session</span>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- IF THIS SOUNDS FAMILIAR — content from src/content/site/sassy-if-familiar.md -->
   {ifFamiliar && (

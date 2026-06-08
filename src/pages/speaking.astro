@@ -20,6 +20,7 @@ const speechIntro = page?.data?.speechIntro;
 const speechPull = page?.data?.speechPull;
 const passion = page?.data?.passion;
 const elsewhere = page?.data?.elsewhere;
+const podcasts = page?.data?.podcasts;
 const finalCta = page?.data?.finalCta;
 
 const ytId = page?.data?.youtubeVideoId;
@@ -220,6 +221,33 @@ const passionParas = (passion?.body ?? '')
     </section>
   )}
 
+  <!-- PODCASTS — Page copy → 10 Speaking → Podcasts -->
+  {podcasts?.items && podcasts.items.length > 0 && (
+    <section id="podcasts">
+      <div class="container narrow">
+        {podcasts.eyebrow && <span class="eyebrow">{podcasts.eyebrow}</span>}
+        {podcasts.heading && <h2 class="section">{podcasts.heading}</h2>}
+        {podcasts.lead && <p class="lead muted">{podcasts.lead}</p>}
+        <div class="podcast-list">
+          {podcasts.items.map((p) => (
+            <div class="podcast-item">
+              <iframe
+                src={p.embedUrl}
+                title={p.title}
+                width="100%"
+                height="152"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                style="border-radius: 12px;"
+              ></iframe>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- FINAL CTA — content from src/content/site/speaking-final-cta.md -->
   {finalCta && (
     <section class="cta-strip">
@@ -238,3 +266,11 @@ const passionParas = (passion?.body ?? '')
     </section>
   )}
 </BaseLayout>
+
+<style>
+  .podcast-list {
+    display: grid;
+    gap: 20px;
+    margin-top: 28px;
+  }
+</style>

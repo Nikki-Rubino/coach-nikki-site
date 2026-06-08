@@ -43,7 +43,7 @@ const finalCta = page?.data?.finalCta;
   <section class="af-hero">
     <div class="grid">
       <div>
-        <span class="af-badge">★ Sydney Regional Leader · 10 years</span>
+        <span class="af-badge">{page?.data?.badgeText ?? '★ Sydney Regional Leader · 10 years'}</span>
         <h1>{hero.heroHeadline}</h1>
         <p>{hero.heroSubcopy}</p>
         <div style="margin-top: 28px;">

@@ -225,6 +225,16 @@ collections:
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
           - { name: youtubeVideoId, label: "VIDEO (optional) · YouTube video ID for the section below the hero (e.g. clip of clients training). Leave blank to skip the video section.", widget: string, required: false }
 
+          - name: videoPhotos
+            label: "VIDEO PHOTOS · Three photos under the video"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: image1, label: "Photo 1", widget: image, required: false }
+              - { name: image2, label: "Photo 2", widget: image, required: false }
+              - { name: image3, label: "Photo 3", widget: image, required: false }
+
           - name: ifFamiliar
             label: "IF FAMILIAR · 'This isn't my scene' bullets"
             widget: object
@@ -303,6 +313,7 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: badgeText, label: "HERO · Orange badge text (the pill, e.g. ★ Sydney Regional Leader · 10 years)", widget: string, required: false }
           - { name: youtubeVideoId, label: "VIDEO · YouTube video ID (the 11-char bit after watch?v= in the URL)", widget: string, required: false }
 
           - name: whatIs
@@ -384,25 +395,8 @@ collections:
           - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
           - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
           - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
-          - { name: heroImage, label: "HERO · Image", widget: image, required: false }
-          - { name: acuityEmbedUrl, label: "BOOKING · Acuity URL", hint: "Paste your Acuity schedule URL — looks like https://app.acuityscheduling.com/schedule.php?owner=XXXXXXX", widget: string, required: false }
-
-          - name: paths
-            label: "PATHS · 'Three paths in' cards"
-            widget: object
-            collapsed: true
-            required: false
-            fields:
-              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: heading, label: "Heading", widget: string, required: false }
-              - name: cards
-                label: "Cards"
-                widget: list
-                fields:
-                  - { name: icon, label: "Icon (number or emoji)", widget: string }
-                  - { name: label, label: "Card label", widget: string }
-                  - { name: body, label: "Card body", widget: text }
-              - { name: closingLine, label: "Closing line", widget: text, required: false }
+          - { name: scheduleImage, label: "SCHEDULE · Timetable image (replaces the old booking widget)", widget: image, required: false }
+          - { name: scheduleNote, label: "SCHEDULE · Intro note under the image", widget: text, required: false }
 
           - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
           - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
@@ -531,6 +525,11 @@ collections:
                 fields:
                   - { name: word, label: "Word", widget: string }
                   - { name: body, label: "Body", widget: text }
+              - name: photos
+                label: "Photos (3–4, shown in a row below this section)"
+                widget: list
+                required: false
+                field: { name: image, label: "Photo", widget: image }
 
           - name: studio
             label: "STUDIO · 'A studio that feels like the work'"
@@ -549,7 +548,10 @@ collections:
               - { name: closingLine, label: "Closing line (address)", widget: text, required: false }
               - { name: image, label: "Photo (studio wide shot, glow lights on)", widget: image, required: false }
 
-          - { name: storyImage, label: "MY STORY · Photo (Nikki younger / origin moment)", widget: image, required: false }
+          - { name: storyEyebrow, label: "MY STORY · Eyebrow (default: My story)", widget: string, required: false }
+          - { name: storyHeading, label: "MY STORY · Heading (default: How I got here)", widget: string, required: false }
+          - { name: storyImage, label: "MY STORY · Portrait 1 (Nikki younger / origin moment)", widget: image, required: false }
+          - { name: storyImage2, label: "MY STORY · Portrait 2 (optional second photo)", widget: image, required: false }
 
           - name: finalCta
             label: "FINAL CTA · Bottom banner"
@@ -752,6 +754,24 @@ collections:
                   - { name: icon, label: "Date label (e.g. 'Fuel Magazine · 2025')", widget: string }
                   - { name: label, label: "Card title", widget: string }
                   - { name: body, label: "Card body", widget: text }
+
+          - name: podcasts
+            label: "PODCASTS · Audio appearances (Spotify embeds)"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+              - name: items
+                label: "Episodes"
+                widget: list
+                required: false
+                fields:
+                  - { name: title, label: "Episode title", widget: string }
+                  - { name: embedUrl, label: "Spotify embed URL (https://open.spotify.com/embed/episode/ID)", widget: string }
+                  - { name: href, label: "Link to the episode (optional)", widget: string, required: false }
 
           - name: finalCta
             label: "FINAL CTA · Bottom banner"
