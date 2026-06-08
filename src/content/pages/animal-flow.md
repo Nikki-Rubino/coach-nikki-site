@@ -1,7 +1,6 @@
 ---
 title: 04 Animal Flow
 eyebrow: Animal Flow Sydney · Regional Leader
-badgeText: ★ Sydney Regional Leader · 10 years
 heroHeadline: Animal Flow®. Ground-based movement for the brain and body.
 heroSubcopy: You're training hard but something still feels off, a shoulder that
   seized up, a hip that won't cooperate, a body that moves great until it
@@ -13,6 +12,7 @@ primaryCtaLabel: Book your intro
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
+badgeText: ★ Sydney Regional Leader - 10 years experience
 youtubeVideoId: BXKizhGXIHI
 whatIs:
   eyebrow: What it is
