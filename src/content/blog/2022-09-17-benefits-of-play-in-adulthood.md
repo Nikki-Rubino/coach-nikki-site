@@ -1,11 +1,15 @@
 ---
-title: "What you should know about the benefits of play in adulthood"
+title: What you should know about the benefits of play in adulthood
 date: 2022-09-17
-excerpt: "Play is being joyfully immersed in the moment. As an adult, when was the last time you experienced that?"
-image: https://static.wixstatic.com/media/9d6c25_f693906326a843dd8c35284d67c53a74~mv2.jpg/v1/fill/w_1000,h_871,al_c,q_85/9d6c25_f693906326a843dd8c35284d67c53a74~mv2.jpg
-tags: ["movement", "mindset", "play"]
-draft: true
 author: Nikki Rubino
+excerpt: Play is being joyfully immersed in the moment. As an adult, when was
+  the last time you experienced that?
+image: https://static.wixstatic.com/media/9d6c25_f693906326a843dd8c35284d67c53a74~mv2.jpg/v1/fill/w_1000,h_871,al_c,q_85/9d6c25_f693906326a843dd8c35284d67c53a74~mv2.jpg
+tags:
+  - movement
+  - mindset
+  - play
+draft: false
 ---
 
 Hi Friend,
