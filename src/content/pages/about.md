@@ -52,7 +52,7 @@ studio:
   closingLine: Unit 3 / 60 Perry Street, Matraville NSW 2036.
   image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780900611/WEBITESITE_HERO_Studio_zle31h.jpg
 storyEyebrow: Adverting, loss, and an inconvenient calling
-storyHeading: 9 Years in, but what brought me here!
+storyHeading: 9 Years in! What brought me here?
 storyImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780803294/IMG_3458_photo_wssvif.jpg
 storyImage2: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780887415/WEBITESITE_Mikecoach_cj2qwt.jpg
 finalCta:
