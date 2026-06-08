@@ -66,7 +66,7 @@ finalCta:
   ctaSecondaryHref: /contact
 seoTitle: About Coach Nikki — strength coach, Animal Flow Regional Leader
 seoDescription: "Coach Nikki: Sydney-based strength and movement coach, Fuel
-  Woman of the Year 2025, Animal Flow Regional Leader. Specialising in over-30s
+  Woman of the Year 2025, Animal Flow Regional Leader. Specialising in seniors'
   coaching at the Matraville studio."
 ---
 Like a lot of young Aussies, I moved to London at 21 and somehow ended up in gym membership sales (better than a usual pub job, I guess). Once back home, a friend-of-a-friend landed me a job in TV advertising, pretty sure I only got it because I was free on a Monday. Twelve years later, I was good at it. But I wasn't *well*.
