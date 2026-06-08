@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SessionsArc from '../components/SessionsArc.astro';
 
 const page = await getEntry('pages', 'sassy-seniors');
 const hero = page?.data ?? {
@@ -233,38 +234,8 @@ const innaTestimonial =
     </section>
   )}
 
-  <!-- HOW WE START -->
-  <section style="background: var(--teal-light);">
-    <div class="container">
-      <span class="eyebrow">How we start</span>
-      <h2 class="section">Three sessions, then you're in</h2>
-      <p class="lead muted">
-        Every new client begins with three private sessions. I'll assess where you are,
-        build your foundations, and then welcome you into the Classics Squad.
-      </p>
-      <div class="steps">
-        <div class="step">
-          <h3>Joint assessment</h3>
-          <p>Gentle, methodical. We find what your body needs and what to avoid.</p>
-        </div>
-        <div class="step">
-          <h3>Strength foundations</h3>
-          <p>I'll teach you how to lift safely. Squat, hinge, push, pull.</p>
-        </div>
-        <div class="step">
-          <h3>Movement foundations</h3>
-          <p>Some ground-based work too. I'll show you, you'll surprise yourself.</p>
-        </div>
-      </div>
-      <div class="intro-cta">
-        <div>
-          <h3>The intro is $399 upfront, or $450 over three weeks.</h3>
-          <p>Three private sessions with me, then you join the Sassy Seniors crew.</p>
-        </div>
-        <a class="btn-primary" href="/get-started">Book your intro</a>
-      </div>
-    </div>
-  </section>
+  <!-- HOW WE START — shared steps + CTA (Shared content); header per-page from sassy-seniors.md → arc -->
+  <SessionsArc background="var(--teal-light)" eyebrow={page?.data?.arc?.eyebrow} heading={page?.data?.arc?.heading} lead={page?.data?.arc?.lead} />
 
   <!-- TYPICAL WEEK -->
   <section style="background:#fff;">

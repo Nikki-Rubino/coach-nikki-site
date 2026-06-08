@@ -224,6 +224,17 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+
+          - name: arc
+            label: "ARC · Header for this page (steps + button are shared)"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead", widget: text, required: false }
+
           - { name: youtubeVideoId, label: "VIDEO (optional) · YouTube video ID for the section below the hero (e.g. clip of clients training). Leave blank to skip the video section.", widget: string, required: false }
 
           - name: videoPhotos
