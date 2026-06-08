@@ -23,9 +23,9 @@ secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
 youtubeVideoId: E-6EYtpqOEg
 videoPhotos:
-  image1: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780885432/4_5_Website_eddie_cdb15g.jpg
-  image2: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382984/IMG_1061_photo_eu2uxr.heic
-  image3: ""
+  image1: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto/f_auto,q_auto/v1780383005/Screenshot_2026-05-29_at_8.15.06_pm_hlnvyn.png
+  image2: https://res.cloudinary.com/db6eijltv/image/upload/e_brightness:30/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780886395/Screenshot_2026-06-08_at_12.39.13_pm_evyvxy.png
+  image3: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780885471/Screenshot_2026-05-29_at_8.27.17_pm_lve40b.png
 ifFamiliar:
   eyebrow: Sound familiar?
   heading: If you've thought "this isn't my scene"…
