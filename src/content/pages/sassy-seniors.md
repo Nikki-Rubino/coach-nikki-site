@@ -23,7 +23,7 @@ secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
 youtubeVideoId: E-6EYtpqOEg
 videoPhotos:
-  image1: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto/f_auto,q_auto/v1780383005/Screenshot_2026-05-29_at_8.15.06_pm_hlnvyn.png
+  image1: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780887082/Screenshot_2026-06-08_at_12.47.11_pm_-_Edited_rrye8w.png
   image2: https://res.cloudinary.com/db6eijltv/image/upload/e_brightness:30/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780886395/Screenshot_2026-06-08_at_12.39.13_pm_evyvxy.png
   image3: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780885471/Screenshot_2026-05-29_at_8.27.17_pm_lve40b.png
 ifFamiliar:
