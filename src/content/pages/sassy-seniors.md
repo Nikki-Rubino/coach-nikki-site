@@ -25,7 +25,7 @@ youtubeVideoId: E-6EYtpqOEg
 videoPhotos:
   image1: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780885432/4_5_Website_eddie_cdb15g.jpg
   image2: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780382984/IMG_1061_photo_eu2uxr.heic
-  image3: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780885471/Screenshot_2026-05-29_at_8.27.17_pm_lve40b.png
+  image3: ""
 ifFamiliar:
   eyebrow: Sound familiar?
   heading: If you've thought "this isn't my scene"…
