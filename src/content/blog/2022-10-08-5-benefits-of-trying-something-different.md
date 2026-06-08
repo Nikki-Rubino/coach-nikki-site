@@ -1,11 +1,15 @@
 ---
-title: "5 benefits of trying something different"
+title: 5 benefits of trying something different
 date: 2022-10-08
-excerpt: "That flutter of butterflies before something new? It's your body knowing it's about to experience something. Five reasons to lean into it."
-image: https://static.wixstatic.com/media/9d6c25_cdcfa59299194f8a8996d9e1963ed374~mv2.jpg/v1/fill/w_922,h_504,al_c,q_85/9d6c25_cdcfa59299194f8a8996d9e1963ed374~mv2.jpg
-tags: ["mindset", "movement", "community"]
-draft: true
 author: Nikki Rubino
+excerpt: That flutter of butterflies before something new? It's your body
+  knowing it's about to experience something. Five reasons to lean into it.
+image: https://static.wixstatic.com/media/9d6c25_cdcfa59299194f8a8996d9e1963ed374~mv2.jpg/v1/fill/w_922,h_504,al_c,q_85/9d6c25_cdcfa59299194f8a8996d9e1963ed374~mv2.jpg
+tags:
+  - mindset
+  - movement
+  - community
+draft: false
 ---
 
 Hi Friend,
