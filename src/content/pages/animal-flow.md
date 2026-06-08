@@ -8,7 +8,7 @@ heroSubcopy: You're training hard but something still feels off, a shoulder that
   freedom, creative expression, strength and resilience you didn't know you were
   missing.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780381822/IMG_5293_photo_qwqn7d.heic
-primaryCtaLabel: Book your intro
+primaryCtaLabel: Tell Me More
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
