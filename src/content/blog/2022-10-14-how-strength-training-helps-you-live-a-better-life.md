@@ -1,11 +1,16 @@
 ---
-title: "How strength training can help you live a better life"
+title: How strength training can help you live a better life
 date: 2022-10-14
-excerpt: "As we age we lose muscle mass — it's inevitable. But strength training lets you keep doing the things that bring you joy, with confidence, through every decade."
-image: https://static.wixstatic.com/media/9d6c25_282a91587d8e497e807a3eeac28c7898~mv2.jpg/v1/fill/w_1000,h_667,al_c,q_85/9d6c25_282a91587d8e497e807a3eeac28c7898~mv2.jpg
-tags: ["health", "Strength", "ageing"]
-draft: true
 author: Nikki Rubino
+excerpt: As we age we lose muscle mass — it's inevitable. But strength training
+  lets you keep doing the things that bring you joy, with confidence, through
+  every decade.
+image: https://static.wixstatic.com/media/9d6c25_282a91587d8e497e807a3eeac28c7898~mv2.jpg/v1/fill/w_1000,h_667,al_c,q_85/9d6c25_282a91587d8e497e807a3eeac28c7898~mv2.jpg
+tags:
+  - health
+  - Strength
+  - ageing
+draft: false
 ---
 
 Hi Friend,
