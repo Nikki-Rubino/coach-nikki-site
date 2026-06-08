@@ -17,7 +17,7 @@ heroSubcopy: >-
 
   Capped at 6. Everyone coached. Music from the good years.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780465911/45_WebsiteSassTrio_uvdzs8.jpg
-primaryCtaLabel: Book your intro
+primaryCtaLabel: Tell Me More
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
