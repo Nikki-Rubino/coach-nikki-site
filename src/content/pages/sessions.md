@@ -16,7 +16,7 @@ heroSubcopy: >-
 
   Sessions available are 1:1 and semi-private. Semi-Private memberships include Strength, Strength-classics (over 55s), Animal Flow, and Mobility.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780648718/WEBITESITE_HERO1_xgst3t.jpg
-primaryCtaLabel: Book your intro
+primaryCtaLabel: Tell me more
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
@@ -28,15 +28,14 @@ arc:
 intro:
   eyebrow: The full list
   heading: Every session, side by side
-  lead: |-
-    Choose from a 1, 2, or 3+ sessions-a-week membership.
-    Minimum 6-week commitment.
+  lead: Choose from either 1:1 or Semi-private sessions. Choose a 1, 2, or 3+
+    sessions-a-week membership. Minimum 6-week commitment.
   closingLine: Weekly unlimited covers 3 to 4 sessions per week across any
     combination of the semi-private offerings above.
 finalCta:
   heading: Ready to start?
   lead: Book your three session intro. After that, the door's wide open.
-  ctaLabel: Book your intro
+  ctaLabel: Take my first step
   ctaHref: /get-started
   ctaSecondaryLabel: See pricing →
   ctaSecondaryHref: /pricing
