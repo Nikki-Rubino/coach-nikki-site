@@ -83,7 +83,7 @@ testimonialsHeader:
   heading: What clients say
 blogHeader:
   eyebrow: From the blog
-  heading: Words on movement
+  heading: Words on Movement and Mindset, news flash, they go hand in hand!
 seoTitle: Coach Nikki — strength is ageless
 seoDescription: Strength & movement coaching for over 30s in Matraville, Sydney.
   1:1 coaching, Sassy Seniors, Animal Flow, semi-private strength.
