@@ -8,7 +8,7 @@ quote: >-
   sleeping better, and moving so much more freely. 
 
   I can't recommend her highly enough.
-avatar: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780465911/45_WebsiteSassTrio_uvdzs8.jpg
+avatar: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1781002150/Inna_gcwv3k.png
 featured: true
 order: 3
 ---
