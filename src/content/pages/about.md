@@ -50,7 +50,7 @@ studio:
     - Bathroom and change space on site
     - Dazzle of zebras energy. Yes that's a real collective noun
   closingLine: Unit 3 / 60 Perry Street, Matraville NSW 2036.
-  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780900611/WEBITESITE_HERO_Studio_zle31h.jpg
+  image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1781001576/WEBITESITE_HERO_Studio2_kwlx8g.jpg
 storyEyebrow: Adverting, loss, and an inconvenient calling
 storyHeading: 10 Years in! What brought me here?
 storyImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780803294/IMG_3458_photo_wssvif.jpg
