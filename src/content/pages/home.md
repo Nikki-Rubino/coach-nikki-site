@@ -77,7 +77,7 @@ sessionsSectionHeader:
   eyebrow: What's on offer
   heading: Sessions for every body
   caption: Weekly unlimited covers 3 to 4 sessions per week across any combination
-    of group types.
+    of Semi-Private group types.
 testimonialsHeader:
   eyebrow: Words from the dazzle
   heading: What clients say
