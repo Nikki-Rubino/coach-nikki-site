@@ -28,9 +28,29 @@ const finalCta = page?.data?.finalCta;
 // if none are published the freeform cards below are shown instead.
 const allPosts = await getCollection('blog', (e) => !e.data.draft);
 const pickedSlugs = elsewhere?.posts ?? [];
-const elsewherePosts = pickedSlugs
-  .map((slug) => allPosts.find((p) => p.id === slug))
-  .filter((p) => p !== undefined);
+// Tolerant matching: the CMS relation widget can save the pick as the full
+// filename slug, a date-less slug, or the post title depending on how the
+// entry was created. Normalise both sides so any of those formats resolves.
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/\.md$/, '')
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+const elsewherePosts = [
+  ...new Set(
+    pickedSlugs
+      .map(
+        (slug) =>
+          allPosts.find((p) => p.id === slug) ??
+          allPosts.find(
+            (p) => norm(p.id) === norm(slug) || norm(p.data.title) === norm(slug),
+          ),
+      )
+      .filter((p) => p !== undefined),
+  ),
+];
 const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric' });
 
 const ytId = page?.data?.youtubeVideoId;
@@ -209,9 +229,36 @@ const passionParas = (passion?.body ?? '')
     </section>
   )}
 
+  <!-- PODCASTS — Page copy → 10 Speaking → Podcasts -->
+  {podcasts?.items && podcasts.items.length > 0 && (
+    <section id="podcasts" style="background: #fff;">
+      <div class="container narrow">
+        {podcasts.eyebrow && <span class="eyebrow">{podcasts.eyebrow}</span>}
+        {podcasts.heading && <h2 class="section">{podcasts.heading}</h2>}
+        {podcasts.lead && <p class="lead muted">{podcasts.lead}</p>}
+        <div class="podcast-list">
+          {podcasts.items.map((p) => (
+            <div class="podcast-item">
+              <iframe
+                src={p.embedUrl}
+                title={p.title}
+                width="100%"
+                height="152"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                style="border-radius: 12px;"
+              ></iframe>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- PRESS / FURTHER READING — content from src/content/site/speaking-elsewhere.md -->
   {elsewhere && (
-    <section style="background: #fff;">
+    <section>
       <div class="container">
         {elsewhere.eyebrow && <span class="eyebrow">{elsewhere.eyebrow}</span>}
         {elsewhere.heading && <h2 class="section">{elsewhere.heading}</h2>}
@@ -249,33 +296,6 @@ const passionParas = (passion?.body ?? '')
             ))}
           </div>
         )}
-      </div>
-    </section>
-  )}
-
-  <!-- PODCASTS — Page copy → 10 Speaking → Podcasts -->
-  {podcasts?.items && podcasts.items.length > 0 && (
-    <section id="podcasts">
-      <div class="container narrow">
-        {podcasts.eyebrow && <span class="eyebrow">{podcasts.eyebrow}</span>}
-        {podcasts.heading && <h2 class="section">{podcasts.heading}</h2>}
-        {podcasts.lead && <p class="lead muted">{podcasts.lead}</p>}
-        <div class="podcast-list">
-          {podcasts.items.map((p) => (
-            <div class="podcast-item">
-              <iframe
-                src={p.embedUrl}
-                title={p.title}
-                width="100%"
-                height="152"
-                frameborder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                style="border-radius: 12px;"
-              ></iframe>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )}

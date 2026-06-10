@@ -877,6 +877,7 @@ collections:
           - { name: eyebrow, label: "HERO · Eyebrow", widget: string, required: false }
           - { name: heroHeadline, label: "HERO · Headline", widget: string, required: false }
           - { name: heroSubcopy, label: "HERO · Subcopy", widget: text, required: false }
+          - { name: heroImage, label: "HERO · Photo (right of the headline)", widget: image, required: false }
           - { name: primaryCtaLabel, label: "HERO · Primary CTA label", widget: string, required: false }
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
