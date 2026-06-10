@@ -1,14 +1,16 @@
 ---
-title: "That 'wait... is this really happening?!' moment"
+title: That 'wait... is this really happening?!' moment
 date: 2025-07-26
-excerpt: "Celebrate the small wins. They might look like stickers and singlets to someone else — but to you, they could be the start of something becoming."
-image: https://hostedimages-cdn.aweber-static.com/MTc0ODc5Ng==/optimized/62668baf68344866ba69ff1ad470dfd8.png
-tags: ["mindset", "community"]
-draft: true
 author: Nikki Rubino
+excerpt: Celebrate the small wins. They might look like stickers and singlets to
+  someone else — but to you, they could be the start of something becoming.
+image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780881665/IMG_8163_photo_go815n.png
+tags:
+  - mindset
+  - community
+draft: true
 ---
-
-Hey,
+Hey Friend,
 
 Ever have one of those moments where something you've dreamed about just… *shows up* in real life? Like — bam — there it is, right in front of your eyeballs. That was me this week.
 
