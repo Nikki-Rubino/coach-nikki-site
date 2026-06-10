@@ -1,7 +1,7 @@
 ---
 title: 06 Pricing
 eyebrow: Simple, honest pricing
-heroHeadline: Flexible Training That Fits Your Life, 1:1,Semi-Private, or a mix of both!
+heroHeadline: Flexible Training That Fits Your Life - 1:1, Semi-Private, or a mix of both!
 heroSubcopy: >-
   Choose how many sessions per week you want to attend. Weekly membership covers
   any Semi-private session of your choice. 
