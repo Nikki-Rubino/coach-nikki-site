@@ -25,7 +25,8 @@ arc:
   eyebrow: How we start
   heading: Three sessions, then you're in
   lead: Every new client begins with three private sessions. I'll assess where you
-    are, build your foundations, and then welcome you into the Classics Squad.
+    are, build your foundations, and then welcome you into the Classics Squad or
+    simply stay with 1:1 sessions if preferred.
 youtubeVideoId: E-6EYtpqOEg
 videoPhotos:
   image1: https://res.cloudinary.com/db6eijltv/image/upload/ar_4:3,c_auto,g_auto/f_auto,q_auto/v1780887082/Screenshot_2026-06-08_at_12.47.11_pm_-_Edited_rrye8w.png
