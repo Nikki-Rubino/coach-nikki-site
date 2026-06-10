@@ -56,8 +56,7 @@ tiers:
       ctaLabel: See the timetable →
       ctaHref: /timetable
       featured: false
-  closingLine: All prices in AUD. GST included. Payments via Square — Apple Pay,
-    Google Pay, card.
+  closingLine: All prices in AUD. GST included. Payments via Square.
 weeklyUnpacked:
   eyebrow: Weekly unlimited, unpacked
   heading: One price. Every group session.
