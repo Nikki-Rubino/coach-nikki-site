@@ -1,16 +1,19 @@
 ---
 title: 06 Pricing
 eyebrow: Simple, honest pricing
-heroHeadline: Choose a 1, 2 or 3+ session weekly Membership
+heroHeadline: "Choose a from 1, 2 or 3+ Semi-Private session weekly Membership.
+  Or weekly 1:1 session. "
 heroSubcopy: >-
   Choose how many sessions per week you want to attend. Weekly membership covers
-  any session of your choice. 
+  any Semi-private session of your choice. 
 
   Choose, Book In, and simply come on in.
 
-  Weekly unlimited covers over 3 sessions per week.
+  Weekly Semi-Private unlimited covers over 3 sessions per week.
+
+  Want some more attention or to work through something specific? 1:1 sessions are available.
 heroImage: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780737842/IMG_5306_photo_jhxlpo.heic
-primaryCtaLabel: Book your intro
+primaryCtaLabel: Tell me more
 primaryCtaHref: /get-started
 secondaryCtaLabel: Have a question
 secondaryCtaHref: /contact
@@ -26,8 +29,8 @@ tiers:
         - Three private sessions with me
         - Joint assessment, strength + movement foundations
         - Required before any group session
-        - Choose your next step at session three
-      ctaLabel: Book your intro
+        - Choose your next step at session three, 1:1 or semi-private membership
+      ctaLabel: Take your first step
       ctaHref: /get-started
       featured: true
     - label: 1:1 coaching
@@ -36,8 +39,8 @@ tiers:
       desc: My full attention. 60 minutes.
       bullets:
         - Best for injury rehab, complex needs, faster progress
-        - Programmed week to week around your goals
-        - Book individually or in blocks
+        - Programmed in 6-12 week cycles around your goals
+        - Minimum 6 week commitment
         - Limited slots — weekday middles preferred
       ctaLabel: See all 1:1 details →
       ctaHref: /sessions
