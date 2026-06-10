@@ -1,11 +1,15 @@
 ---
-title: "The Nonnas were right…"
+title: The Nonnas were right…
 date: 2025-09-13
-excerpt: "When you stop learning, playing, and growing — that's when you really get old. The wisdom behind the Strong and Sassy Squad."
-image: https://hostedimages-cdn.aweber-static.com/MTc0ODc5Ng==/optimized/62668baf68344866ba69ff1ad470dfd8.png
-tags: ["Sassy Seniors", "mindset", "strength"]
-draft: true
 author: Nikki Rubino
+excerpt: When you stop learning, playing, and growing — that's when you really
+  get old. The wisdom behind the Strong and Sassy Squad.
+image: https://hostedimages-cdn.aweber-static.com/MTc0ODc5Ng==/optimized/62668baf68344866ba69ff1ad470dfd8.png
+tags:
+  - Sassy Seniors
+  - mindset
+  - strength
+draft: false
 ---
 
 Hey,
