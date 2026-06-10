@@ -25,10 +25,10 @@ waysToTrain:
     string them together.
 foundations:
   eyebrow: How we start
-  heading: The intro covers your AF foundations
-  lead: Even if Animal Flow is the only thing you want to do, the three-session
-    intro gets you ready for the floor. Session three is where I introduce you
-    to the foundational shapes properly.
+  heading: The intro covers your AF foundations and more
+  lead: "Even if Animal Flow is the only thing you want to do, the three-session
+    intro gets you ready for the floor and gives me a road map of how to help.
+    Session three is where I introduce you to the foundational shapes in full. "
 l1Cert:
   eyebrow: For the keen
   heading: Going further - L1 certification or Animal Flow On demand
