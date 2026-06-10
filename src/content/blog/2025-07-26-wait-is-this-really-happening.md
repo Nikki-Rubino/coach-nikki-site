@@ -8,7 +8,7 @@ image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v17808816
 tags:
   - mindset
   - community
-draft: true
+draft: false
 ---
 Hey Friend,
 
