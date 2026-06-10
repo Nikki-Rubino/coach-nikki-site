@@ -49,10 +49,10 @@ tiers:
       amountNote: per week unlimited
       desc: or $55 per single session
       bullets:
-        - 3 to 4 sessions per week, any combination
+        - Weekly membership options. Choose how many sessions you want access to
         - Sassy Classics, Strength, Animal Flow, Breath & Mobility
-        - Direct debit through Square
-        - Pause with 7 days notice
+        - Growing timetable
+        - Sessions capped at 4-10 people depending on session type
       ctaLabel: See the timetable →
       ctaHref: /timetable
       featured: false
