@@ -9,7 +9,7 @@ tags:
   - story
   - community
   - gratitude
-draft: true
+draft: false
 ---
 Hey Friend,
 
