@@ -10,6 +10,11 @@ primaryCtaLabel: How do I get started?
 primaryCtaHref: /get-started
 secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
+trustStrip:
+  badge: Fuel Woman of the Year 2025
+  label: Recognised for my work with the ageing fitness community.
+  linkLabel: Read more →
+  linkHref: /speaking
 doors:
   eyebrow: Find your crew
   heading: Pick your vibe...

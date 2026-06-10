@@ -158,6 +158,15 @@ const pages = defineCollection({
         heading: z.string().optional(),
       })
       .optional(),
+    /** Yellow FUEL trust strip under the home hero */
+    trustStrip: z
+      .object({
+        badge: z.string().optional(),
+        label: z.string().optional(),
+        linkLabel: z.string().optional(),
+        linkHref: z.string().optional(),
+      })
+      .optional(),
 
     // ─── Sassy Seniors blocks ──────────────────────────────────────────
     ifFamiliar: z
@@ -364,6 +373,9 @@ const pages = defineCollection({
       .object({
         eyebrow: z.string().optional(),
         heading: z.string().optional(),
+        /** Blog post slugs (filenames without .md) picked in the CMS.
+         *  When set, published posts replace the freeform cards below. */
+        posts: z.array(z.string()).optional(),
         cards: z.array(Card).optional(),
       })
       .optional(),
@@ -439,6 +451,9 @@ const sessions = defineCollection({
     image: z.string().optional(),
     price: z.string().optional(),
     bookingUrl: z.string().optional(),
+    /** Card button on /sessions — defaults to "When it's on →" linking to /timetable */
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
     order: z.number().default(0),
     showOnHome: z.boolean().default(false),
   }),

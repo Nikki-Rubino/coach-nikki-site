@@ -42,7 +42,7 @@ tiers:
         - Minimum 6 week commitment
         - Limited slots — weekday middles preferred
       ctaLabel: See all 1:1 details →
-      ctaHref: /sessions
+      ctaHref: /sessions#full-list
       featured: false
     - label: Semi-private weekly
       amount: $150

@@ -294,6 +294,19 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   padding: 64px 32px 80px;
   background: #fff;
 }
+/* Tighten the gap where a hero meets the next plain section — the page
+   background (--bg) is near-white, so the hero's 80px bottom padding plus
+   the section's 80px top padding otherwise reads as a big empty hole.
+   Only plain (class-less) sections are targeted so coloured bands like
+   .fuel-band and the yellow intro band keep their own padding. */
+section.hero + section:not([class]),
+.af-hero + section:not([class]) {
+  padding-top: 28px;
+}
+.timetable-hero + section:not([class]) {
+  padding-top: 12px;
+}
+
 .hero .image {
   background: var(--placeholder);
   border-radius: var(--radius);
@@ -547,7 +560,7 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
 }
 .price.featured { border-color: var(--teal); }
 .price.featured::before {
-  content: "Best value";
+  content: "Start here";
   position: absolute;
   top: -12px;
   left: 24px;
@@ -955,7 +968,7 @@ img.avatar { border: 1px solid var(--rule); }
 }
 
 /* ---------- Timetable page primitives ---------- */
-.timetable-hero { background: #fff; padding: 64px 32px; }
+.timetable-hero { background: #fff; padding: 64px 32px 24px; }
 .timetable-hero .container {
   display: flex;
   justify-content: space-between;

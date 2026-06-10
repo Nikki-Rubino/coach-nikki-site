@@ -154,6 +154,17 @@ collections:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: heading, label: "Heading", widget: string, required: false }
 
+          - name: trustStrip
+            label: "TRUST STRIP · Yellow FUEL band under the hero"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: badge, label: "Badge (orange pill)", widget: string, required: false }
+              - { name: label, label: "Text", widget: string, required: false }
+              - { name: linkLabel, label: "Link label (e.g. 'Read more →')", widget: string, required: false }
+              - { name: linkHref, label: "Link destination", widget: string, required: false, default: "/speaking" }
+
           # SEO
           - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
           - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
@@ -441,7 +452,7 @@ collections:
                     field: { name: item, label: "Bullet", widget: string }
                   - { name: ctaLabel, label: "Button label", widget: string, required: false }
                   - { name: ctaHref, label: "Button link", widget: string, required: false }
-                  - { name: featured, label: "Featured (gets 'Best value' ribbon)", widget: boolean, default: false }
+                  - { name: featured, label: "Featured (gets 'Start here' ribbon)", widget: boolean, default: false }
               - { name: closingLine, label: "Closing line", widget: text, required: false }
 
           - name: weeklyUnpacked
@@ -739,16 +750,29 @@ collections:
               - { name: image, label: "Portrait of Nikki (alongside the long-form story)", widget: image, required: false }
 
           - name: elsewhere
-            label: "ELSEWHERE · 'Press · further reading' cards"
+            label: "ELSEWHERE · 'Press · further reading'"
             widget: object
             collapsed: true
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: heading, label: "Heading", widget: string, required: false }
-              - name: cards
-                label: "Cards (date / title / body)"
+              - name: posts
+                label: "Blog posts to feature (picked posts replace the cards below — drafts won't show until published)"
                 widget: list
+                required: false
+                field:
+                  name: post
+                  label: "Blog post"
+                  widget: relation
+                  collection: blog
+                  search_fields: ["title"]
+                  value_field: "{{slug}}"
+                  display_fields: ["title"]
+              - name: cards
+                label: "Cards (fallback when no blog posts are picked above)"
+                widget: list
+                required: false
                 fields:
                   - { name: icon, label: "Date label (e.g. 'Fuel Magazine · 2025')", widget: string }
                   - { name: label, label: "Card title", widget: string }
@@ -1024,6 +1048,8 @@ collections:
       - { name: image, label: "Image", widget: image, required: false }
       - { name: price, label: "Price line (e.g. '$55 · $150/wk')", widget: string, required: false }
       - { name: bookingUrl, label: "Booking link", widget: string, required: false }
+      - { name: ctaLabel, label: "Card button label (default: 'When it's on →')", widget: string, required: false }
+      - { name: ctaHref, label: "Card button link (default: /timetable)", widget: string, required: false }
       - { name: order, label: "Display order", widget: number, default: 0, value_type: "int" }
       - { name: showOnHome, label: "Show on home page?", widget: boolean, default: false }
       - { name: body, label: "Long description (markdown)", widget: markdown, required: false }

@@ -23,6 +23,9 @@ const arc = home?.data?.arc;
 const sessionsHeader = home?.data?.sessionsSectionHeader;
 const testimonialsHeader = home?.data?.testimonialsHeader;
 const blogHeader = home?.data?.blogHeader;
+// Yellow FUEL trust strip under the hero — editable in the CMS
+// (Page copy → 01 Home → TRUST STRIP).
+const trust = home?.data?.trustStrip ?? {};
 
 // Sessions shown on the home page, ordered.
 const homeSessions = (await getCollection('sessions', (e) => e.data.showOnHome))
@@ -76,11 +79,11 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric
     </div>
   </section>
 
-  <!-- FUEL TRUST STRIP -->
+  <!-- FUEL TRUST STRIP — editable in the CMS (Page copy → 01 Home → TRUST STRIP) -->
   <div class="trust-strip">
-    <span class="badge">Fuel Woman of the Year 2025</span>
-    <span class="label">Recognised for my work with the ageing fitness community.</span>
-    <a class="link" href="/speaking">Read the speech →</a>
+    <span class="badge">{trust.badge ?? 'Fuel Woman of the Year 2025'}</span>
+    <span class="label">{trust.label ?? 'Recognised for my work with the ageing fitness community.'}</span>
+    <a class="link" href={trust.linkHref ?? '/speaking'}>{trust.linkLabel ?? 'Read more →'}</a>
   </div>
 
   <!-- THREE DOORS — content from pages/home.md → doors -->

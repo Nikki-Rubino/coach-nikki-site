@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const page = await getEntry('pages', 'speaking');
@@ -22,6 +22,16 @@ const passion = page?.data?.passion;
 const elsewhere = page?.data?.elsewhere;
 const podcasts = page?.data?.podcasts;
 const finalCta = page?.data?.finalCta;
+
+// "Press · further reading" — blog posts picked in the CMS (Page copy → 10 Speaking
+// → ELSEWHERE → Blog posts to feature). Only published (non-draft) posts render;
+// if none are published the freeform cards below are shown instead.
+const allPosts = await getCollection('blog', (e) => !e.data.draft);
+const pickedSlugs = elsewhere?.posts ?? [];
+const elsewherePosts = pickedSlugs
+  .map((slug) => allPosts.find((p) => p.id === slug))
+  .filter((p) => p !== undefined);
+const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric' });
 
 const ytId = page?.data?.youtubeVideoId;
 const awardYtId = page?.data?.awardVideoId;
@@ -205,7 +215,29 @@ const passionParas = (passion?.body ?? '')
       <div class="container">
         {elsewhere.eyebrow && <span class="eyebrow">{elsewhere.eyebrow}</span>}
         {elsewhere.heading && <h2 class="section">{elsewhere.heading}</h2>}
-        {elsewhere.cards && (
+        {elsewherePosts.length > 0 ? (
+          <div class="blog-list">
+            {elsewherePosts.map((p) => (
+              <a class="post" href={`/blog/${p.id}`}>
+                <div class="ph">
+                  {p.data.image ? (
+                    <img
+                      src={p.data.image}
+                      alt={p.data.title}
+                      loading="lazy"
+                      style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                    />
+                  ) : (
+                    <span class="ph-label">Post thumbnail</span>
+                  )}
+                </div>
+                <div class="date">{dateFmt.format(p.data.date)}</div>
+                <h3>{p.data.title}</h3>
+                {p.data.excerpt && <p>{p.data.excerpt}</p>}
+              </a>
+            ))}
+          </div>
+        ) : elsewhere.cards && (
           <div class="blog-list">
             {elsewhere.cards.map((c) => (
               <a class="post">

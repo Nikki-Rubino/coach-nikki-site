@@ -85,7 +85,7 @@ const finalCta = page?.data?.finalCta;
   )}
 
   <!-- FULL SESSIONS CATALOGUE — header from src/content/site/sessions-intro.md -->
-  <section style="background: #fff;">
+  <section id="full-list" style="background: #fff; scroll-margin-top: 90px;">
     <div class="container">
       {intro?.eyebrow && <span class="eyebrow">{intro.eyebrow}</span>}
       {intro?.heading && <h2 class="section">{intro.heading}</h2>}
@@ -126,7 +126,9 @@ const finalCta = page?.data?.finalCta;
                 )}
               </dl>
               <div class="session-actions">
-                <a class="btn-secondary" href="/timetable">When it's on →</a>
+                <a class="btn-secondary" href={s.data.ctaHref ?? '/timetable'}>
+                  {s.data.ctaLabel ?? "When it's on →"}
+                </a>
               </div>
             </div>
           </article>
