@@ -1,6 +1,6 @@
 ---
 title: Cert III and IV Certificates
-iconStyle: standard
+iconStyle: featured
 order: 3
 draft: false
 ---
