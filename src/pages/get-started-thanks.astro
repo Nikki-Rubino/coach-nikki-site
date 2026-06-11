@@ -4,15 +4,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const page = await getEntry('pages', 'get-started-thanks');
 const hero = page?.data ?? {
-  eyebrow: 'Thanks',
-  heroHeadline: "I've got your details.",
+  eyebrow: "You're in",
+  heroHeadline: "I've got your details. GO YOU!",
   heroSubcopy:
     "I'll review what you've shared and reach out in your preferred channel within one business day.",
-  primaryCtaLabel: 'Book a time now',
+  primaryCtaLabel: 'See the timetable',
   primaryCtaHref: '/timetable',
   secondaryCtaLabel: 'Back to home',
   secondaryCtaHref: '/',
 };
+
+// Onboarding content — Page copy → 14 Thanks (intro screening) → ONBOARDING.
+const onboarding = page?.data?.onboarding;
+const closingParas = (onboarding?.closingBody ?? '')
+  .split(/\n\s*\n/)
+  .filter((p) => p.trim().length > 0);
 ---
 
 <BaseLayout
@@ -20,6 +26,7 @@ const hero = page?.data ?? {
   description={page?.data.seoDescription}
   activeNav="get-started"
 >
+  <!-- HERO -->
   <section class="hero">
     <div>
       <span class="eyebrow">{hero.eyebrow}</span>
@@ -35,6 +42,7 @@ const hero = page?.data ?? {
     </div>
   </section>
 
+  <!-- WHAT HAPPENS NEXT -->
   <section style="background: #fff;">
     <div class="container narrow" style="text-align: center;">
       <span class="eyebrow">What happens next</span>
@@ -55,4 +63,62 @@ const hero = page?.data ?? {
       </div>
     </div>
   </section>
+
+  <!-- GROUND RULES — Page copy → 14 Thanks (intro screening) → ONBOARDING -->
+  {onboarding?.rules && onboarding.rules.length > 0 && (
+    <section>
+      <div class="container narrow">
+        {onboarding.eyebrow && <span class="eyebrow">{onboarding.eyebrow}</span>}
+        {onboarding.heading && <h2 class="section">{onboarding.heading}</h2>}
+        {onboarding.lead && <p class="lead muted">{onboarding.lead}</p>}
+        <div class="policy-rows">
+          {onboarding.rules.map((r) => (
+            <div class="policy-row">
+              <div class="policy-h">{r.label}</div>
+              <p style="font-size: 14px; color: var(--ink); margin: 0;">{r.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CLOSING -->
+  {(closingParas.length > 0 || onboarding?.quote) && (
+    <section style="background: var(--teal-light);">
+      <div class="container narrow" style="text-align: center;">
+        {onboarding?.closingHeading && <h2 class="section">{onboarding.closingHeading}</h2>}
+        {closingParas.map((p) => (
+          <p class="lead" style="margin-top: 18px;">{p}</p>
+        ))}
+        {onboarding?.quote && (
+          <blockquote class="onboarding-quote">
+            "{onboarding.quote}"
+            {onboarding.quoteCite && <cite>— {onboarding.quoteCite}</cite>}
+          </blockquote>
+        )}
+      </div>
+    </section>
+  )}
 </BaseLayout>
+
+<style>
+  .onboarding-quote {
+    margin: 36px auto 0;
+    max-width: 560px;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--black);
+  }
+  .onboarding-quote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--ink);
+  }
+</style>

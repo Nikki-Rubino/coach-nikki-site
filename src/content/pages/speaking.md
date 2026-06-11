@@ -76,9 +76,9 @@ elsewhere:
   eyebrow: Press · further reading
   heading: Elsewhere on the topic
   posts:
-    - 2026-05-01-strength-after-50
-    - 2026-04-15-what-is-animal-flow
-    - 2025-09-13-the-nonnas-were-right
+    - 2025-05-17-i-didnt-think-i-deserved-it
+    - 2022-10-14-how-strength-training-helps-you-live-a-better-life
+    - 2022-09-17-benefits-of-play-in-adulthood
   cards:
     - icon: Fuel Magazine · 2025
       label: The case for strength training after 55

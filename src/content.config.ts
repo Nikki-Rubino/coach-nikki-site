@@ -156,6 +156,23 @@ const pages = defineCollection({
       .object({
         eyebrow: z.string().optional(),
         heading: z.string().optional(),
+        /** CMS-picked post slugs; empty = show the 3 most recent published */
+        posts: z.array(z.string()).optional(),
+      })
+      .optional(),
+    /** Onboarding info on the intro-screening thank-you page */
+    onboarding: z
+      .object({
+        eyebrow: z.string().optional(),
+        heading: z.string().optional(),
+        lead: z.string().optional(),
+        rules: z
+          .array(z.object({ label: z.string(), text: z.string() }))
+          .optional(),
+        closingHeading: z.string().optional(),
+        closingBody: z.string().optional(),
+        quote: z.string().optional(),
+        quoteCite: z.string().optional(),
       })
       .optional(),
     /** Yellow FUEL trust strip under the home hero */

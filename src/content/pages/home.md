@@ -89,6 +89,10 @@ testimonialsHeader:
 blogHeader:
   eyebrow: From the blog
   heading: Words on Movement and Mindset. News flash, they go hand in hand!
+  posts:
+    - 2022-10-14-how-strength-training-helps-you-live-a-better-life
+    - 2022-10-08-5-benefits-of-trying-something-different
+    - 2022-09-17-benefits-of-play-in-adulthood
 seoTitle: Coach Nikki — strength is ageless
 seoDescription: Strength & movement coaching for over 30s in Matraville, Sydney.
   1:1 coaching, Sassy Seniors, Animal Flow, semi-private strength.

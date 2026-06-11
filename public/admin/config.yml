@@ -153,6 +153,19 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: heading, label: "Heading", widget: string, required: false }
+              - name: posts
+                label: "Blog posts to feature (leave empty to show the 3 most recent published posts — type in the box to search)"
+                widget: list
+                required: false
+                field:
+                  name: post
+                  label: "Blog post"
+                  widget: relation
+                  collection: blog
+                  search_fields: ["title"]
+                  value_field: "{{slug}}"
+                  display_fields: ["title"]
+                  options_length: 100
 
           - name: trustStrip
             label: "TRUST STRIP · Yellow FUEL band under the hero"
@@ -758,7 +771,7 @@ collections:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: heading, label: "Heading", widget: string, required: false }
               - name: posts
-                label: "Blog posts to feature (picked posts replace the cards below — drafts won't show until published)"
+                label: "Blog posts to feature (picked posts replace the cards below — drafts won't show until published — type in the box to search)"
                 widget: list
                 required: false
                 field:
@@ -769,6 +782,7 @@ collections:
                   search_fields: ["title"]
                   value_field: "{{slug}}"
                   display_fields: ["title"]
+                  options_length: 100
               - name: cards
                 label: "Cards (fallback when no blog posts are picked above)"
                 widget: list
@@ -865,6 +879,26 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - name: onboarding
+            label: "ONBOARDING · 'How training with me works' (the welcome email content)"
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string, required: false }
+              - { name: lead, label: "Lead line under the heading", widget: text, required: false }
+              - name: rules
+                label: "Ground rule cards (label + short text each)"
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: "Rule name (e.g. CANCELLATIONS)", widget: string }
+                  - { name: text, label: "Rule text", widget: text }
+              - { name: closingHeading, label: "CLOSING · Heading", widget: string, required: false }
+              - { name: closingBody, label: "CLOSING · Body (blank line = new paragraph)", widget: text, required: false }
+              - { name: quote, label: "CLOSING · Quote", widget: text, required: false }
+              - { name: quoteCite, label: "CLOSING · Quote attribution", widget: string, required: false }
           - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
           - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
 

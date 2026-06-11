@@ -36,10 +36,32 @@ const featuredTestimonials = (await getCollection('testimonials', (e) => e.data.
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-// Three most recent blog posts.
-const posts = (await getCollection('blog', (e) => !e.data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+// Blog posts: CMS-picked (Page copy → 01 Home → SECTION · Blog header →
+// Blog posts to feature), falling back to the three most recent published.
+const allPosts = (await getCollection('blog', (e) => !e.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const normSlug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/\.md$/, '')
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+const pickedPosts = [
+  ...new Set(
+    (blogHeader?.posts ?? [])
+      .map(
+        (slug) =>
+          allPosts.find((p) => p.id === slug) ??
+          allPosts.find(
+            (p) => normSlug(p.id) === normSlug(slug) || normSlug(p.data.title) === normSlug(slug),
+          ),
+      )
+      .filter((p) => p !== undefined),
+  ),
+];
+const posts = pickedPosts.length > 0 ? pickedPosts : allPosts.slice(0, 3);
 
 const dateFmt = new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric' });
 ---
