@@ -1,7 +1,7 @@
 ---
-title: Cert IV / Diploma — placeholder
+title: Cert III and IV Certificates
 iconStyle: standard
 order: 3
 draft: true
 ---
-Add the formal training quals here. Year completed, awarding body. Edit me in the CMS under Credentials.
+The big shift from Tv editor to coach. All granted in 2016.
