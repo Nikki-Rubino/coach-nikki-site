@@ -28,7 +28,9 @@ const format = page?.data?.format;
 const finalCta = page?.data?.finalCta;
 
 // Optional video block — only renders when youtubeVideoId is set in CMS.
+// The primary clip is vertical (9:16); landscapeVideoId adds an optional 16:9 companion.
 const ytId = page?.data?.youtubeVideoId;
+const ytLandscapeId = page?.data?.landscapeVideoId;
 
 // Three photos under the video. Edit in CMS: Page copy → 03 Sassy Seniors → Video photos.
 const videoPhotos = page?.data?.videoPhotos;
@@ -106,21 +108,36 @@ const innaTestimonial =
     </section>
   )}
 
-  <!-- OPTIONAL VIDEO — renders only if youtubeVideoId is set on the page in CMS -->
+  <!-- OPTIONAL VIDEO — renders only if youtubeVideoId is set on the page in CMS.
+       Primary clip is vertical (9:16); landscapeVideoId adds a 16:9 companion below. -->
   {ytId && (
     <section style="background: #fff;">
       <div class="container narrow">
         <span class="eyebrow">See it in action</span>
         <h2 class="section">A look inside a session</h2>
-        <div class="video-embed" style="margin-top: 28px;">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
-            title="A session with the Sassy crew"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+        <div class="video-pair">
+          <div class="video-embed portrait">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
+              title="A session with the Sassy crew"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          {ytLandscapeId && (
+            <div class="video-embed">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${ytLandscapeId}?rel=0&modestbranding=1`}
+                title="A session with the Sassy crew"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          )}
         </div>
       </div>
     </section>

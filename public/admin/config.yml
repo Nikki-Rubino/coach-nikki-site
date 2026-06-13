@@ -259,7 +259,8 @@ collections:
               - { name: heading, label: "Heading", widget: string, required: false }
               - { name: lead, label: "Lead", widget: text, required: false }
 
-          - { name: youtubeVideoId, label: "VIDEO (optional) · YouTube video ID for the section below the hero (e.g. clip of clients training). Leave blank to skip the video section.", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO (optional) · YouTube video ID for the main VERTICAL clip (9:16) below the hero. Leave blank to skip the video section.", widget: string, required: false }
+          - { name: landscapeVideoId, label: "VIDEO (optional) · Second YouTube video ID for a LANDSCAPE clip (16:9), shown beneath the vertical video", widget: string, required: false }
 
           - name: videoPhotos
             label: "VIDEO PHOTOS · Three photos under the video"
@@ -350,7 +351,8 @@ collections:
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
           - { name: badgeText, label: "HERO · Orange badge text (the pill, e.g. ★ Sydney Regional Leader · 10 years)", widget: string, required: false }
-          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID (the 11-char bit after watch?v= in the URL)", widget: string, required: false }
+          - { name: youtubeVideoId, label: "VIDEO · YouTube video ID for the main LANDSCAPE clip (16:9, the 11-char bit after watch?v= in the URL)", widget: string, required: false }
+          - { name: verticalVideoId, label: "VIDEO (optional) · Second YouTube video ID for a VERTICAL clip (9:16), shown beneath the main video", widget: string, required: false }
 
           - name: whatIs
             label: "WHAT IT IS · Section header (body text below)"
@@ -916,6 +918,19 @@ collections:
           - { name: primaryCtaHref, label: "HERO · Primary CTA link", widget: string, required: false }
           - { name: secondaryCtaLabel, label: "HERO · Secondary CTA label", widget: string, required: false }
           - { name: secondaryCtaHref, label: "HERO · Secondary CTA link", widget: string, required: false }
+          - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
+          - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
+
+      # ─── 16 Blog ────────────────────────────────────────────────────────
+      - name: "blog"
+        label: "16 Blog"
+        file: "src/content/pages/blog.md"
+        fields:
+          - { name: title, label: "Page title (internal)", widget: string, default: "16 Blog" }
+          - { name: eyebrow, label: "HEADER · Eyebrow (small line above the title)", widget: string, required: false }
+          - { name: heroHeadline, label: "HEADER · Headline", widget: string, required: false }
+          - { name: heroSubcopy, label: "HEADER · Intro line under the headline", widget: text, required: false }
+          - { name: body, label: "BODY · Optional extra intro text under the header (markdown). Leave blank to show just the headline + intro line.", widget: markdown, required: false }
           - { name: seoTitle, label: "SEO · Browser tab title", widget: string, required: false }
           - { name: seoDescription, label: "SEO · Description", widget: text, required: false }
 

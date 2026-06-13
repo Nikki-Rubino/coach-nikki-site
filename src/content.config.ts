@@ -106,6 +106,10 @@ const pages = defineCollection({
     youtubeVideoId: z.string().optional(),
     /** Secondary video ID — used on /speaking for the vertical award-acceptance clip */
     awardVideoId: z.string().optional(),
+    /** Companion vertical (9:16) clip — used on /animal-flow beside the main landscape video */
+    verticalVideoId: z.string().optional(),
+    /** Companion landscape (16:9) clip — used on /sassy-seniors beside the main vertical video */
+    landscapeVideoId: z.string().optional(),
     /** Animal Flow hero badge text (orange pill) */
     badgeText: z.string().optional(),
     /** Timetable: static schedule image + intro note (replaces the live booking widget) */

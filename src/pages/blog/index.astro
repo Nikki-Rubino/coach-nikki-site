@@ -1,10 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('blog', (e) => !e.data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+// Editable header + intro copy — Page copy → 16 Blog in the CMS.
+const page = await getEntry('pages', 'blog');
+const eyebrow = page?.data?.eyebrow ?? 'From the blog';
+const heading = page?.data?.heroHeadline ?? 'Words on movement';
+const lead = page?.data?.heroSubcopy ?? 'Strength, mobility, recovery, and what it takes to keep moving well for life.';
+const introBody = page?.rendered?.html ?? '';
 
 const dateFmt = new Intl.DateTimeFormat('en-AU', {
   day: 'numeric',
@@ -14,15 +21,16 @@ const dateFmt = new Intl.DateTimeFormat('en-AU', {
 ---
 
 <BaseLayout
-  title="Blog — Coach Nikki"
-  description="Coach Nikki's writing on strength training, movement, recovery, and coaching the over-30s through 90s."
+  title={page?.data?.seoTitle ?? 'Blog — Coach Nikki'}
+  description={page?.data?.seoDescription ?? "Coach Nikki's writing on strength training, movement, recovery, and coaching the over-30s through 90s."}
   activeNav="blog"
 >
   <section style="background: #fff;">
     <div class="container">
-      <span class="eyebrow">From the blog</span>
-      <h1 class="display" style="font-size: 56px;">Words on movement</h1>
-      <p class="lead">Strength, mobility, recovery, and what it takes to keep moving well for life.</p>
+      <span class="eyebrow">{eyebrow}</span>
+      <h1 class="display" style="font-size: 56px;">{heading}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      {introBody && <div class="legal-body" style="max-width: 760px;" set:html={introBody} />}
 
       {posts.length === 0 && (
         <p class="muted" style="margin-top: 40px;">

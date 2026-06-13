@@ -17,10 +17,14 @@
   --yellow: #FCE883;
   --yellow-light: #FFF5C5;
 
-  /* Neutrals */
+  /* Neutrals
+     Note: --ink (body copy) and --muted (captions / fine print) were both
+     darkened to true black per request — the site previously used grey for
+     these. Footer (light text on dark bg) and teal/white sections use their
+     own hardcoded colours and are unaffected. */
   --black: #111111;
-  --ink: #1F2937;
-  --muted: #6B7280;
+  --ink: #111111;
+  --muted: #111111;
   --rule: #E5E7EB;
   --bg: #FAFAF9;
   --card: #FFFFFF;
@@ -195,7 +199,7 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
   color: var(--ink);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .wf-nav .links a:hover,
 .wf-nav .links a.active { color: var(--teal); }
@@ -218,6 +222,10 @@ h3 { font-size: 20px; font-weight: 700; color: var(--black); }
 }
 .wf-nav .ig-link:hover { color: var(--teal); }
 .wf-nav .ig-link svg { width: 22px; height: 22px; display: block; }
+/* Hamburger toggle — hidden on desktop, shown ≤900px (see responsive block).
+   Pure CSS: a hidden checkbox toggled by the label opens the menu, no JS. */
+.nav-toggle-cb { display: none; }
+.nav-toggle { display: none; }
 
 /* ---------- placeholder image (swap for real <img> later) ---------- */
 .ph {
@@ -882,6 +890,17 @@ img.avatar { border: 1px solid var(--rule); }
   background: #000;
 }
 .video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
+/* Portrait / vertical clip (9:16) — centred, capped width so it doesn't tower */
+.video-embed.portrait {
+  aspect-ratio: 9 / 16;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* When two clips sit together (landscape + vertical), space them out */
+.video-pair { margin-top: 28px; }
+.video-pair .video-embed + .video-embed { margin-top: 24px; }
+.video-caption { text-align: center; margin-top: 12px; font-size: 13px; }
 .video-block::after {
   content: "";
   position: absolute;
@@ -1537,7 +1556,57 @@ img.avatar { border: 1px solid var(--rule); }
   .typical-week .day-h:not(:nth-child(2)) { display: none; }
   .cta-strip h2 { font-size: 30px; }
   .wf-nav { padding: 14px 20px; }
-  .wf-nav .links { display: none; }
+
+  /* ----- mobile hamburger menu ----- */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    margin-left: auto;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  /* animate bars into an X when open */
+  .nav-toggle-cb:checked ~ .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle-cb:checked ~ .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-toggle-cb:checked ~ .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* links become a full-width dropdown panel below the bar */
+  .wf-nav .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    flex: none;
+    margin-left: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    padding: 6px 20px 14px;
+  }
+  .nav-toggle-cb:checked ~ .links { display: flex; }
+  .wf-nav .links a {
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+  }
+  .wf-nav .links a:last-child { border-bottom: none; }
+
   .intro-cta { flex-direction: column; align-items: flex-start; padding: 28px; }
 
   /* Speaking */

@@ -26,6 +26,8 @@ const afBody = page?.rendered?.html ?? '';
 
 // YouTube video ID for the "See it in motion" block. Edit in CMS under Page copy → Animal Flow.
 const ytId = page?.data?.youtubeVideoId;
+// Optional companion vertical (9:16) clip shown beneath the main landscape video.
+const ytVertId = page?.data?.verticalVideoId;
 
 // AF blocks now live inside the page entry.
 const whatIs = page?.data?.whatIs;
@@ -99,15 +101,29 @@ const finalCta = page?.data?.finalCta;
       <span class="eyebrow">See it in motion</span>
       <h2 class="section">A short flow, from the studio</h2>
       {ytId ? (
-        <div class="video-embed" style="margin-top: 28px;">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
-            title="A short flow, from the studio"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+        <div class="video-pair">
+          <div class="video-embed">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
+              title="A short flow, from the studio"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          {ytVertId && (
+            <div class="video-embed portrait">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${ytVertId}?rel=0&modestbranding=1`}
+                title="A vertical flow clip"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          )}
         </div>
       ) : (
         <div class="video-block" style="margin-top: 28px;">
