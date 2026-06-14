@@ -1572,8 +1572,8 @@ img.avatar { border: 1px solid var(--rule); }
   }
   .hero-home .image {
     aspect-ratio: auto;
-    height: 180px;
-    max-height: 180px;
+    height: 350px;
+    max-height: 350px;
   }
   h1.display { font-size: 44px; }
   h2.section { font-size: 30px; }
