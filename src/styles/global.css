@@ -1563,6 +1563,18 @@ img.avatar { border: 1px solid var(--rule); }
     gap: 32px;
     padding: 40px 20px 56px;
   }
+  /* Home hero only: shorten the portrait to a head-and-torso banner crop and
+     sit it flush above the yellow Fuel Woman of the Year strip, so that badge
+     lands above the fold on phones. Other pages' heroes are unaffected. */
+  .hero-home {
+    gap: 18px;
+    padding: 28px 20px 0;
+  }
+  .hero-home .image {
+    aspect-ratio: auto;
+    height: 210px;
+    max-height: 210px;
+  }
   h1.display { font-size: 44px; }
   h2.section { font-size: 30px; }
   .doors, .sessions, .pricing-grid, .tlist, .blog-list, .steps,
