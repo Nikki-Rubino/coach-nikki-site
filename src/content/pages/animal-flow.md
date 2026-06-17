@@ -14,7 +14,7 @@ secondaryCtaLabel: See the timetable
 secondaryCtaHref: /timetable
 badgeText: ★ Sydney Regional Leader - 10 years experience
 youtubeVideoId: BXKizhGXIHI
-verticalVideoId: BchCSBU03jGxNJ9k
+verticalVideoId: aFs4ZOBOQBo
 whatIs:
   eyebrow: What it is
   heading: Strength, range, brain — all on the floor
