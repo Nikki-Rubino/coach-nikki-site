@@ -16,22 +16,22 @@ const PHONE_HREF = 'tel:0403122669';
 ---
 
 <CampaignLayout
-  title="Strong & Sassy — your first class is free | Coach Nikki Matraville"
-  description="Real strength training for the 55+ crew in Matraville. Capped at 6, properly coached, music from the good years. Your first class is on us."
+  title="Strong & Sassy — strength training for the 55+ in Matraville | Coach Nikki"
+  description="Real strength training for the 55+ crew in Matraville. Capped at 6, properly coached, music from the good years. Start with a foundation assessment — first week of classes free."
   ogImage={heroImage}
 >
   <!-- HERO -->
   <section class="hero">
     <div>
       <span class="eyebrow">Strong &amp; Sassy · Matraville</span>
-      <h1 class="display">Strong, social, and a little bit cheeky. Your first class is on us.</h1>
+      <h1 class="display">Real strength for the 55+ crew. Done properly, done safely.</h1>
       <p class="lead">
-        Real strength training for the 55+ crew. Capped at six, coached the whole way,
-        with music from the good years. Come try a class for free — no lycra, no judgement,
-        and none of that "strong for your age" nonsense. Just strong.
+        No throwing you in the deep end. Every new member starts with a one-on-one foundation
+        assessment, so I can see how you move and keep you injury-free. Once that's done,
+        your first week of classes is on me. Capped at six, properly coached, music from the good years.
       </p>
       <div style="margin-top: 28px;">
-        <a class="btn-primary" href="#book">Book my free class</a>
+        <a class="btn-primary" href="#book">Book your assessment</a>
         <a class="btn-secondary" href={PHONE_HREF}>Or call Nikki: {PHONE}</a>
       </div>
     </div>
@@ -47,9 +47,31 @@ const PHONE_HREF = 'tel:0403122669';
   <!-- OFFER, SAID PLAINLY -->
   <section class="cta-strip">
     <div class="container narrow">
-      <h2>Your first Strong &amp; Sassy class is free.</h2>
-      <p>Come in, meet Nikki and the crew, and see how it feels. If it's not for you, no worries and no pressure.</p>
-      <a class="btn-primary" href="#book">Book my free class</a>
+      <h2>Your first week of classes is free.</h2>
+      <p>
+        Here's how it works: we start with a one-on-one foundation assessment so I know your body
+        and how it moves. Then your first full week of Strong &amp; Sassy classes is on me.
+        No guesswork, no getting hurt, no pressure.
+      </p>
+      <a class="btn-primary" href="#book">Book your assessment</a>
+    </div>
+  </section>
+
+  <!-- WHY WE ASSESS FIRST -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">Why we start with an assessment</span>
+      <h2 class="section">I won't just throw you in.</h2>
+      <p class="lead" style="max-width: 760px;">
+        Keeping you moving safely is the whole point. Before you join a class, we spend one-on-one
+        time so I can see how you move, work around any niggles, and set you up to get stronger
+        without getting hurt. It's the bit most places skip — and it's exactly why my crew keeps showing up.
+      </p>
+      <div class="format-grid" style="margin-top: 32px;">
+        <div class="format-card"><div class="num">1</div><div class="lbl">Book your foundation assessment</div></div>
+        <div class="format-card"><div class="num">2</div><div class="lbl">We spend one-on-one time and I see how you move</div></div>
+        <div class="format-card"><div class="num">3</div><div class="lbl">Your first week of Strong &amp; Sassy classes is free</div></div>
+      </div>
     </div>
   </section>
 
@@ -107,7 +129,7 @@ const PHONE_HREF = 'tel:0403122669';
         <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per session</div></div>
         <div class="format-card"><div class="num">11am</div><div class="lbl">Weekday mornings</div></div>
         <div class="format-card"><div class="num">60</div><div class="lbl">Minutes per session</div></div>
-        <div class="format-card"><div class="num">Free</div><div class="lbl">Your first class</div></div>
+        <div class="format-card"><div class="num">Free</div><div class="lbl">Your first week, after your assessment</div></div>
       </div>
     </div>
   </section>
@@ -172,9 +194,10 @@ const PHONE_HREF = 'tel:0403122669';
       <span class="eyebrow">A few quick questions</span>
       <h2 class="section">Honest answers</h2>
       <div class="faq">
+        <details class="faq-item"><summary>Why isn't the first class free?</summary><div class="faq-body"><p>Because I need to see how you move first. A quick one-on-one assessment keeps you safe and means every class is actually right for your body. Once that's done, your first week of classes is on me.</p></div></details>
         <details class="faq-item"><summary>Do I need to be fit to start?</summary><div class="faq-body"><p>No. We meet you exactly where you are and scale everything to suit you.</p></div></details>
-        <details class="faq-item"><summary>I've got a dodgy knee, hip or back. Can I still come?</summary><div class="faq-body"><p>Almost always yes. Tell Nikki when you book and she'll adjust the session around you.</p></div></details>
-        <details class="faq-item"><summary>What does it cost after the free class?</summary><div class="faq-body"><p>If you'd like to keep going, Nikki will walk you through the options in person — no lock-in surprises, no pressure.</p></div></details>
+        <details class="faq-item"><summary>I've got a dodgy knee, hip or back. Can I still come?</summary><div class="faq-body"><p>Almost always yes — and the assessment is exactly where we work that out together, so your sessions are built around you.</p></div></details>
+        <details class="faq-item"><summary>What does it cost?</summary><div class="faq-body"><p>We start with the foundation assessment — I'll talk you through the cost when we chat, it's quick and there's no obligation. After that, your first week of classes is free.</p></div></details>
         <details class="faq-item"><summary>Is it really just for over 55s?</summary><div class="faq-body"><p>It's built around the 55+ crew, with the strength work and the social side to match.</p></div></details>
       </div>
     </div>
@@ -183,12 +206,12 @@ const PHONE_HREF = 'tel:0403122669';
   <!-- FINAL CTA + FORM -->
   <section id="book" style="background: var(--teal-light);">
     <div class="container narrow">
-      <h2 class="section">Come and feel strong again. First one's free.</h2>
-      <p class="lead">Pop your details in and Nikki will be in touch to lock in your free class. Takes about a minute.</p>
+      <h2 class="section">Ready to get started? It begins with your assessment.</h2>
+      <p class="lead">Pop your details in and Nikki will be in touch to book your one-on-one foundation assessment. Takes about a minute.</p>
 
       <form
         id="sassy-form-el"
-        name="sassy-free-class"
+        name="sassy-seniors-assessment"
         method="POST"
         netlify
         data-netlify="true"
@@ -197,7 +220,7 @@ const PHONE_HREF = 'tel:0403122669';
         class="contact-form"
         style="margin-top: 32px;"
       >
-        <input type="hidden" name="form-name" value="sassy-free-class" />
+        <input type="hidden" name="form-name" value="sassy-seniors-assessment" />
         <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
         <label class="field">
@@ -210,20 +233,9 @@ const PHONE_HREF = 'tel:0403122669';
           <input type="tel" name="phone" required />
         </label>
 
-        <fieldset class="field">
-          <legend>Which day suits?</legend>
-          <div class="radio-row">
-            <label class="radio"><input type="radio" name="day" value="tuesday" /> Tuesday</label>
-            <label class="radio"><input type="radio" name="day" value="wednesday" /> Wednesday</label>
-            <label class="radio"><input type="radio" name="day" value="thursday" /> Thursday</label>
-            <label class="radio"><input type="radio" name="day" value="friday" /> Friday</label>
-            <label class="radio"><input type="radio" name="day" value="unsure" checked /> Not sure yet</label>
-          </div>
-        </fieldset>
-
         <label class="field">
           <span>Anything Nikki should know? (optional)</span>
-          <textarea name="notes" rows="3" placeholder="Injuries, questions, or what you're hoping to get out of it."></textarea>
+          <textarea name="notes" rows="3" placeholder="Injuries or niggles to work around, what you're hoping to get out of it, or days that suit you to train."></textarea>
         </label>
 
         <fieldset class="field">
@@ -237,7 +249,7 @@ const PHONE_HREF = 'tel:0403122669';
           </div>
         </fieldset>
 
-        <button type="submit" class="btn-primary" style="margin-top: 8px;">Book my free class</button>
+        <button type="submit" class="btn-primary" style="margin-top: 8px;">Book my assessment</button>
       </form>
 
       <p class="muted" style="text-align: center; margin-top: 24px; font-size: 14px;">
