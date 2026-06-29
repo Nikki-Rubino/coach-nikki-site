@@ -1,0 +1,268 @@
+---
+import { getEntry } from 'astro:content';
+import CampaignLayout from '../layouts/CampaignLayout.astro';
+
+// Reuse imagery already managed in the CMS so it stays consistent with the
+// main Sassy Seniors page (and editable in Decap).
+const sassy = await getEntry('pages', 'sassy-seniors');
+const heroImage = sassy?.data?.heroImage;
+const photos = sassy?.data?.videoPhotos;
+
+const fuel = await getEntry('site', 'fuel-band');
+const fuelImage = fuel?.data?.image;
+
+const PHONE = '0403 122 669';
+const PHONE_HREF = 'tel:0403122669';
+---
+
+<CampaignLayout
+  title="Strong & Sassy — your first class is free | Coach Nikki Matraville"
+  description="Real strength training for the 55+ crew in Matraville. Capped at 6, properly coached, music from the good years. Your first class is on us."
+  ogImage={heroImage}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Strong &amp; Sassy · Matraville</span>
+      <h1 class="display">Strong, social, and a little bit cheeky. Your first class is on us.</h1>
+      <p class="lead">
+        Real strength training for the 55+ crew. Capped at six, coached the whole way,
+        with music from the good years. Come try a class for free — no lycra, no judgement,
+        and none of that "strong for your age" nonsense. Just strong.
+      </p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href="#book">Book my free class</a>
+        <a class="btn-secondary" href={PHONE_HREF}>Or call Nikki: {PHONE}</a>
+      </div>
+    </div>
+    <div class="image">
+      {heroImage ? (
+        <img src={heroImage} alt="The Strong & Sassy crew training with Coach Nikki" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      ) : (
+        <span class="ph-label">Photo: the Sassy crew mid-session, real smiles</span>
+      )}
+    </div>
+  </section>
+
+  <!-- OFFER, SAID PLAINLY -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Your first Strong &amp; Sassy class is free.</h2>
+      <p>Come in, meet Nikki and the crew, and see how it feels. If it's not for you, no worries and no pressure.</p>
+      <a class="btn-primary" href="#book">Book my free class</a>
+    </div>
+  </section>
+
+  <!-- IS THIS ME -->
+  <section class="if-this-sounds">
+    <div class="container">
+      <span class="eyebrow">Sound familiar?</span>
+      <h2 class="section">If you've thought "this isn't really my scene"…</h2>
+      <div class="ifsounds">
+        <ul class="ifsounds-list">
+          <li>"I looked at gyms and thought, too loud, too young, too judgey."</li>
+          <li>"I've never lifted weights properly and don't know where to start."</li>
+          <li>"I just want to keep gardening, lifting the grandkids and travelling without my body letting me down."</li>
+          <li>"I'm fit enough — I just want something that's actually fun."</li>
+        </ul>
+        <p class="closing-line">You're exactly who this is built for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT ACTUALLY HAPPENS -->
+  <section style="background:#fff;">
+    <div class="container">
+      <div class="what-youll-do">
+        <div class="ph">
+          {photos?.image1 ? (
+            <img src={photos.image1} alt="A Sassy member mid-lift, smiling" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo: a member mid-deadlift, smiling</span>
+          )}
+        </div>
+        <div>
+          <span class="eyebrow">No gentle stretching</span>
+          <h2 class="section">Real strength training. Properly coached.</h2>
+          <p class="lead">Don't let the age bracket fool you.</p>
+          <ul>
+            <li>We deadlift. Yes, with bars.</li>
+            <li>We squat, split squat, and row.</li>
+            <li>We work balance, and learn the odd new trick.</li>
+            <li>We do it safely, scaled to where your body is today.</li>
+            <li>We do it with classic tunes and a good laugh.</li>
+          </ul>
+          <p style="margin-top: 20px; font-size: 17px;">The music's on the classic side. The strength gains are still elite.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAT GRID -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">The format</span>
+      <h2 class="section">Small sessions. Real coaching. Friendly times.</h2>
+      <div class="format-grid">
+        <div class="format-card"><div class="num">6</div><div class="lbl">Maximum per session</div></div>
+        <div class="format-card"><div class="num">11am</div><div class="lbl">Weekday mornings</div></div>
+        <div class="format-card"><div class="num">60</div><div class="lbl">Minutes per session</div></div>
+        <div class="format-card"><div class="num">Free</div><div class="lbl">Your first class</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST: WOMAN OF THE YEAR -->
+  <section class="fuel-band">
+    <div class="container">
+      <div class="grid">
+        <div class="ph">
+          {fuelImage ? (
+            <img src={fuelImage} alt="Nikki named Fuel Woman of the Year 2025" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo: Nikki on stage at the Fuel summit</span>
+          )}
+        </div>
+        <div>
+          <span class="award-tag">★ Fuel Woman of the Year 2025</span>
+          <h2>Coached by someone who's made this her life's work.</h2>
+          <div class="fuel-body">
+            <p>
+              Nikki was named Fuel Woman of the Year 2025 for her work with the ageing fitness
+              community. Her whole focus is helping the 55+ crew stay strong, capable and independent —
+              getting off the floor, carrying the groceries, and moving through life without a second thought.
+            </p>
+          </div>
+          <blockquote>
+            "Ageing isn't about getting 'old' — it's about staying capable. Now that's real strength."
+            <cite>Nikki Rubino</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL DETAILS -->
+  <section style="background:#fff;">
+    <div class="container">
+      <span class="eyebrow">When and where</span>
+      <h2 class="section">The practical bit</h2>
+      <div class="typical-week">
+        <div></div>
+        <div class="day-h">Tuesday</div>
+        <div class="day-h">Wednesday</div>
+        <div class="day-h">Thursday</div>
+        <div class="day-h">Friday</div>
+        <div class="cell time-h">11:00 AM</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+        <div class="cell session">Strong &amp; Sassy</div>
+      </div>
+      <p class="muted" style="margin-top: 20px; font-size: 15px;">
+        At the Matraville studio — Unit 3 / 60 Perry St. Capped at 6, 60 minutes.
+        There's also an evening option on Thursdays at 5:15pm. Bring yourself and water — we'll sort the rest.
+      </p>
+    </div>
+  </section>
+
+  <!-- SHORT FAQ -->
+  <section>
+    <div class="container narrow">
+      <span class="eyebrow">A few quick questions</span>
+      <h2 class="section">Honest answers</h2>
+      <div class="faq">
+        <details class="faq-item"><summary>Do I need to be fit to start?</summary><div class="faq-body"><p>No. We meet you exactly where you are and scale everything to suit you.</p></div></details>
+        <details class="faq-item"><summary>I've got a dodgy knee, hip or back. Can I still come?</summary><div class="faq-body"><p>Almost always yes. Tell Nikki when you book and she'll adjust the session around you.</p></div></details>
+        <details class="faq-item"><summary>What does it cost after the free class?</summary><div class="faq-body"><p>If you'd like to keep going, Nikki will walk you through the options in person — no lock-in surprises, no pressure.</p></div></details>
+        <details class="faq-item"><summary>Is it really just for over 55s?</summary><div class="faq-body"><p>It's built around the 55+ crew, with the strength work and the social side to match.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + FORM -->
+  <section id="book" style="background: var(--teal-light);">
+    <div class="container narrow">
+      <h2 class="section">Come and feel strong again. First one's free.</h2>
+      <p class="lead">Pop your details in and Nikki will be in touch to lock in your free class. Takes about a minute.</p>
+
+      <form
+        id="sassy-form-el"
+        name="sassy-free-class"
+        method="POST"
+        netlify
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/seniors-thanks/"
+        class="contact-form"
+        style="margin-top: 32px;"
+      >
+        <input type="hidden" name="form-name" value="sassy-free-class" />
+        <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" required />
+        </label>
+
+        <label class="field">
+          <span>Phone</span>
+          <input type="tel" name="phone" required />
+        </label>
+
+        <fieldset class="field">
+          <legend>Which day suits?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="day" value="tuesday" /> Tuesday</label>
+            <label class="radio"><input type="radio" name="day" value="wednesday" /> Wednesday</label>
+            <label class="radio"><input type="radio" name="day" value="thursday" /> Thursday</label>
+            <label class="radio"><input type="radio" name="day" value="friday" /> Friday</label>
+            <label class="radio"><input type="radio" name="day" value="unsure" checked /> Not sure yet</label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Anything Nikki should know? (optional)</span>
+          <textarea name="notes" rows="3" placeholder="Injuries, questions, or what you're hoping to get out of it."></textarea>
+        </label>
+
+        <fieldset class="field">
+          <legend>Where did you hear about us?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="heard" value="facebook" /> Facebook</label>
+            <label class="radio"><input type="radio" name="heard" value="flyer" /> Flyer or poster</label>
+            <label class="radio"><input type="radio" name="heard" value="cafe" /> A café</label>
+            <label class="radio"><input type="radio" name="heard" value="friend" /> A friend</label>
+            <label class="radio"><input type="radio" name="heard" value="other" /> Somewhere else</label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary" style="margin-top: 8px;">Book my free class</button>
+      </form>
+
+      <p class="muted" style="text-align: center; margin-top: 24px; font-size: 14px;">
+        Prefer to talk first? Call Nikki on <a href={PHONE_HREF}>{PHONE}</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- JS submit → our own thanks page (bypasses Netlify's sticky success mapping). -->
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('sassy-form-el');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        const data = new FormData(form);
+        const params = new URLSearchParams();
+        for (const [k, v] of data.entries()) params.append(k, v);
+        try {
+          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
+        } catch (_) {}
+        window.location.href = '/seniors-thanks/';
+      });
+    })();
+  </script>
+</CampaignLayout>

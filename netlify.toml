@@ -13,6 +13,17 @@
   to   = "/admin/index.html"
   status = 200
 
+# Campaign landing page: canonical slug is /AF (uppercase). Catch lowercase
+# /af and /af-thanks so a typed or mis-cased URL still lands correctly.
+[[redirects]]
+  from = "/af"
+  to   = "/AF"
+  status = 301
+[[redirects]]
+  from = "/af-thanks"
+  to   = "/AF-thanks"
+  status = 301
+
 # Long-cache hashed assets emitted by Astro
 [[headers]]
   for = "/_astro/*"

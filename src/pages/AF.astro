@@ -1,0 +1,197 @@
+---
+import { getEntry } from 'astro:content';
+import CampaignLayout from '../layouts/CampaignLayout.astro';
+
+// Reuse imagery + badge already managed in the CMS for the main Animal Flow page.
+const af = await getEntry('pages', 'animal-flow');
+const heroImage = af?.data?.heroImage;
+const badgeText = af?.data?.badgeText ?? '★ Animal Flow Sydney Regional Leader · coaching since 2016';
+const whatIsImage = af?.data?.whatIs?.image;
+---
+
+<CampaignLayout
+  title="Animal Flow — your first class is free | Coach Nikki Sydney"
+  description="Ground-based movement that builds strength, mobility and control. Beginner-friendly, led by an Animal Flow Sydney Regional Leader in Matraville. First class free."
+  ogImage={heroImage}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Animal Flow® Sydney · Regional Leader</span>
+      <h1 class="display">Move better, feel better. Your first Animal Flow class is free.</h1>
+      <p class="lead">
+        Ground-based movement that builds strength, mobility and control you didn't know you were missing.
+        No equipment, no mirrors — just you, the floor and the music. Come try a class on us.
+      </p>
+      <div style="margin-top: 28px;">
+        <a class="btn-primary" href="#book">Book my free class</a>
+      </div>
+      <p class="af-badge" style="margin-top: 22px; display: inline-block;">{badgeText}</p>
+    </div>
+    <div class="image">
+      {heroImage ? (
+        <img src={heroImage} alt="Animal Flow with Coach Nikki" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      ) : (
+        <span class="ph-label">Photo: Nikki mid-flow on the floor</span>
+      )}
+    </div>
+  </section>
+
+  <!-- OFFER, SAID PLAINLY -->
+  <section class="cta-strip">
+    <div class="container narrow">
+      <h2>Your first Animal Flow class is free.</h2>
+      <p>Total beginner or seasoned mover — come find out what all the crawling's about.</p>
+      <a class="btn-primary" href="#book">Book my free class</a>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section style="background:#fff;">
+    <div class="container">
+      <div class="what-youll-do">
+        <div class="ph">
+          {whatIsImage ? (
+            <img src={whatIsImage} alt="Animal Flow ground-based movement" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          ) : (
+            <span class="ph-label">Photo: a clean Animal Flow shape</span>
+          )}
+        </div>
+        <div>
+          <span class="eyebrow">What it is</span>
+          <h2 class="section">Strength, range and brain — all on the floor.</h2>
+          <p class="lead">A ground-based bodyweight system that rebuilds the connection between your brain, body and nervous system. It exposes your limits, then quietly helps fix them.</p>
+          <ul>
+            <li>Brilliant companion to strength training</li>
+            <li>Builds joint resilience for hips, shoulders, wrists and spine</li>
+            <li>Develops coordination, balance and proprioception</li>
+            <li>Scales from total beginner to certified instructor</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO WAYS TO TRAIN -->
+  <section>
+    <div class="container">
+      <span class="eyebrow">Two ways to train</span>
+      <h2 class="section">Skills or Build a Flow — both free to try.</h2>
+      <div class="format-grid">
+        <div class="format-card"><div class="num">Skills</div><div class="lbl">Learn each shape clean. The friendly front door for beginners.</div></div>
+        <div class="format-card"><div class="num">Build</div><div class="lbl">String the shapes together into a flow. For when you've got the basics.</div></div>
+      </div>
+      <p class="muted" style="margin-top: 20px; font-size: 15px;">New to it? Start with Skills. Not sure? Just say so when you book and Nikki will point you to the right one.</p>
+    </div>
+  </section>
+
+  <!-- PRACTICAL DETAILS -->
+  <section style="background:#fff;">
+    <div class="container">
+      <span class="eyebrow">When and where</span>
+      <h2 class="section">The practical bit</h2>
+      <div class="format-grid">
+        <div class="format-card"><div class="num">Sat</div><div class="lbl">9:15am Build a Flow · 10:00am Skills</div></div>
+        <div class="format-card"><div class="num">Tue</div><div class="lbl">5:15pm Build a Flow · 6:15pm Skills</div></div>
+        <div class="format-card"><div class="num">8</div><div class="lbl">Maximum per session</div></div>
+        <div class="format-card"><div class="num">Free</div><div class="lbl">Your first class</div></div>
+      </div>
+      <p class="muted" style="margin-top: 20px; font-size: 15px;">
+        At the Matraville studio — Unit 3 / 60 Perry St. No equipment needed. Bring water and comfy gear — we train barefoot.
+      </p>
+    </div>
+  </section>
+
+  <!-- SHORT FAQ -->
+  <section>
+    <div class="container narrow">
+      <span class="eyebrow">A few quick questions</span>
+      <h2 class="section">Honest answers</h2>
+      <div class="faq">
+        <details class="faq-item"><summary>I've never done it before — is that ok?</summary><div class="faq-body"><p>Perfect. Start with Skills and we'll teach you each shape from scratch.</p></div></details>
+        <details class="faq-item"><summary>Do I need to be strong or flexible already?</summary><div class="faq-body"><p>No. Animal Flow builds both — that's the whole point.</p></div></details>
+        <details class="faq-item"><summary>Is there any equipment?</summary><div class="faq-body"><p>None. Just you and the floor.</p></div></details>
+        <details class="faq-item"><summary>What does it cost after the free class?</summary><div class="faq-body"><p>If you want to keep going, Nikki will walk you through the options — no surprises, no pressure.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + FORM -->
+  <section id="book" style="background: var(--teal-light);">
+    <div class="container narrow">
+      <h2 class="section">Come and play on the floor. First class is free.</h2>
+      <p class="lead">Drop your details in and Nikki will be in touch to lock in your free class.</p>
+
+      <form
+        id="af-form-el"
+        name="animal-flow-free-class"
+        method="POST"
+        netlify
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/AF-thanks/"
+        class="contact-form"
+        style="margin-top: 32px;"
+      >
+        <input type="hidden" name="form-name" value="animal-flow-free-class" />
+        <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" required />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+
+        <label class="field">
+          <span>Phone</span>
+          <input type="tel" name="phone" required />
+        </label>
+
+        <fieldset class="field">
+          <legend>Which session?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="session" value="sat-skills" /> Sat 10:00am Skills</label>
+            <label class="radio"><input type="radio" name="session" value="sat-build" /> Sat 9:15am Build</label>
+            <label class="radio"><input type="radio" name="session" value="tue-skills" /> Tue 6:15pm Skills</label>
+            <label class="radio"><input type="radio" name="session" value="tue-build" /> Tue 5:15pm Build</label>
+            <label class="radio"><input type="radio" name="session" value="unsure" checked /> Not sure yet</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>New to Animal Flow?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="experience" value="new" checked /> Yes, brand new</label>
+            <label class="radio"><input type="radio" name="experience" value="some" /> Done a bit before</label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary" style="margin-top: 8px;">Book my free class</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- JS submit → our own thanks page. -->
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('af-form-el');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        const data = new FormData(form);
+        const params = new URLSearchParams();
+        for (const [k, v] of data.entries()) params.append(k, v);
+        try {
+          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
+        } catch (_) {}
+        window.location.href = '/AF-thanks/';
+      });
+    })();
+  </script>
+</CampaignLayout>

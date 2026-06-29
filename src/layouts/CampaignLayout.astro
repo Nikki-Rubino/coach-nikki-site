@@ -1,0 +1,182 @@
+---
+import '../styles/global.css';
+import { getEntry } from 'astro:content';
+
+/*
+  CampaignLayout — a stripped, single-focus layout for paid / local-area
+  campaign landing pages (e.g. /seniors, /AF). No main nav, no footer menu,
+  nothing to wander off into. One offer, one action.
+
+  Tracking: paste the real IDs into the two consts below when you have them.
+  While they're empty, NOTHING loads (no pixel, no GA) — the pages work fine.
+  - PIXEL_ID  → Meta (Facebook) Pixel. Fires PageView on every campaign page,
+                and a `Lead` conversion on the thank-you pages (conversion=true).
+  - GA4_ID    → Google Analytics 4. Fires page_view, and `generate_lead` on
+                the thank-you pages.
+*/
+const PIXEL_ID = ''; // e.g. '1234567890'
+const GA4_ID = '';   // e.g. 'G-XXXXXXXXXX'
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Campaign pages are noindex by default so they don't compete with the
+   *  main /sassy-seniors and /animal-flow pages for organic search. */
+  noindex?: boolean;
+  /** Set true on thank-you pages so the conversion event fires. */
+  conversion?: boolean;
+  /** Optional OG image for nicer link previews when the ad/post is shared. */
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Coach Nikki — Matraville. Your first class is free.',
+  noindex = true,
+  conversion = false,
+  ogImage,
+} = Astro.props;
+
+const siteTitle = /coach nikki/i.test(title) ? title : `${title} | Coach Nikki`;
+
+// Brand lockup (logo + name), same source as the main nav.
+const branding = await getEntry('site', 'branding');
+const logoImage = branding?.data?.logoImage;
+const logoAlt = branding?.data?.logoAlt ?? 'Coach Nikki';
+const siteName = branding?.data?.siteName ?? 'Coach Nikki';
+
+const pixelBase = PIXEL_ID
+  ? `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${PIXEL_ID}');fbq('track','PageView');${conversion ? `fbq('track','Lead');` : ''}`
+  : '';
+
+const gaConfig = GA4_ID
+  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA4_ID}');${conversion ? `gtag('event','generate_lead');` : ''}`
+  : '';
+
+const pixelNoscript = PIXEL_ID
+  ? `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1" />`
+  : '';
+const gaSrc = GA4_ID ? `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}` : '';
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {/* Meta Pixel — only emitted once PIXEL_ID is set above. */}
+    {PIXEL_ID && <script is:inline set:html={pixelBase} />}
+    {PIXEL_ID && <noscript set:html={pixelNoscript} />}
+
+    {/* Google Analytics 4 — only emitted once GA4_ID is set above. */}
+    {GA4_ID && <script is:inline async src={gaSrc} />}
+    {GA4_ID && <script is:inline set:html={gaConfig} />}
+  </head>
+  <body>
+    <header class="lp-bar">
+      <div class="lp-bar-inner">
+        <div class="lp-brand">
+          {logoImage ? (
+            <img src={logoImage} alt={logoAlt} width="40" height="40" />
+          ) : (
+            <span class="lp-mark" aria-hidden="true"></span>
+          )}
+          <span class="lp-name">{siteName}</span>
+        </div>
+      </div>
+    </header>
+
+    <main><slot /></main>
+
+    <footer class="lp-foot">
+      <div class="container narrow">
+        <p>
+          Coach Nikki · Unit 3 / 60 Perry St, Matraville NSW 2036 ·
+          <a href="tel:0403122669">0403 122 669</a> ·
+          <a href="https://www.instagram.com/coach_nikkir/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </p>
+        <p class="lp-foot-legal">© {new Date().getFullYear()} Nikki Rubino. Strength is ageless.</p>
+      </div>
+    </footer>
+
+    <style>
+      .lp-bar {
+        background: #fff;
+        border-bottom: 1px solid var(--line, #eee);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .lp-bar-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+      }
+      .lp-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .lp-brand img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+      }
+      .lp-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--teal, #2bb6b0);
+        display: block;
+      }
+      .lp-name {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 19px;
+        color: var(--ink);
+      }
+      .lp-foot {
+        background: #fff;
+        border-top: 1px solid var(--line, #eee);
+        padding: 28px 0;
+        text-align: center;
+      }
+      .lp-foot p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .lp-foot a {
+        color: var(--muted);
+        text-decoration: underline;
+      }
+      .lp-foot-legal {
+        margin-top: 8px !important;
+        opacity: 0.8;
+      }
+    </style>
+  </body>
+</html>
