@@ -1,4 +1,5 @@
 # Netlify build + redirect config for coach-nikki-site
+# (repo is public — no Git-contributor limit applies)
 
 [build]
   command = "npm run build"
