@@ -94,14 +94,14 @@ const gaSrc = GA4_ID ? `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}` :
   <body>
     <header class="lp-bar">
       <div class="lp-bar-inner">
-        <div class="lp-brand">
+        <a class="lp-brand" href="/" aria-label={`${siteName} home`}>
           {logoImage ? (
             <img src={logoImage} alt={logoAlt} width="40" height="40" />
           ) : (
             <span class="lp-mark" aria-hidden="true"></span>
           )}
           <span class="lp-name">{siteName}</span>
-        </div>
+        </a>
       </div>
     </header>
 
@@ -137,7 +137,10 @@ const gaSrc = GA4_ID ? `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}` :
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none;
+        color: inherit;
       }
+      .lp-brand:hover .lp-name { color: var(--teal-dark, #1f6f69); }
       .lp-brand img {
         width: 40px;
         height: 40px;
