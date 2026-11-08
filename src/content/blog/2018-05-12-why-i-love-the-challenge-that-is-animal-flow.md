@@ -10,7 +10,7 @@ tags:
   - animal flow
   - movement
   - philosophy
-draft: true
+draft: false
 ---
 Hey Legend,
 
