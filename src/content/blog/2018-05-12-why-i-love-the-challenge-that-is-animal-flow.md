@@ -1,23 +1,34 @@
 ---
-title: "Why I love the challenge that is Animal Flow!"
+title: Why I love the challenge that is Animal Flow!
 date: 2018-05-12
-excerpt: "I get asked a lot why I actually do Animal Flow and how it benefits someone. To me it's not a single workout, it's a daily practice. Five reasons it works for all ages and goals."
-tags: ["animal flow", "movement", "philosophy"]
-draft: true
 author: Nikki Rubino
+excerpt: I get asked a lot why I actually do Animal Flow and how it benefits
+  someone. To me it's not a single workout, it's a daily practice. Five reasons
+  it works for all ages and goals.
+image: https://res.cloudinary.com/db6eijltv/image/upload/f_auto,q_auto/v1780379671/IMG_5289_photo-full_dr1pag.heic
+tags:
+  - animal flow
+  - movement
+  - philosophy
+draft: true
 ---
+Hey Legend,
 
-Hey,
+So, I get asked a lot - why do I actually do Animal Flow workouts, and how can it benefit someone?
 
-So I get asked a lot — why do I actually do Animal Flow workouts, and how can it benefit someone?
-
-First up, I don't classify it as a single workout. To me it's a daily practice. Much like yoga, gymnastics and martial arts are bodyweight disciplines, Animal Flow too is a bodyweight discipline. You need to drill, practise and repeat to improve your basic foundation and control, which in turn leads to better movement patterns in the complex flow sequences.
+First up, I don't classify it as a single workout. To me, it's a daily practice. Much like yoga, gymnastics and martial arts are bodyweight disciplines, Animal Flow too is a bodyweight discipline. You need to drill, practise and repeat to improve your basic foundation and control, which in turn leads to better movement patterns in the complex flow sequences.
 
 So why do I enjoy it, and why will it benefit all ages, fitness levels, genders and training goals?
 
-**1. It's fun and creative!** If you enjoy something, aren't you more inclined to keep doing it? It can be adapted to however you're feeling that day. Need a restorative session? Combine the form-specific stretches and focus on hitting your full range of motion. Need a quick heart-rate booster? Drill and combine the switches and transitions to see how fast you can keep them in control. Feeling creative? Let your body tell you, and piece movements together with your breath in whichever direction you want.
+**1. It's fun and creative!** If you enjoy something, aren't you more inclined to keep doing it? It can be adapted to however you're feeling that day. 
 
-**2. It resets your system and brings imbalances to light.** What was one of the first things our bodies learned to do? Crawl, right? We all started there — our body had to talk to itself to move across the floor. As we evolved, became upright, and day-to-day movements took over, our ability to reconnect may have gotten lost. Can you balance, stabilise, control, push and pull with the muscles designed for those purposes? Unsure? Let's get on the floor and find out. If the body can't connect in a safe environment close to the floor, there's no way it can in a standing position — let alone with a weighted load.
+Need a restorative session? Combine the form-specific stretches and focus on hitting your full range of motion. 
+
+Need a quick heart-rate booster? Drill and combine the switches and transitions to see how fast you can keep them in control. 
+
+Feeling creative or in a certain mood? Let your body tell you, and piece movements together with your breath in whichever direction you want.
+
+**2. It resets your system and brings imbalances to light.** What was one of the first things our bodies learned to do? Crawl, right? We all started there - our body had to talk to itself to move across the floor. As we evolved, became upright, and day-to-day movements took over, our ability to reconnect may have gotten lost. Can you balance, stabilise, control, push and pull with the muscles designed for those purposes? Unsure? Let's get on the floor and find out. If the body can't connect in a safe environment close to the floor, there's no way it can in a standing position — let alone with a weighted load.
 
 **3. It's versatile.** Use it as a stand-alone practice or combine elements with your current training. Into CrossFit? Get strong and in control in a loaded beast position. Into yoga? Gain strength through the full range of motion of shoulders, hips and spine, not just the end ranges. A runner? Keep the hip flexors open and work on gait control with front steps and scorpion reaches. An office worker? Hello daily crab positions to fire up that posterior chain.
 
@@ -29,6 +40,6 @@ In a nutshell: it can be done anywhere with no equipment. Gain strength. Improve
 
 Move to see what your body can do, not to punish it for what you may have done. And if you're toying with the idea that "this looks cool but there's no way I could do moves like that" — well, when I was learning, neither could I.
 
-Now, are you willing to come and play?
+Now, are you willing to come and play, 
 
 Nikki
